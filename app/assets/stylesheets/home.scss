@@ -1,0 +1,30 @@
+.list-group-item a {
+  display: block;
+}
+.msrp {
+  text-decoration: line-through;
+}
+.thumbnail {
+  height: 290px;
+  &.detail {
+    height: auto;
+  }
+  a.title {
+    color: #333;
+  }
+}
+
+.media {
+  &.shopping-cart-row {
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+a.add-to-cart-btn {
+  i {
+    display: none;
+  }
+}

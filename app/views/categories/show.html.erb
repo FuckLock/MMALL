@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-lg-3">
+    <ul class="list-group">
+      <% @categories.each do |group| %>
+        <li class="list-group-item"><%= group.first.title %></li>
+        <% group.last.each do |sub_category| %>
+          <li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></a></li>
+        <% end -%>
+      <% end -%>
+    </ul>
+  </div>
+  <div class="col-lg-9">
+    <ol class="breadcrumb">
+      <li><a href="<%= root_path %>">Home</a></li>
+      <li class="active"><%= @category.parent.title %></li>
+      <li class="active"><%= @category.title %></li>
+    </ol>
+    <h1><%= @category.title %></h1>
+
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <%= link_to image_tag(product.main_product_image.image.url(:middle), alt: product.title), product_path(product) %>
+            <div class="caption">
+              <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
+              <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
+              <p><%= show_add_to_cart product, html_class: "btn-xs" %></p>
+            </div>
+          </div>
+        </div>
+      <% end -%>
+    </div>
+    <%= will_paginate @products %>
+  </div>
+</div>
+
+<div class="form-inline">
+  <div class="form-group">
+      <div class='input-group date' id='datetimepicker1'>
+          <div class="input-group-addon">起始时间</div>
+          <input type='text' class="form-control" value="<%= Time.now %>"/>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+      </div>
+  </div>
+</div>
+  
+   
+<!-- <address>
+  <strong>Twitter, Inc.</strong><br>
+  1355 Market Street, Suite 900<br>
+  San Francisco, CA 94103<br>
+  <abbr title="Phone">P:</abbr> (123) 456-7890
+</address>
+
+<blockquote>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+</blockquote> -->
+<div class="table-responsive">
+  <table class="table">
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+  </table>
+</div>
+<!-- 
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <div class="input-group-addon">.00</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Transfer cash</button>
+</form> -->

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>东东商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= yield :stylesheets %>
+  </head>
+
+  <body>
+    <%= render 'layouts/menu' %>
+    <div class="container">
+    	<% if flash[:notice].present? %>
+    		<div class="alert alert-info">
+    			<%= flash[:notice] %>
+    		</div>
+    	<% end %>
+      <%= yield %>
+    </div>
+
+    <%= javascript_include_tag 'application' %>
+    <%= yield :javascripts %>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-lg-3">
+			<ul class="list-group">
+				<% @categories.each do |group| %>
+					<li class="list-group-item"><%= group.first.title%></li>
+					<% group.last.each do |sub_category| %>
+						<li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></li>
+					<% end %>
+				<% end %>
+			</ul>
+	</div>
+
+  <div class="col-lg-9">
+    <ol class="breadcrumb">
+      <li class="active">Home</li>
+    </ol>
+    <div class="row">
+		  <% @products.each do |product| %>
+		    <div class="col-sm-6 col-md-4">
+		      <div class="thumbnail">
+		        <%= link_to image_tag(product.main_product_image.image.url(:middle), alt: product.title), product_path(product) %>
+		        <div class="caption">
+		          <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
+		          <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
+		          <p><%= show_add_to_cart product, html_class: "btn-xs" %></p>
+		        </div>
+		      </div>
+		    </div>
+		  <% end -%>
+	</div>
+  </div>
+</div>
+
+	

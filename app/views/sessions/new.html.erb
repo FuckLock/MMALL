@@ -1,0 +1,25 @@
+<div class="modal fade" tabindex="-1" id="cd-user-modal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+				<div class="row"> 
+					<%= form_tag(sessions_path, method: "post") do %>
+						<div class="form-group">
+							<div class="col-lg-12">邮箱 *</div>
+							<div class="col-lg-12">
+								<%= text_field_tag :email, nil, class: "form-control" %>
+							</div>
+							<div class="col-lg-12">密码</div>
+							<div class="col-lg-12">
+								<%= password_field_tag :password, nil, class: "form-control" %>
+							</div>
+							<div class="col-lg-12">
+								<%= submit_tag "登录", class: "form-control btn btn-primary" %>
+							</div>
+						</div>
+					<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
