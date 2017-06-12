@@ -2,9 +2,9 @@
   <div class="col-lg-3">
     <ul class="list-group">
       <% @categories.each do |group| %>
-        <li class="list-group-item"><%= group.first.title %></li>
+        <li class="list-group-item title"><%= group.first.title %></li>
         <% group.last.each do |sub_category| %>
-          <li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></a></li>
+          <li class="list-group-item title"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></a></li>
         <% end -%>
       <% end -%>
     </ul>
@@ -70,6 +70,11 @@
     <td>Table cell</td>
   </table>
 </div>
+
+<a class="title" href="//www.mi.com/buyphone/" data-stat-id="46830753a57a2e5a" onclick="_msq.push(['trackEvent', '79fe2eae924d2a2e-46830753a57a2e5a', '//www.mi.com/buyphone/', 'pcpid', '']);">手机 电话卡<i class="iconfont"></i></a>
+
+
+<a class="title" href="//www.mi.com/mibookair/" data-stat-id="2042589582b51b9f" onclick="_msq.push(['trackEvent', '79fe2eae924d2a2e-2042589582b51b9f', '//www.mi.com/mibookair/', 'pcpid', '']);">笔记本 平板<i class="iconfont"></i></a>
 <!-- 
 <form class="form-inline">
   <div class="form-group">

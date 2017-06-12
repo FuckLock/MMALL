@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.profiles.define 'myprofile' do
-	load_profile 'rails'
+  load_profile 'rails'
   add_filter '/test/'
   add_filter '/config/'
   add_filter '/channels'

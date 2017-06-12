@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+  - 'bin/*'
+  - 'db/*.rb'
+  - 'vendor/**/*'
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+    - '**/Gemfile'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 125
+
+Style/AsciiComments:
+    Enabled: false
+
+Documentation:
+    Enabled: false

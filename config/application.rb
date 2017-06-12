@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -19,12 +21,12 @@ module MasterRailsByActions
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths += %W[#{Rails.root}/lib]
     config.generators do |generator|
-    	generator.assets false
-    	generator.helper false
-    	generator.test_framework = :rspec
-        generator.skip_routes true
-        generator.fixture_replacement :factory_girl
-        generator.factory_girl dir: 'spec/factories'
+      generator.assets false
+      generator.helper false
+      generator.test_framework = :rspec
+      generator.skip_routes true
+      generator.fixture_replacement :factory_girl
+      generator.factory_girl dir: 'spec/factories'
     end
   end
 end
