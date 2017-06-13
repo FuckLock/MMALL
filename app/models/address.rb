@@ -13,8 +13,8 @@ class Address < ApplicationRecord
   belongs_to :user
 
   module AddressType
-    User = 'user'
-    Order = 'order'
+    USER = 'user'
+    ORDER = 'order'
   end
 
   private
@@ -26,12 +26,11 @@ class Address < ApplicationRecord
     else
       remove_as_default_address
     end
-   end
+  end
 
   def remove_as_default_address
-    if user.default_address == self
-      user.default_address = nil
-      user.save!
-    end
-   end
+    return unless user.default_address == self
+    user.default_address = nil
+    user.save!
+  end
 end

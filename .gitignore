@@ -16,3 +16,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 coverage
+.alipay_public
+.alipay_self_private

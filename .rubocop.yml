@@ -3,20 +3,33 @@ AllCops:
   - 'bin/*'
   - 'db/*.rb'
   - 'vendor/**/*'
+  - 'config/**/*'
+  - 'test/**/*'
+  - 'Guardfile'
   Include:
     - '**/Rakefile'
     - '**/config.ru'
     - '**/Gemfile'
 
+
 Metrics/LineLength:
   Max: 120
 
 Metrics/MethodLength:
-  CountComments: false
   Max: 125
+
+Metrics/ClassLength:
+  Max: 130
+
+Metrics/AbcSize:
+  Max: 30
+
+Style/RegexpLiteral:
+  Enabled: false
 
 Style/AsciiComments:
     Enabled: false
 
 Documentation:
     Enabled: false
+

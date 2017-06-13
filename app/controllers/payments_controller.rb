@@ -20,20 +20,18 @@ class PaymentsController < ApplicationController
   def failed; end
 
   def do_payment
-    if @payment.is_success?
+    if @payment.success?
       redirect_to success_payment_path
+    elsif paymente_success?
+      @payment.do_success_payment! params
+      redirect_to success_payments_path
     else
-      if is_payment_success?
-        @payment.do_success_payment! params
-        redirect_to success_payments_path
-      else
-        @payment.do_failed_payment! params
-        redirect_to failed_payments_path
-      end
+      @payment.do_failed_payment! params
+      redirect_to failed_payments_path
     end
   end
 
-  def is_payment_success?
+  def paymente_success?
     %w[TRADE_SUCCESS TRADE_FINISHED].include?(params[:trade_status])
   end
 
@@ -43,10 +41,9 @@ class PaymentsController < ApplicationController
       redirect_to failed_payments_path
     end
 
-    unless build_is_request_sign_valid?(params)
-      Rails.logger.info "PAYMENT DEBUG ALIPAY SIGN INVALID: #{params.to_hash}"
-      redirect_to failed_payments_path
-    end
+    return if build_is_request_sign_valid?(params)
+    Rails.logger.info "PAYMENT DEBUG ALIPAY SIGN INVALID: #{params.to_hash}"
+    redirect_to failed_payments_path
   end
 
   def build_is_request_from_alipay?(result_options)
@@ -85,7 +82,6 @@ class PaymentsController < ApplicationController
 
   # RSA 签名
   def build_rsa_sign(data)
-    debugger
     private_key_path = Rails.root.to_s + '/config/.alipay_self_private'
     pri = OpenSSL::PKey::RSA.new(File.read(private_key_path))
     signature = Base64.encode64(pri.sign('sha1', data))
@@ -103,14 +99,11 @@ class PaymentsController < ApplicationController
 
   def find_and_validate_payment_no
     @payment = Payment.find_by_payment_no params[:out_trade_no]
-    unless @payment
-      if is_payment_success?
-        render text: '未找到您的订单号，但是已经支付'
-        return
-      else
-        render text: '未找到您的订单号,同时您也没完成支付，请重新支付'
-        return
-      end
+    return if @payment.present?
+    if paymente_success?
+      render text: '未找到您的订单号，但是已经支付'
+    else
+      render text: '未找到您的订单号,同时您也没完成支付，请重新支付'
     end
   end
 

@@ -18,12 +18,14 @@ class Category < ApplicationRecord
     self.ancestry = nil if ancestry.blank?
   end
 
-  def self.grouped_data
-    roots.order('weight desc').inject([]) do |result, parent|
-      row = []
-      row << parent
-      row	<< parent.children.order('weight desc')
-      result << row
+  class << self
+    def grouped_data
+      roots.order('weight desc').inject([]) do |result, parent|
+        row = []
+        row << parent
+        row	<< parent.children.order('weight desc')
+        result << row
+      end
     end
   end
 end

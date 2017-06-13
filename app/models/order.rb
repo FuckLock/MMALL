@@ -16,12 +16,12 @@ class Order < ApplicationRecord
   before_create :gen_order_no
 
   module OrderStatus
-    Initial = 'initial'
-    Paid = 'paid'
+    INITIAL = 'initial'
+    PAID = 'paid'
   end
 
-  def is_paid?
-    status == Order::OrderStatus::Paid
+  def paid?
+    status == Order::OrderStatus::PAID
   end
 
   def self.create_order_from_shopping_carts(user, address, *shopping_carts)
@@ -29,7 +29,7 @@ class Order < ApplicationRecord
 
     orders = []
     address_attr = address.attributes.except('id', 'created_at', 'updated_at')
-    order_address = user.addresses.create!(address_attr.merge(address_type: Address::AddressType::Order))
+    order_address = user.addresses.create!(address_attr.merge(address_type: Address::AddressType::ORDER))
     shopping_carts.each do |shopping_cart|
       orders << user.orders.create!(
         product: shopping_cart.product,

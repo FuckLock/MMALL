@@ -7,18 +7,18 @@ class Payment < ApplicationRecord
   before_create :gen_payment_no
 
   module PaymentStatus
-    Intital = 'intital'
-    Success = 'sucessed'
-    Failed = 'Failed'
+    INTITAL = 'intital'
+    SUCCESS = 'sucessed'
+    FAILED = 'Failed'
   end
 
-  def is_success?
-    status == Payment::Success
+  def success?
+    status == Payment::PaymentStatus::SUCCESS
   end
 
   def do_success_payment!(options)
     self.transaction_no = options[:trade_no]
-    self.status = Payment::PaymentStatus::Success
+    self.status = Payment::PaymentStatus::SUCCESS
     self.raw_respose = options.to_json
     self.payment_at = Time.now
     save!
@@ -26,7 +26,7 @@ class Payment < ApplicationRecord
 
   def do_failed_payment!(_params)
     self.transaction_no = options[:trade_no]
-    self.status = Payment::PaymentStatus::Failed
+    self.status = Payment::PaymentStatus::FAILED
     self.raw_respose = options.to_json
     self.payment_at = Time.now
     save!
@@ -40,7 +40,7 @@ class Payment < ApplicationRecord
     orders.flatten!
     payment = user.payments.create!(total_money: orders.sum(&:total_money))
     orders.each do |order|
-      raise "order #{order.order_no} has already paid" if order.is_paid?
+      raise "order #{order.order_no} has already paid" if order.paid?
 
       order.payment = payment
       order.save!
