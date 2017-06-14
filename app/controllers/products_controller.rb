@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ProductsController < ApplicationController
   def show
     @categories = Category.grouped_data

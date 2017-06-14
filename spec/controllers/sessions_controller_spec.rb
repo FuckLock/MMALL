@@ -1,25 +1,35 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
-describe SessionsController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
+  let(:user) { create(:user) }
   describe ':new' do
     it 'should render new template' do
-      debugger
       get :new
-      
-      expect(response).to be_success
+      expect(response).to render_template(:new)
     end
   end
 
   describe ':create' do
-    let (:user) { create(:user) }
     it 'should redirect to root_path' do
-      post :create, params: { user: {email: user.email, password: user.password} }
+      post :create, params: { email: user.email, password: '888888' }
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'should redirect to new_session_path' do
+      post :create, params: { email: user.email, password: '999999' }
+      expect(response).to redirect_to(new_session_path)
+    end
+  end
+
+  describe ':destroy' do
+    it 'should redirect to root_path' do
+      post :create, params: { email: user.email, password: '888888' }
+      delete :destroy, params: { id: user.id }
       expect(response).to redirect_to(root_path)
     end
   end
 end
 
+# 模仿cucumber feature测试相当于浏览器行为,此测试是站在用户的角度在考虑问题，让用户去模拟测试更友好
 # feature 'user' do
 #   background do
 #     # User.create(email: "123@qq.com", password: "123456", password_confirmation: "123456")

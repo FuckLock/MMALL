@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddressesController < ApplicationController
   before_action :auth_user
   layout false

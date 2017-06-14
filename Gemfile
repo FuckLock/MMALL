@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://gems.ruby-china.org/'
 
 gem 'coffee-rails', '~> 4.2'
@@ -31,6 +29,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'simplecov'

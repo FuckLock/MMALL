@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ShoppingCartsController < ApplicationController
   before_action :find_shopping_cart, only: %i[update destroy]
 

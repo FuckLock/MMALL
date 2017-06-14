@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module RandomCode
   class << self
     def generate_password(len = 8)

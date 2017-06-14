@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class ProductsController < ApplicationController
     before_action :find_product, only: %i[edit update destroy]

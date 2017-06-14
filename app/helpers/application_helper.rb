@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   def show_add_to_cart(product, options = {})
     html_class = 'btn btn-danger add-to-cart-btn'

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PaymentsController < ApplicationController
   protect_from_forgery except: [:alipay_notify]
 
