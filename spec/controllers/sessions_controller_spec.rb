@@ -1,27 +1,28 @@
 require 'rails_helper'
+
 RSpec.describe SessionsController, type: :controller do
   let(:user) { create(:user) }
   describe ':new' do
-    it 'should render new template' do
+    it 'render new template' do
       get :new
       expect(response).to render_template(:new)
     end
   end
 
   describe ':create' do
-    it 'should redirect to root_path' do
+    it 'redirect to root_path' do
       post :create, params: { email: user.email, password: '888888' }
       expect(response).to redirect_to(root_path)
     end
 
-    it 'should redirect to new_session_path' do
+    it 'redirect to new_session_path' do
       post :create, params: { email: user.email, password: '999999' }
       expect(response).to redirect_to(new_session_path)
     end
   end
 
   describe ':destroy' do
-    it 'should redirect to root_path' do
+    it 'redirect to root_path' do
       post :create, params: { email: user.email, password: '888888' }
       delete :destroy, params: { id: user.id }
       expect(response).to redirect_to(root_path)
@@ -29,7 +30,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 end
 
-# 模仿cucumber feature测试相当于浏览器行为,此测试是站在用户的角度在考虑问题，让用户去模拟测试更友好
+# 模仿cucumber feature测试相当于浏览器行为
 # feature 'user' do
 #   background do
 #     # User.create(email: "123@qq.com", password: "123456", password_confirmation: "123456")
