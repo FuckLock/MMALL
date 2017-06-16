@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    debugger
     user = login(params[:email], params[:password])
     if user
       update_browser_uuid user.uuid

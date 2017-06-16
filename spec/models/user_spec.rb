@@ -1,3 +1,11 @@
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  describe User do
+    # debugger
+    it { expect belongs_to(:default_address) }
+  end
+end
 # frozen_string_literal: true
 # # frozen_string_literal: true
 
