@@ -50,9 +50,12 @@ RSpec.configure do |config|
     end
   end
 
-  # factory_gril configuration
+  # If you do not include FactoryGirl::Syntax::Methods in your test suite, 
+  # then all factory_girl methods will need to be prefaced with FactoryGirl.
   config.include FactoryGirl::Syntax::Methods
 
+  # Factories can be defined anywhere, but will be automatically loaded after calling 
+  # FactoryGirl.find_definitions if factories are defined in files at the following locations:
   # config.before(:suite) do
   #   FactoryGirl.find_definitions
   # end

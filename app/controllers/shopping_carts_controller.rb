@@ -10,7 +10,6 @@ class ShoppingCartsController < ApplicationController
   def create
     amount = params[:amount].to_i
     amount = amount <= 0 ? 1 : amount
-
     @product = Product.find params[:product_id]
     @shopping_cart = ShoppingCart.create_or_update!(user_uuid: session[:user_uuid],
                                                     product_id: params[:product_id],

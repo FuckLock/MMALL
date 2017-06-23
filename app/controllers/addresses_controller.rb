@@ -3,8 +3,9 @@ class AddressesController < ApplicationController
   layout false
 
   def new
+    # debugger
     @address = current_user.addresses.new
-    render layout: false
+    render_to_string(file: 'addresses/new')
   end
 
   def index
@@ -17,6 +18,7 @@ class AddressesController < ApplicationController
 
     if @address.save
       @addresses = current_user.reload.addresses
+      debugger
       render json: {
         status: 'ok',
         data: render_to_string(file: 'addresses/index')

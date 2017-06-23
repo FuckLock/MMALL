@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_atts)
-    @user.uuid = session[:user_uuid]
-    if @user.save
+    @user.uuid = session[:user_uuid] ? session[:user_uuid] : RandomCode.generate_utoken
+    if @user
       flash[:notice] = '注册用户成功, 请登录'
       redirect_to root_path
     else
