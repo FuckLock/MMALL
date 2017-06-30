@@ -1,5 +1,5 @@
 module Admin
-  class ProductImagesController < ApplicationController
+  class ProductImagesController < Admin::ApplicationController
     before_action :find_product
 
     def index

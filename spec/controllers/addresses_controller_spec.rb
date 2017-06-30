@@ -28,7 +28,7 @@ RSpec.describe AddressesController, type: :controller do
   #                                        contact_name: address.contact_name,
   #                                        cellphone: address.cellphone, address: address.address,
   #                                        zipcode: address.zipcode, set_as_default: '1' } }
-  #     expect(response).to 
+  #     expect(response).to
   #   end
   # end
 

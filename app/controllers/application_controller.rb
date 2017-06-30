@@ -6,11 +6,18 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_browser_uuid
-    uuid = logged_in? ? current_user.uuid : RandomCode.generate_utoken unless cookies[:user_uuid].present?
-    update_browser_uuid uuid
+    uuid = cookies[:user_uuid]
+    unless uuid
+      uuid = if logged_in?
+               current_user.uuid
+             else
+               RandomCode.generate_utoken
+             end
+    end
+    update_browser_uuid
   end
 
-  def update_browser_uuid(uuid)
+  def update_browser_uuid
     session[:user_uuid] = cookies.permanent['user_uuid'] = uuid
   end
 

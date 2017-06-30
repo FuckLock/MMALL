@@ -20,3 +20,5 @@
 
 //= require home
 //= require session
+
+//= require select2

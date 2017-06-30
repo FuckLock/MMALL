@@ -1,5 +1,5 @@
 <div class="pull-right">
-  <%= link_to "新建收货地址", new_address_path, class: "btn btn-info new-address-btn", onclick: "chuli(this)", remote: true %>
+  <%= link_to "新建收货地址", new_address_path, class: "btn btn-info new-address-btn", remote: true %>
 </div>
 <div class="clearfix"></div>
 <br />
@@ -29,27 +29,3 @@
     </li>
   <% end %>
 </ul>
-
-<script type="text/javascript">
-  function chuli (obj) {
-    var xmlhttprequest;
-    if (window.XMLHttpRequest){
-      xmlhttprequest = new XMLHttpRequest();
-    }else{
-      xmlhttprequest = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttprequest.open('GET', '/addresses/new', true);
-    xmlhttprequest.onreadystatechange = function () {
-      if (xmlhttprequest.readyState == 4 && xmlhttprequest.status == 200){
-        // window.alert(typeof xmlhttprequest.responseText);
-        document.body.innerHTML += xmlhttprequest.responseText;
-        a = document.getElementById("address_form_modal");
-        // window.alert(a);
-        // window.alert($(a).get(0));
-        $(a).modal();
-      }
-    }
-    xmlhttprequest.send();
-    return false;
-  }
-</script>

@@ -1,5 +1,5 @@
 module	Admin
-  class	SessionsController < Admin::BaseController
+  class	SessionsController < Admin::ApplicationController
     def new; end
   end
 end

@@ -4,9 +4,7 @@
     <title>管理平台 - 东东商城</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'admin', media: 'all' %>
-    <%= yield :stylesheets %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
@@ -19,7 +17,7 @@
       <%= yield %>
     </div>
 
-    <%= javascript_include_tag 'admin' %>
+    <%= javascript_include_tag 'application' %>
     <%= yield :javascripts %>
   </body>
 </html>

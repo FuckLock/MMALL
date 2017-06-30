@@ -1,5 +1,5 @@
 module Admin
-  class CategoriesController < Admin::BaseController
+  class CategoriesController < Admin::ApplicationController
     def index
       @categories = params[:id].blank? ? Category.roots : Category.find(params[:id]).children
       @categories = @categories.page(params[:page] || 1).per_page(params[:per_page] || 10).order('id desc')

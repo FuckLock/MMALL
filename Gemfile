@@ -15,6 +15,7 @@ gem 'font-awesome-rails'
 gem 'momentjs-rails'
 gem 'paperclip'
 gem 'rest-client'
+gem 'select2-rails'
 gem 'sorcery'
 gem 'will_paginate'
 

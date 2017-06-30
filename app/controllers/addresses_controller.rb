@@ -3,7 +3,6 @@ class AddressesController < ApplicationController
   layout false
 
   def new
-    # debugger
     @address = current_user.addresses.new
     render_to_string(file: 'addresses/new')
   end
@@ -18,7 +17,6 @@ class AddressesController < ApplicationController
 
     if @address.save
       @addresses = current_user.reload.addresses
-      debugger
       render json: {
         status: 'ok',
         data: render_to_string(file: 'addresses/index')
@@ -46,11 +44,11 @@ class AddressesController < ApplicationController
   def destroy
     @address = current_user.addresses.find(params[:id])
     @address.destroy
+    @addresses = current_user.addresses
     render json: {
       status: 'ok',
       data: render_to_string(file: 'addresses/index')
     }
-    layout false
   end
 
   private
