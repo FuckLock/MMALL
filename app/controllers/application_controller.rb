@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
                RandomCode.generate_utoken
              end
     end
-    update_browser_uuid
+    update_browser_uuid uuid
   end
 
-  def update_browser_uuid
+  def update_browser_uuid uuid
     session[:user_uuid] = cookies.permanent['user_uuid'] = uuid
   end
 
