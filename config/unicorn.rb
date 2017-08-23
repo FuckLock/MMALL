@@ -86,6 +86,10 @@
 rails_env = ENV["RAILS_ENV"] || "development"
 rails_root = File.expand_path(__FILE__).split('/')[0..-3].join('/')
 
+port_number = 5000
+process_number = 1
+
+puts "rails_root path: #{rails_root}"
 puts "unicorn env: #{rails_env}"
 puts "unicorn port: #{port_number}"
 puts "unicorn process number: #{process_number}"
@@ -96,10 +100,10 @@ pid "#{rails_root}/tmp/pids/unicorn.pid"
 stderr_path "#{rails_root}/log/unicorn.log"
 stdout_path "#{rails_root}/log/unicorn.log"
 
-listen 5000, :tcp_nopush => true
+listen port_number, :tcp_nopush => true
 
 # listen "/tmp/unicorn.ruby-china.sock"
-worker_processes 1
+worker_processes process_number
 timeout 30
 
 before_fork do |server, worker|
