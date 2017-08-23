@@ -18,6 +18,7 @@ gem 'rest-client'
 gem 'select2-rails'
 gem 'sorcery'
 gem 'will_paginate'
+gem 'unicorn'
 
 group :development do
   gem 'guard-bundler', require: false
