@@ -15,7 +15,21 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#rails
 coverage
 .alipay_public
 .alipay_self_private
-.database.yml
+config/database.yml
+config/config.yml
+config/redis.yml
+secrets.yml
+db/schema.rb
+tmp/
+log/
+*.log
+*.pid
+*.cache
+.byebug_history
+.ruby-version
+.rvmrc
