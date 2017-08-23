@@ -18,3 +18,4 @@
 coverage
 .alipay_public
 .alipay_self_private
+.database.yml
