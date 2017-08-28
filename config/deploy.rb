@@ -41,7 +41,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 namespace :deploy do
 	task :restart do
-		invoke "deploy:unicorn_mime:reload"
+		invoke "deploy:unicorn_mine:reload"
 	end
 end
 
