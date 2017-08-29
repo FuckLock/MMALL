@@ -19,6 +19,7 @@ gem 'select2-rails'
 gem 'sorcery'
 gem 'will_paginate'
 gem 'unicorn'
+gem 'puma'
 gem 'therubyracer'
 
 group :development do

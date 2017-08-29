@@ -193,6 +193,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
+    puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -353,6 +354,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2 (>= 0.3.18, < 0.5)
   paperclip
+  puma
   rails (~> 5.0.2)
   rails-controller-testing
   rest-client

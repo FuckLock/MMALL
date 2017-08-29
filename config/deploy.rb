@@ -39,10 +39,27 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
-	task :restart do
-		invoke "deploy:unicorn_mine:reload"
-	end
-end
+# unicorn 部署配置
+# namespace :deploy do
+# 	task :restart do
+# 		invoke "deploy:unicorn_mine:reload"
+# 	end
+# end
 
-after 'deploy:publishing', 'deploy:restart'
+# after 'deploy:publishing', 'deploy:restart'
+
+# puma 部署配置
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+    end
+  end
+  after :restart, :'puma:restart'   
+  after :publishing, :restart
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+    end
+  end
+end
