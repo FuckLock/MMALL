@@ -20,6 +20,7 @@ gem 'sorcery'
 gem 'will_paginate'
 gem 'unicorn'
 gem 'puma'
+gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1'
 gem 'therubyracer'
 
 group :development do
