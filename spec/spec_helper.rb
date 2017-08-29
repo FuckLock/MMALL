@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-SimpleCov.start
+require 'simplecov_custom_profile'
+
+SimpleCov.start 'myprofile'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -16,7 +16,7 @@ namespace :deploy do
     end
 
     def start_puma_cmd
-      execute "cd #{current_path}; bundle exec puma -E #{fetch(:rails_env)} -C config/puma.rb -D"
+      execute "cd #{current_path}; bundle exec puma -C config/puma.rb -e production -d"
     end
 
     def puma_container action_name
