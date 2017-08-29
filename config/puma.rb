@@ -4,7 +4,7 @@ workers 1
 
 basedir = "/opt/backend/master_rails_by_actions"
 bind  "unix:///tmp/master_app.sock"
-pidfile  "#{basedir}/current/tmp/puma/pid"
+pidfile  "#{basedir}/current/tmp/pids/puma.pid"
 state_path "#{basedir}/current/tmp/puma/state"
 preload_app!
 
