@@ -20,7 +20,7 @@ namespace :deploy do
     end
 
     def puma_container action_name
-      on roles(:web) do |host|
+      on roles(:app) do |host|
         puts "*" * 50
         puts "#{action_name} puma..."
         if test("[ -f #{current_path}/tmp/pids/puma.pid ]")
