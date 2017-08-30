@@ -1,7 +1,7 @@
 namespace :deploy do
   namespace :puma_mine do
     desc "start puma"
-    task :start do
+    task :start_puma do
       start_puma
     end
 
