@@ -6,7 +6,7 @@ namespace :deploy do
     end
 
     def start_puma
-      excute "cd #{current_path}; bundle exec puma -C config/puma.rb -e production -d"
+      execute "cd #{current_path}; bundle exec puma -C config/puma.rb -e production -d"
     end
   end
 end
