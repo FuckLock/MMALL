@@ -50,9 +50,9 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # puma 部署配置
 namespace :deploy do
-	task :restart do
-		invoke "deploy:puma_mine:reload"
+	task :start do
+		invoke "deploy:puma_mine:start_puma"
 	end
 end
 
-after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'deploy:start'

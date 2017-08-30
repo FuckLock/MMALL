@@ -6,7 +6,7 @@ basedir = "/opt/backend/master_rails_by_actions"
 bind  "unix:///tmp/master_app.sock"
 pidfile  "#{basedir}/current/tmp/pids/puma.pid"
 state_path "#{basedir}/current/tmp/pids/puma.state"
-# stdout_redirect "#{basedir}/log/puma.stdout.log", "#{basedir}/log/puma.stderr.log", true
+stdout_redirect "#{basedir}/shared/log/puma.stdout.log", "#{basedir}/shared/log/puma.stderr.log", true
 preload_app!
 
 on_worker_boot do
