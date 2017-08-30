@@ -8,6 +8,7 @@ pidfile  "#{basedir}/current/tmp/pids/puma.pid"
 state_path "#{basedir}/current/tmp/pids/puma.state"
 stdout_redirect "#{basedir}/shared/log/puma.stdout.log", "#{basedir}/shared/log/puma.stderr.log", true
 preload_app!
+daemonize true
 
 on_worker_boot do
   ActiveSupport.on_load(:active_record) do

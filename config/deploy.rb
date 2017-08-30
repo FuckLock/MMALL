@@ -49,10 +49,28 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # after 'deploy:publishing', 'deploy:restart'
 
 # puma 部署配置
-namespace :deploy do
-	task :start do
-		invoke "deploy:puma_mine:start_puma"
-	end
-end
+# namespace :deploy do
+# 	task :start do
+# 		invoke "deploy:puma_mine:start_puma"
+# 	end
+# end
 
-after 'deploy:publishing', 'deploy:start'
+# after 'deploy:publishing', 'deploy:start'
+
+# 这里使用的是capistano3-puma部署，省略了主动创建puma.rb文件
+# 下面的配置会在production shared下创建puma.rb文件，这个puma文件
+# 的内容就是下面的配置，如果production下puma开启了，会restart否则主动
+# 开启，好处是不用自己去开PUMA了，更简单
+set :puma_state, "#{shared_path}/tmp/pids/puma.state"
+set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
+set :puma_bind, "unix:///tmp/master_app.sock"
+set :puma_access_log, "#{shared_path}/log/puma_access.log"
+set :puma_error_log, "#{shared_path}/log/puma_error.log"
+set :puma_role, :app
+set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
+set :puma_threads, [5, 48]
+set :puma_workers, 1
+set :puma_init_active_record, false
+set :puma_preload_app, true
+set :puma_daemonize, true
+
