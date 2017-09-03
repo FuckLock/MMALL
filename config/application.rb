@@ -22,6 +22,7 @@ module MasterRailsByActions
     # config.enable_dependency_loading = true
     # config.autoload_paths += Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
+    config.active_job.queue_adapter = :sidekiq
     config.generators do |generator|
       generator.assets false
       generator.helper false

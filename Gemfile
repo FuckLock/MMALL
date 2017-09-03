@@ -21,6 +21,8 @@ gem 'will_paginate'
 gem 'unicorn'
 gem 'puma'
 gem 'therubyracer'
+gem 'redis'
+gem 'sidekiq'
 
 group :development do
   gem 'guard-bundler', require: false
