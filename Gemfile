@@ -23,6 +23,7 @@ gem 'puma'
 gem 'therubyracer'
 gem 'redis'
 gem 'sidekiq'
+gem 'docker-api'
 
 group :development do
   gem 'guard-bundler', require: false
