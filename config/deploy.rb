@@ -12,6 +12,13 @@ set :branch, ENV['BRANCH'] || "master"
 set :deploy_to, "/opt/backend/master_rails_by_actions"
 # set :deploy_to, "/var/www/my_app_name"
 
+# capistrano-sidekiq
+set :sidekiq_role, :app  
+set :sidekiq_pid, "#{shared_path}/tmp/pids/sidekiq.pid"
+set :sidekiq_log, "#{shared_path}/log/sidekiq.log"
+set :sidekiq_env, 'production' 
+
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
