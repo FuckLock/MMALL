@@ -48,6 +48,7 @@ group :development do
   gem 'capistrano', '~> 3.9'
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
 end
 
 group :development do
