@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  pool: 25
   database: master_rails_by_actions_production
   username: master_rails_by_actions
   password: <%= ENV['MASTER_RAILS_BY_ACTIONS_DATABASE_PASSWORD'] %>

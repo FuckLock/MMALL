@@ -22,6 +22,7 @@ coverage
 .alipay_self_private
 config/database.yml
 config/secrets.yml
+config/redis.yml
 db/schema.rb
 log/*.log
 public/assets/

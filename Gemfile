@@ -22,6 +22,8 @@ gem 'unicorn'
 gem 'puma'
 gem 'therubyracer'
 gem 'redis'
+gem 'redis-namespace'
+gem 'redis-objects'
 gem 'sidekiq'
 gem 'docker-api'
 
