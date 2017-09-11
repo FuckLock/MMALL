@@ -14,4 +14,5 @@ Rails.application.config.assets.precompile += %w[
   admin.js
   admin.scss
   session.scss
+  home.scss
 ]

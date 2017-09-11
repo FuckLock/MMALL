@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>东东商城</title>
+    <title>MMall</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
 
@@ -12,16 +12,8 @@
   </head>
 
   <body>
-    <%= render 'layouts/menu' %>
-    <div class="container">
-    	<% if flash[:notice].present? %>
-    		<div class="alert alert-info">
-    			<%= flash[:notice] %>
-    		</div>
-    	<% end %>
-      <%= yield %>
-    </div>
-
+    <%= render 'layouts/mall' %>
+    <%= yield %>
     <%= yield :javascripts %>
   </body>
 </html>

@@ -1,30 +1,42 @@
-.list-group-item a {
-  display: block;
-}
-.msrp {
-  text-decoration: line-through;
-}
-.thumbnail {
-  height: 290px;
-  &.detail {
-    height: auto;
-  }
-  a.title {
-    color: #333;
-  }
+.top-nav{
+    background-color: #B00000;
+    margin-top: 0px;
+    padding-top:  80px;
 }
 
-.media {
-  &.shopping-cart-row {
-    border-bottom: 1px solid #ccc;
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
+.nav{
+    background-color: #F0F0F0;
+    margin-top: 0px;
+    padding-top:  6px;
 }
-a.add-to-cart-btn {
-  i {
-    display: none;
-  }
+
+ul.ul-nav{
+    list-style-type: none;
+    float: right;
+}
+
+ul.ul-nav li{
+    font-size: 5px;
+    display: inline;
+    position: relative;
+    left: -150px;
+}
+
+ul.ul-nav li.login {
+    position: absolute;
+    left: 180px;
+}
+
+
+ul.ul-nav li.register {
+    position: absolute;
+    left: 220px;
+}
+
+ul a:link {
+    text-decoration: none;
+}
+
+ul a:hover {
+    color: red;
 }
