@@ -136,3 +136,46 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
+
+.top-nav{
+    background-color: #B00000;
+    margin-top: 0px;
+    padding-top:  80px;
+}
+
+.nav{
+    background-color: #F0F0F0;
+    margin-top: 0px;
+    padding-top:  6px;
+}
+
+ul.ul-nav{
+    list-style-type: none;
+    float: right;
+}
+
+ul.ul-nav li{
+    font-size: 5px;
+    display: inline;
+    position: relative;
+    left: -150px;
+}
+
+ul.ul-nav li.login {
+    position: absolute;
+    left: 180px;
+}
+
+
+ul.ul-nav li.register {
+    position: absolute;
+    left: 220px;
+}
+
+ul a:link {
+    text-decoration: none;
+}
+
+ul a:hover {
+    color: red;
+}

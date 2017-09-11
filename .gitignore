@@ -23,6 +23,7 @@ coverage
 config/database.yml
 config/secrets.yml
 config/redis.yml
+config/puma.rb
 db/schema.rb
 log/*.log
 public/assets/

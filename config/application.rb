@@ -31,5 +31,21 @@ module MasterRailsByActions
       generator.fixture_replacement :factory_girl
       generator.factory_girl dir: 'spec/factories'
     end
+
+    # email config
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_deliveries = true
+    # config.action_mailer.default_url_options = { host: '173.194.193.108' }
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            'bao1214063293@gmail.com',
+      password:             'ccc6986221',
+      authentication:       :plain,
+      enable_starttls_auto: true
+      # ssl:  true
+    }
   end
 end
