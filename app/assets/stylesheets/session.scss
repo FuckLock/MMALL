@@ -111,6 +111,32 @@ body {
     top: 50%;
     transform: translateY(40%);
     color: red;
-    text-align: left;
+
     // display: none;
+}
+
+.link-item {
+    margin: 15px auto 0;
+    text-align: right;
+}
+.link-item a:link {
+	text-decoration: none;
+	color: #666;
+	padding-right: 100px;
+}
+
+.line-item a:hover {
+	color: red;
+}
+
+.user-item {
+    color: gray;
+    font-size: 14px;
+    text-align: 10px;
+}
+
+.user-item-text {
+    position: relative;
+    left: 25px;
+    top: 20px;
 }

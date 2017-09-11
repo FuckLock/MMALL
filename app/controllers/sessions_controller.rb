@@ -21,6 +21,20 @@ class SessionsController < ApplicationController
     end
   end
 
+  def passreset 
+    render layout: false
+    # if User.find_by(email: params[:email])
+    #   redirect_to new_session_path
+    # else
+    #   if params[:email].blank?
+    #     flash[:notice] = "用户名不能为空"
+    #   elsif params[:email].present?
+    #     flash[:notice] = "用户名不存在"
+    #   end
+    #   redirect_to passreset_path
+    # end
+  end
+
   def destroy
     logout
     flash[:notice] = '退出成功'

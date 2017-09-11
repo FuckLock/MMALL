@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
   resources :sessions
+  get 'passreset', to: "sessions#passreset", as: :passreset
 
   resources :products
   resources :shopping_carts
