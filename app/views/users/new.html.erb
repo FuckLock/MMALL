@@ -9,56 +9,56 @@
 			</div>
 		<% end %>
 
-		<%= form_for @user, url: users_path do |f| %>
+		<%= form_for :user, url: users_path do |f| %>
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("username.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :username, nil, class: "input-text", placeholder: "输入用户名" %>
+				<%= f.text_field :username, class: "input-text", placeholder: "输入用户名" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("password.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :password, nil, class: "input-text", placeholder: "输入密码" %>
+				<%= f.password_field :password, class: "input-text", placeholder: "输入密码" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("password.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :password_confirmation, nil, class: "input-text", placeholder: "再次输入密码" %>
+				<%= f.password_field :password_confirmation, class: "input-text", placeholder: "再次输入密码" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("phone.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :phone, nil, class: "input-text", placeholder: "输入电话" %>
+				<%= f.text_field :phone_num, class: "input-text", placeholder: "输入电话" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("email.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :email, nil, class: "input-text", placeholder: "输入邮箱" %>
+				<%= f.text_field :email, class: "input-text", placeholder: "输入邮箱" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("question.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :question, nil, class: "input-text", placeholder: "输入密码提示问题" %>
+				<%= f.text_field :question, class: "input-text", placeholder: "输入密码提示问题" %>
 			</div>
 
 			<div class="user-item">
 				<div class="image-con">
 					<%= image_tag("key.png", class: "image-con-png") %>
 				</div>
-				<%= text_field_tag :answer, nil, class: "input-text", placeholder: "输入密码提示答案" %>
+				<%= f.text_field :answer, class: "input-text", placeholder: "输入密码提示答案" %>
 			</div>
-			<%= submit_tag "登录", class: "user-btn" %>
+			<%= f.submit "登录", class: "user-btn" %>
 		<% end %>
 	</div>
 </div>

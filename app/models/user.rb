@@ -3,14 +3,14 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  attr_accessor :password_confirmation
+  attr_accessor :username, :question, :answer, :password_confirmation
 
   validates_presence_of :username, message: "用户名不能为空"
-  validates_presence_of :phone, message: "电话不能为空"
+  validates_presence_of :phone_num, message: "电话不能为空"
   validates_presence_of :question, message: "问题不能为空"
   validates_presence_of :answer, message: "答案不能为空"
   validates :username, uniqueness: true
-  validates_length_of :phone, message: "电话长度不对,请重写填写", is: 11
+  validates_length_of :phone_num, message: "电话长度不对,请重写填写", is: 11
 
 
   validates_format_of :email, message: '邮箱格式不合法',
@@ -32,9 +32,9 @@ class User < ApplicationRecord
   has_many :orders
   has_many :payments
 
-  def username
-    email.split('@').first
-  end
+  # def username
+  #   email.split('@').first
+  # end
 
   def need_validate_password
     new_record? || (password.present? || password_confirmation.present?)
