@@ -2,13 +2,11 @@
 	<div class="user-con" style="weight:400px;height:580px;">
 		<div class="user-title">新用户注册</div>
 
-		<% if @user.errors %>
-			
-				<div class="err-item">
-					<%= image_tag("error.png", class: "error-png") %>
-	    		<%= @user.errors.full_messages.flatten.first %>
-				</div>
-			
+		<% if @user.errors.any? %>		
+			<div class="err-item">
+				<%= image_tag("error.png", class: "error-png") %>
+    		<%= @user.errors.messages.first.last.first %>
+			</div>
 		<% end %>
 
 		<%= form_for :user, url: users_path do |f| %>
@@ -60,7 +58,7 @@
 				</div>
 				<%= f.text_field :answer, class: "input-text", placeholder: "输入密码提示答案" %>
 			</div>
-			<%= f.submit "登录", class: "user-btn" %>
+			<%= f.submit "注册", class: "user-btn" %>
 		<% end %>
 	</div>
 </div>

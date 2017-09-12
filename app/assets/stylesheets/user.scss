@@ -1,0 +1,54 @@
+// register.html.erb
+
+.result-wrap {
+	width: 1080px;
+	height: 150px;
+  text-align: center;
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.result-title {
+    color: #555;
+    -webkit-padding-before: 40px;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+p {
+    display: block;
+    // border: 1px solid #ccc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-top: 100px;
+    // width: 85px;
+    // height: 25px;
+    // margin: 0 auto;
+
+}
+
+p a:-webkit-any-link {
+	text-decoration: none;
+	
+}
+
+p a:hover{
+	color: red;
+}
+
+.result-content a:link {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}

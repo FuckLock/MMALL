@@ -8,13 +8,15 @@ class UsersController < ApplicationController
     @user = User.new(user_atts)
     @user.uuid = session[:user_uuid] ? session[:user_uuid] : RandomCode.generate_utoken
     if @user.save
-      flash[:notice] = '注册用户成功, 请登录'
       UserMailer.send_email(@user)
-      redirect_to root_path
+      redirect_to register_success_path
     else
-      # flash[:notice] = '注册用户失败'
       render action: :new
     end
+  end
+
+  def register
+    
   end
 
   private

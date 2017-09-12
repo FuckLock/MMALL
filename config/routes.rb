@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   get 'passreset', to: "sessions#passreset", as: :passreset
+  get 'register/success', to: "users#register", as: :register_success
 
   resources :products
   resources :shopping_carts
