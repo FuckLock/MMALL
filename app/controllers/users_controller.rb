@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       UserMailer.send_email(@user)
       redirect_to root_path
     else
-      flash[:notice] = '注册用户失败'
+      # flash[:notice] = '注册用户失败'
       render action: :new
     end
   end
