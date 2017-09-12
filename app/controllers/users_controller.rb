@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+
   def new
-    render layout: false
     @user = User.new
   end
 
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
   private
 
   def user_atts
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :username, :phone, :question, :answer)
   end
 end

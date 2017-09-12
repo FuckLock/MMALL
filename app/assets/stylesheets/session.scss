@@ -26,11 +26,11 @@
 .user-con {
 	background: white;
 	margin: 0 auto;
-  width: 400px;
-  height: 320px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+    width: 400px;
+    height: 320px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .user-title {
@@ -70,12 +70,13 @@
 }
 
 
-.email-text {
-	position: fixed;
-	border: 1px solid #bdbdbd;
-	width: 308px;
-	height: 41px;
-	left: 65px;
+.input-text {
+	 width: 315px;
+  height: 40px;
+  left: 64px;
+  top: -40px;
+  position: relative;
+  outline: none;
 }
 
 .user-btn {
@@ -88,6 +89,7 @@
     color: #fff;
     font-size: 20px;
     cursor: pointer;
+    border: none;
 }
 
 .err-item {
@@ -122,6 +124,7 @@
     color: gray;
     font-size: 14px;
     text-align: 10px;
+    height: 35px;
 }
 
 .user-item-text {
@@ -129,3 +132,4 @@
     left: 25px;
     top: 20px;
 }
+

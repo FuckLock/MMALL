@@ -1,2 +1,64 @@
-<h1>heee</h1>
+<div class="user-wrap" style="height:660px;">
+	<div class="user-con" style="weight:400px;height:580px;">
+		<div class="user-title">新用户注册</div>
 
+		<% if flash[:notice].present? %>
+			<div class="err-item">
+				<%= image_tag("error.png", class: "error-png") %>
+    		<%= flash[:notice] %>
+			</div>
+		<% end %>
+
+		<%= form_for @user, url: users_path do |f| %>
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("username.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :username, nil, class: "input-text", placeholder: "输入用户名" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("password.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :password, nil, class: "input-text", placeholder: "输入密码" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("password.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :password_confirmation, nil, class: "input-text", placeholder: "再次输入密码" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("phone.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :phone, nil, class: "input-text", placeholder: "输入电话" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("email.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :email, nil, class: "input-text", placeholder: "输入邮箱" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("question.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :question, nil, class: "input-text", placeholder: "输入密码提示问题" %>
+			</div>
+
+			<div class="user-item">
+				<div class="image-con">
+					<%= image_tag("key.png", class: "image-con-png") %>
+				</div>
+				<%= text_field_tag :answer, nil, class: "input-text", placeholder: "输入密码提示答案" %>
+			</div>
+			<%= submit_tag "登录", class: "user-btn" %>
+		<% end %>
+	</div>
+</div>

@@ -4,6 +4,7 @@
 	</div>
 	
 	<div class="search-form">
-		<%= search_field_tag class: 'search-input', placeholder: "请输入商品名称" %>
+		<%= search_field_tag 'search-input', nil, class: 'search-input', placeholder: "请输入商品名称" %>
+		<%= button_tag "搜索", type: 'button', class: "search-btn" %>
 	</div>
 </div>
