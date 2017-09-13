@@ -3,24 +3,33 @@
 </div>
 
 <div class="page-wrapper">
-  <div class="nav">
+  <div class="left-nav">
     <ul>
-      <div class="home-con">
-        <%= image_tag("home.png", class: "home-png") %>
-        <a href="#"><li class="nav-home">Home</li></a>
-      </div>
+      <li class="li-one">
+        <a href="#">
+          <%= image_tag("home.png") %>
+          <span>Home</span>
+        </a>
+      </li>
       
-      <span>
-        <%= image_tag("shopping.png") %>
-        <li>商品</li>
-      </span>
-      <a href="#"><li>商品管理</li></a>
-      <a href="#"><li>品类管理</li></a>
-      <span>
-        <%= image_tag("order.png") %>
-        <li>订单</li>
-      </span>
-      <a href="#"><li>订单管理</li></a>
+      <li class="li-two">
+        <a href="#">
+          <%= image_tag("shopping.png") %>
+          <span>商品</span>
+        </a>
+        <ul>
+          <li class="li-three"><a href="#">商品管理</a></li>
+          <li class="li-three"><a href="#">品类管理</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">
+          <%= image_tag("order.png") %>
+          <span>订单</span>
+        </a><br>
+        <a href="#">订单管理</a>
+      </li>
     </ul>
   </div>
 </div>
