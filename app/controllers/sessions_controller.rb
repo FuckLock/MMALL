@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = login(params[:email], params[:password])
+    user = login(params[:username], params[:password])
     if user
       update_browser_uuid user.uuid
-      flash[:notice] = '登录成功'
       redirect_to root_path
     else
       if params[:email].blank?
@@ -36,7 +35,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    flash[:notice] = '退出成功'
     redirect_to root_path
   end
 end

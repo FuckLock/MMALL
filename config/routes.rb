@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'sessions#new'
+    root 'home#index'
+    # root 'sessions#new'
     resources :sessions
     resources :categories
     resources :products do

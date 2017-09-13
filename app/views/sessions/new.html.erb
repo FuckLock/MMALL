@@ -12,14 +12,14 @@
 					<div class="image-con">
 						<%= image_tag("username.png", class: "image-con-png") %>
 					</div>
-					<%= text_field_tag :email, nil, class: "input-text" %>
+					<%= text_field_tag :username, nil, class: "input-text" %>
 				</div>
 
 				<div class="user-item">
 					<div class="image-con">
 						<%= image_tag("password.png", class: "image-con-png") %>
 					</div>
-					<%= text_field_tag :password, nil, class: "input-text" %>
+					<%= password_field_tag :password, nil, class: "input-text" %>
 				</div>
 				<%= submit_tag "登录", class: "user-btn" %>
 			<% end %>

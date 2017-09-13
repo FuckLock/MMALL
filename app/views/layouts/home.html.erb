@@ -1,13 +1,29 @@
-<%= stylesheet_link_tag 'application', media: 'all' %>
-<div class="top-nav"></div>
-<div class="nav">
-  <ul class='ul-nav'>
-    <a href="sessions/new"><li class="login">登录</li></a>
-    <a href="users/new"><li class="register">注册</li></a>
-    <a href="#"><li>购物车</li></a>
-    <a href="#"><li>我的订单</li></a>
-    <a href="#"><li>我的MMAL</li></a>
-    <a href="#"><li>关于MMAL</li></a>
-  </ul>
-</div>
-<%= yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %> 
+  </head>
+  <body>
+		<div class="top-nav"></div>
+		<div class="nav">
+		  <ul class='ul-nav'>
+		  	<% if logged_in?%>
+		  		<li class="login"><%= current_user.username %></li>
+		  		<li class="register"><%= link_to "退出", session_path(current_user), method: :delete %></li>
+		  	<% else %>
+		    	<a href="sessions/new"><li class="login">登录</li></a>
+		    	<a href="users/new"><li class="register">注册</li></a>
+		    <% end %>
+		    <a href="#"><li>购物车</li></a>
+		    <a href="#"><li>我的订单</li></a>
+		    <a href="#"><li>我的MMAL</li></a>
+		    <a href="#"><li>关于MMAL</li></a>
+		  </ul>
+		</div>
+		<%= yield %>
+	</body>
+</html>

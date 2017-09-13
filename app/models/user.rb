@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  attr_accessor :username, :question, :answer, :password_confirmation, :phone_num
+  attr_accessor :password_confirmation, :password
    
   validates_presence_of :username, message: "用户名不能为空"
   # validates :username, uniqueness: true
