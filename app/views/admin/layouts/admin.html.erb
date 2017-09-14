@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <%= render 'admin/layouts/menu' %>
-    <div class="container">
-      <% unless flash[:notice].blank? %>
-        <div class="alert alert-info"><%= flash[:notice] %></div>
-      <% end -%>
-      
-      <%= yield %>
-    </div>
 
-    <%= javascript_include_tag 'application' %>
-    <%= yield :javascripts %>
+    <div class="top-con">
+      <div class="top">
+        <span class="nav-top">Home</span>
+      </div>
+    </div>
+    <div class="content-con">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

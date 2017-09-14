@@ -6,32 +6,33 @@
   <div class="left-nav">
     <ul>
       <li class="li-one">
-        <a href="#">
+        <a href="/admin" class="a-one">
           <%= image_tag("home.png") %>
           <span>Home</span>
         </a>
       </li>
-      
-      <li class="li-two">
-        <a href="#">
-          <%= image_tag("shopping.png") %>
-          <span>商品</span>
-        </a>
-        <ul>
-          <li class="li-three"><a href="#">商品管理</a></li>
-          <li class="li-three"><a href="#">品类管理</a></li>
-        </ul>
-      </li>
 
-      <li>
-        <a href="#">
-          <%= image_tag("order.png") %>
-          <span>订单</span>
-        </a>
-        <ul>
-          <li class="li-four"><a href="#">订单管理</a></li>
-        </ul>
-      </li>
+      <ul>
+        <li class="li-two">
+          <a href="" class="a-one">
+            <%= image_tag("shopping.png") %>
+            <span>商品</span>
+          </a>
+        </li>
+        <li class="li-two"><a href="#" class="a-two">商品管理</a></li>
+        <li class="li-one"><a href="/admin/categories" class="a-two">品类管理</a></li>
+      </ul>
+
+      <ul>
+        <li class="li-two">
+          <a href="#" class="a-one">
+            <%= image_tag("order.png") %>
+            <span>订单</span>
+          </a>
+        </li>
+        <li class="li-one"><a href="#" class="a-two">订单管理</a></li>
+      </ul>
+
     </ul>
   </div>
 </div>
