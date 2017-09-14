@@ -18,17 +18,23 @@
     <% end -%>
 
     <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">名称:*</label>
+      <label for="title" class="col-sm-2 control-label">商品名称:*</label>
       <div class="col-sm-5">
         <%= f.text_field :title, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">商品描述*:</label>
+      <div class="col-sm-5">
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="category_id" class="col-sm-2 control-label">所属分类:</label>
       <div class="col-sm-2">
-        <%= select_tag "product[category_id]", options_from_collection_for_select(get_children_category(@root_categories, @product)[0], "id", "title", get_children_category(@root_categories, @product)[1]), include_blank: "请选择", class: "form-control" %>
-        <%= %>
+        
       </div>
     </div>
     <div class="form-group">
@@ -56,19 +62,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="description" class="col-sm-2 control-label">描述*:</label>
-      <div class="col-sm-5">
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
         <%= f.submit (@product.new_record? ? "新建商品" : "编辑商品"), class: "btn btn-default" %>
       </div>
     </div>
   <% end -%>
 </div>
-<p>点我一下看看</p>
+
 <% content_for :javascripts do %>
   <script type="text/javascript">
     $(document).ready(function() {

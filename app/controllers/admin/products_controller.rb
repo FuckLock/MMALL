@@ -9,7 +9,7 @@ module Admin
 
     def new
       @product = Product.new
-      @root_categories = Category.roots
+      # @root_categories = Category.roots
     end
 
     def create
