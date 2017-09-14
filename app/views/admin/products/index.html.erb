@@ -2,11 +2,11 @@
   <div class="pull-right">
     <%= link_to "新建商品", new_admin_product_path, class: "btn btn-primary" %>
   </div>
-
-  <h1>
-    商品(<%= @products.total_entries %>)
-  </h1>
 </div>
+
+<%= select_tag "product", options_for_select([["按商品id查询", "id"], ["按商品名称查询", "name"]], "id"), class: "select-con" %>
+<%= text_field_tag  "product", nil, placeholder: "关键字", class: "product-text" %>
+<%= submit_tag "查询" %>
 
 <div>
   <table class="table table-striped">
