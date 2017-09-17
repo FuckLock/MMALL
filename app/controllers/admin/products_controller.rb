@@ -9,7 +9,12 @@ module Admin
 
     def new
       @product = Product.new
-      # @root_categories = Category.roots
+      @root_categories = Category.roots
+    end
+
+    def ajax_new
+      @children_categories = Category.children_of(params["ancestryId"])
+      render json: @children_categories, layout: false
     end
 
     def create
@@ -25,6 +30,14 @@ module Admin
     end
 
     def edit
+      @current_category_id = @product.category_id
+      @current_category = Category.find_by(id: @current_category_id)
+      if @current_category.has_parent?
+        @current_parent_id = @current_category.parent.id
+        @siblings_categories = Category.siblings_of(@current_category_id)
+      else 
+        @current_parent_id = @current_category.id
+      end
       @root_categories = Category.roots
       render action: :new
     end

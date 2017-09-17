@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'home#index'
+    get '/products/ajax_new', to: "products#ajax_new"
     # root 'sessions#new'
     resources :sessions
     resources :categories
