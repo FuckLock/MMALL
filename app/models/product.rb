@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class Product < ApplicationRecord
+
   validates :category_id, presence: { message: '分类不能为空' }
   validates :title, presence: { message: '标题不能为空' }
   validates :status, inclusion: { in: %w[on off],
@@ -20,6 +19,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :product_images, -> { order(weight: 'desc') },
            dependent: :destroy
+  # accepts_nested_attributes_for :product_images
   has_one :main_product_image, -> { order(weight: 'desc') },
           class_name: :ProductImage
 

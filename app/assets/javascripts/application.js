@@ -22,3 +22,5 @@
 //= require session
 
 //= require select2
+//= require wangEditor
+//= require products

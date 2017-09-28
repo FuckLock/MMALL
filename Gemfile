@@ -13,7 +13,11 @@ gem 'bootstrap-sass'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'font-awesome-rails'
 gem 'momentjs-rails'
-gem 'paperclip'
+# gem 'paperclip'
+# 上传图片
+gem 'carrierwave'
+gem 'mini_magick'
+
 gem 'rest-client'
 gem 'select2-rails'
 gem 'sorcery'
@@ -34,7 +38,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  # gem 'byebug', platform: :mri
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'

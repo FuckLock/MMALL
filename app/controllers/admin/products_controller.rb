@@ -9,6 +9,7 @@ module Admin
 
     def new
       @product = Product.new
+      @product_image = @product.product_images.build
       @root_categories = Category.roots
     end
 
@@ -18,9 +19,12 @@ module Admin
     end
 
     def create
-      @product = Product.new(params.require(:product).permit!)
+      @product = Product.new(product_attrs)
       @root_categories = Category.roots
       if @product.save
+        params[:product_images][:image].each do |image|
+          @product.product_images.create!(image: image)
+        end
         flash[:notice] = '创建商品成功'
         redirect_to admin_products_path
       else
@@ -30,9 +34,11 @@ module Admin
     end
 
     def edit
+      @product_images = @product.product_images
       @current_category_id = @product.category_id
       @current_category = Category.find_by(id: @current_category_id)
       if @current_category.has_parent?
+        # debugger
         @current_parent_id = @current_category.parent.id
         @siblings_categories = Category.siblings_of(@current_category_id)
       else 
@@ -43,9 +49,15 @@ module Admin
     end
 
     def update
-      @product.attributes = params.require(:product).permit!
+      @product.attributes = product_attrs
       @root_categories = Category.roots
       if @product.save
+        if params[:product_images].present?
+          @product.product_images.collect{|image|  image.destroy }
+          params[:product_images][:image].each do |image|
+            @product.product_images.create!(image: image)
+          end
+        end
         flash[:notice] = '商品更新成功'
         redirect_to admin_products_path
       else
@@ -68,6 +80,12 @@ module Admin
 
     def find_product
       @product = Product.find(params[:id])
+    end
+
+    def product_attrs
+      params.require(:product).permit(:category_id, :title, :status, :amount, :uuid, :msrp,
+                                      :price, :description, :content)
+      
     end
   end
 end

@@ -20,12 +20,17 @@ class Category < ApplicationRecord
 
   class << self
     def grouped_data
-      roots.order('weight desc').inject([]) do |result, parent|
-        row = []
-        row << parent
-        row	<< parent.children.order('weight desc')
-        result << row
+      # roots.order('weight desc').inject([]) do |result, parent|
+      #   row = []
+      #   row << parent
+      #   row	<< parent.children.order('weight desc')
+      #   result << row
+      # end
+      row = []
+      roots.order('weight desc').each do |parent|
+        row << parent.children.order('weight desc')
       end
+      return row
     end
   end
 end

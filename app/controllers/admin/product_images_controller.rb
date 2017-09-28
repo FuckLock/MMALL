@@ -1,6 +1,6 @@
 module Admin
   class ProductImagesController < Admin::ApplicationController
-    before_action :find_product
+    before_action :find_product, except: [:upload_images]
 
     def index
       @product_images = @product.product_images
@@ -35,6 +35,11 @@ module Admin
                        end
 
       redirect_to :back
+    end
+
+    def upload_images
+      binding.pry
+      a=1
     end
 
     private

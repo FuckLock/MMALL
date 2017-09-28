@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+	layout 'home'
   def show
     fetch_home_data
     @category = Category.find(params[:id])

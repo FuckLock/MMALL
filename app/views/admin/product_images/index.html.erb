@@ -26,7 +26,7 @@
       <tbody>
         <tr>
           <td><%= product_image.id %></td>
-          <td><%= image_tag product_image.image.url(:middle) %></td>
+          <td><%= image_tag product_image.image %></td>
           <td>
             <%= form_tag admin_product_product_image_path(@product, product_image), method: :put do %>
               <input type="text" value="<%= product_image.weight %>" name="weight" />

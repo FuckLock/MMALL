@@ -27,7 +27,7 @@
 @import "user";
 @import "category";
 @import "product";
-
+@import "font-awesome";
 // .site-category-list .title {
 //     color: #fff;
 // }
@@ -153,4 +153,18 @@ body {
   padding: 0;
 }
 
-
+.file-control {
+	position: relative;
+	top: 10px;
+}
+.image-control {
+	position: relative;
+	left: 70px;
+}
+#content {
+	width: 600px;
+	position: relative;
+	left: 150px;
+	top: -30px;
+	background: white;
+}

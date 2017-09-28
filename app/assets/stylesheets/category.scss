@@ -3,3 +3,140 @@ select {
 	width: 80px;
 	height: 30px;
 }
+
+// /categories/show.html.erb
+.product-list {
+	width: 100%;
+	height: 50px;
+	background: #eee;
+	border-top: 2px solid #B00000;
+}
+
+.mall-list {
+	font-size: 14px;
+	color: #888;
+	position: relative;
+	left: 100px;
+	top: 25%;
+}
+
+.sorter-con{
+	color: #333;
+	position: relative;
+	left: 100px;
+}
+
+
+li {
+	float: left;
+}
+
+.sorter-left {
+	border: 1px solid #ccc;
+	height: 23px;
+	width: 63px;
+	text-align: center;
+}
+
+.sorter-right {
+	border: 1px solid #ccc;
+	height: 23px;
+	width: 53px;
+	text-align: center;
+}
+
+.fa-caret-up {
+	position: relative;
+	top: -20%;
+}
+
+.fa-caret-down {
+	position: relative;
+	left: -20%;
+	top: 20%;
+}
+
+a,.price{
+	color: #333;
+}
+
+.sorter-con li:hover{
+	color: #c60023;
+	background: none;
+	cursor: pointer;
+	border: 1px solid #c60023;
+}
+
+li:hover .price{
+	color: #c60023;
+}
+
+.sorter-a:visited {
+	background-color: red;
+	// color: red;
+}
+// a:visited {
+// 	background: red;
+// 	color: white;
+// }
+// a:visted {
+// 	background: #c60023;
+// 	color: white;
+// }
+// .sorter-con {
+// 	float: left;
+// }
+// .image-con {
+// 	position: relative;
+// 	top: 40%;
+	
+// }
+// .image-pos {
+// 	position: relative;
+// 	left: 100px;
+// }
+
+// .image-pos{
+// 	position: relative;
+// 	left: 100px;
+// }
+.thumb-con {
+	width: 180px;
+	height: 295px;
+	// border: 1px solid red;
+	background: #fff;
+	position: relative;
+	top: 30px;
+	left: -130px;
+	float: left;
+	margin-left: 15px;
+	// text-align: center;
+}
+
+.thumb-price {
+	position: relative;
+	top: 10px;
+	left: -35px;
+	font-size: 13px;
+	display: block;
+}
+
+.thumb-title{
+	position: relative;
+	top: 13px;
+	left: 7px;
+	color: #666;
+	cursor: pointer;
+}
+
+.image-pos {
+	height: 200px;
+	width: 170px;
+	position: relative;
+	left: 2%;
+}
+
+.thumb-title a:hover {
+	text-decoration: none;
+	color: red;
+}

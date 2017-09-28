@@ -2,87 +2,121 @@
   <h1><%= @product.new_record? ? "新建商品" : "修改商品 ##{params[:id]}" %></h1>
 </div>
 
-<div class="form-body">
-  <%= form_for @product, 
-  url: (@product.new_record? ? admin_products_path : admin_product_path(@product)), 
-  method: (@product.new_record? ? :post : :put),  
-  html: { class: 'form-horizontal' } do |f| %>
-    <% unless @product.errors.blank? %>
-      <div class="alert alert-danger">
-        <ul class="list-unstyled">
-          <% @product.errors.messages.values.flatten.each do |error| %>
-            <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
-          <% end -%>
-        </ul>
-      </div>
-    <% end -%>
-
-    <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">商品名称*:</label>
-      <div class="col-sm-5">
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="description" class="col-sm-2 control-label">商品描述*:</label>
-      <div class="col-sm-5">
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="category_id" class="col-sm-2 control-label">所属品类*:</label>
-      <div class="col-sm-6">
-        <%= select_tag "product[category_id]", options_from_collection_for_select(@root_categories, "id", "title", @current_parent_id), include_blank: "请选择一级品类" %>
-          <% if @current_category.has_parent? %>
-              <select id="second_category"  name="product[category_id]">
-                <option value=''>请选择二级品类</option>
-                <% @siblings_categories.each do |sub| %>
-                  <option value="<%= sub.id %>" selected="<%= 'selected' if sub.id == @current_category_id %>"><%= sub.title %></option>
-                <% end %>
-              </select>
-          <% else %>
-              <select id="second_category"  name="product[category_id]" style="display:none;">
-                <option value=''>请选择二级品类</option>
-              </select>  
-          <% end %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">上下架状态:*</label>
-      <div class="col-sm-2">
-        <%= select_tag "product[status]", options_for_select([["上架", Product::Status::ON], ["下架", Product::Status::OFF]], get_product_status(@product)), class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="amount" class="col-sm-2 control-label">库存*:</label>
-      <div class="col-sm-5">
-        <%= f.text_field :amount, class: "form-control" %> 必须为整数
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="price" class="col-sm-2 control-label">价格*:</label>
-      <div class="col-sm-5">
-        <%= f.text_field :price, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="msrp" class="col-sm-2 control-label">MSRP*:</label>
-      <div class="col-sm-5">
-        <%= f.text_field :msrp, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-8">
-        <%= f.submit (@product.new_record? ? "新建商品" : "编辑商品"), class: "btn btn-default" %>
-      </div>
+<%= form_for @product, 
+url: (@product.new_record? ? admin_products_path : admin_product_path(@product)), 
+method: (@product.new_record? ? :post : :put),  
+html: { class: 'form-horizontal', multipart: true } do |f| %>
+  <% unless @product.errors.blank? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% @product.errors.messages.values.flatten.each do |error| %>
+          <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+        <% end -%>
+      </ul>
     </div>
   <% end -%>
-</div>
 
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">商品名称*:</label>
+    <div class="col-sm-5">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">商品描述*:</label>
+    <div class="col-sm-5">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="category_id" class="col-sm-2 control-label">所属品类*:</label>
+    <div class="col-sm-5">
+      <%= select_tag "product[category_id]", options_from_collection_for_select(@root_categories, "id", "title", @current_parent_id), include_blank: "请选择一级品类" %>
+        <% if @siblings_categories %>
+          <select id="second_category"  name="product[category_id]">
+            <option value=''>请选择二级品类</option>
+            <% @siblings_categories.each do |sub| %>
+              <option value="<%= sub.id %>" <%= sub.id == @current_category_id ? 'selected' : '' %>><%= sub.title %></option>
+            <% end %>
+          </select>
+        <% else %>
+            <select id="second_category"  name="product[category_id]" style="display:none;">
+              <option value=''>请选择二级品类</option>
+            </select>  
+        <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">商品状态:*</label>
+    <div class="col-sm-2">
+      <%= select_tag "product[status]", options_for_select([["上架", Product::Status::ON], ["下架", Product::Status::OFF]], get_product_status(@product)), class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="amount" class="col-sm-2 control-label">商品库存*:</label>
+    <div class="col-sm-2">
+      <div class="input-group">
+        <%= f.text_field :amount, class: "form-control" %>
+        <span class="input-group-addon">件</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="price" class="col-sm-2 control-label">商品价格*:</label>
+    <div class="col-sm-2">
+      <div class="input-group">
+        <%= f.text_field :price, class: "form-control" %>
+        <span class="input-group-addon">元</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="msrp" class="col-sm-2 control-label">MSRP*:</label>
+    <div class="col-sm-2">
+      <div class="input-group">
+        <%= f.text_field :msrp, class: "form-control" %>
+        <span class="input-group-addon">元</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="upload">
+      <%= fields_for :product_images do |p| %>
+        <div class="image-control">
+          <% if @product_images %>
+            <% @product_images.each do |p| %>
+              <%= image_tag(p.image.url(:thumb)) if p.image? %>
+            <%end%>
+          <% end %>
+        </div>
+        
+        <div class="file-control">
+          <label for="images" class="col-sm-2 control-label">图片上传*:</label>
+          <%= p.file_field :image, multiple: true, class: "image-input" %> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :content %>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">商品描述*:</label>
+  </div>
+
+  <div id="content">
+    <%= @product.content.html_safe %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit (@product.new_record? ? "新建商品" : "编辑商品"), class: "btn btn1 btn-primary" %>
+    </div>
+  </div>
+<% end -%>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -102,4 +136,32 @@
       }
     })
   });
+
+  var E = window.wangEditor
+  var editor = new E('#content')
+  editor.customConfig.menus = [
+      'head',
+      'bold',
+      'italic',
+      'underline',
+      'strikeThrough',
+      'foreColor',
+      'backColor',
+      'link',
+      'list',
+      'justify',
+      'quote',
+      'image', 
+      'undo'
+  ]  
+  editor.customConfig.uploadImgShowBase64 = true
+  editor.customConfig.showLinkImg = false
+  editor.customConfig.uploadImgMaxLength = 5
+  editor.customConfig.zIndex = 100
+  editor.create()
+
+  $(".btn1").on("click", function(){
+    value = editor.txt.html();
+    $('#product_content').val(value);
+  })
 </script>

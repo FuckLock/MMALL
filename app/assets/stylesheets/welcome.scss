@@ -55,3 +55,32 @@
     outline: none;
     cursor: pointer;
 }
+
+// welcome/index.html.erb
+.cate-left{
+  width: 240px;
+  height: 350px;
+  background: #666;
+  position: relative;
+  left: 100px;
+}
+
+.list-item {
+  width: 240px;
+  height: 40px;
+  position: relative;
+  top: 10px;
+}
+
+.category_title{
+  color: #fff;
+  font-size: 14px;
+  position: relative;
+  top: 20%;
+  left: 5%;
+}
+
+.list-item:hover {
+  background: #909090;
+}
+

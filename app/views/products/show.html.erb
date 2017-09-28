@@ -1,56 +1,43 @@
-<div class="row">
-	<div class="col-lg-3">
-			<ul class="list-group">
-				<% @categories.each do |group| %>
-					<li class="list-group-item "><%= group.first.title%></li>
-					<% group.last.each do |sub_category| %>
-						<li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></li>
-					<% end %>
-				<% end %>
-			</ul>
-	</div>
-
-  <div class="col-lg-9">
-    <ol class="breadcrumb">
-      <li class="active">Home</li>
-    </ol>
-    <div class="row">
-	    <div class="col-sm-6 col-md-4">
-	    	<h1><strong><%= @product.title %></strong></h1>
-	      <div class="thumbnail">
-	        <%= link_to image_tag(@product.main_product_image.image.url(:small)) %>
-	        <ul class="list-unstyled">
-	        	<li>商品编号: <%= @product.uuid %></li>
-	        	<li>库存: <%= @product.amount %></li>
-	        </ul>
-	        <div class="caption">
-	          <p>
-	          	<strong>¥<%= @product.price %></strong> 
-	          	<span class="msrp">¥<%= @product.msrp %></span>
-	          </p>
-	          <p>
-	          	数量：<input type="text" name="amount" class="from-control" value="1" >
-	        	</p>
-	          <p><%= show_add_to_cart @product, html_class: "btn-xs" %></p>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-  </div>
+<%= render partial: 'welcome/search'%>
+<%= render partial: "categories/productlist" %>
+<div class="bigimage-con">
+	<%= image_tag @main_product_image.image.url(:middle), class: "main-image" %>	
 </div>
 
-<div>
-  <select id="e1">
-    <option value="AL">Alabama</option>
-    <option value="WY">Wyoming</option>
-  </select>
+
+<div class="smallimage-con">
+	<% @product_images.each do |product_image| %>
+		<%= image_tag product_image.image.url(:thumb), class: "small-image" %>	
+	<% end %>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-      $("#e1").select2({
-        placeholder: "Select a state",
-        allowClear: true
-      }); 
-  });
-</script>
+<div class="product-con">
+	<span class="product-title"><%= @product.title %></span>
+	<span class="product-description"><%= @product.description %></span>
+	<div class="product-price">
+		<span class="price">价格:</span>
+		<span class="price-size"><i class="fa fa-jpy fa-lg" aria-hidden="true"><%= @product.price %></i></span>
+	</div>
+	<span class="stock">库存:<span class="amount-con"><%= @product.amount%></span></span>
+
+	<div class="qua-con">
+		<span class="qua">数量:</span>
+		<input type="text" name="amount" class="input-con" value="1" readonly="readonly"/>
+		<div class="count-btn-con">
+			<span class="p-count-btn add-btn">+</span>
+			<span class="p-count-btn reduce-btn">-</span>
+		</div>
+	</div>
+
+	<div class="cart-con">
+		<span class="cart-add">加入购物车</span>
+	</div>
+</div>	
+
+<div class="shopping-con">
+	<span class="shopping-title">商品详情</span>
+</div>
+
+<div class="bigcontent-con">
+	<%= @product.content.html_safe %>
+</div>
