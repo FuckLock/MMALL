@@ -27,6 +27,7 @@ config/puma.rb
 db/schema.rb
 log/*.log
 public/assets/
+public/uploads/
 public/system/
 tmp/
 .ruby-version
