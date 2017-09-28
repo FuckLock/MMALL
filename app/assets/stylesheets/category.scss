@@ -33,6 +33,7 @@ li {
 
 .sorter-left {
 	border: 1px solid #ccc;
+	border-right: none;
 	height: 23px;
 	width: 63px;
 	text-align: center;
@@ -56,8 +57,9 @@ li {
 	top: 20%;
 }
 
-a,.price{
+a{
 	color: #333;
+	
 }
 
 .sorter-con li:hover{
@@ -65,16 +67,14 @@ a,.price{
 	background: none;
 	cursor: pointer;
 	border: 1px solid #c60023;
+	// border-right: none;
 }
 
 li:hover .price{
 	color: #c60023;
+	border-right: none;
 }
 
-.sorter-a:visited {
-	background-color: red;
-	// color: red;
-}
 // a:visited {
 // 	background: red;
 // 	color: white;
