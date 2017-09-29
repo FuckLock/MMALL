@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :products
   resources :shopping_carts
   resources :categories
+  post '/categories/up', to: "categories#up_product"
+  post '/categories/down/', to: "categories#down_product"
+  post '/categories/show', to: "categories#show"
 
   resources :addresses do
     member do
