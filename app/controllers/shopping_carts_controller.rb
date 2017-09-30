@@ -8,12 +8,16 @@ class ShoppingCartsController < ApplicationController
   end
 
   def create
-    amount = params[:amount].to_i
-    amount = amount <= 0 ? 1 : amount
-    @product = Product.find params[:product_id]
-    @shopping_cart = ShoppingCart.create_or_update!(user_uuid: session[:user_uuid],
-                                                    product_id: params[:product_id],
-                                                    amount: amount)
+    # debugger
+    @product = Product.where(id: params[:product_id]).includes(:main_product_image).first
+    @shopping_cart = ShoppingCart.find_by product_id: params[:product_id]
+    if @shopping_cart
+      amount = params[:amount].to_i + @shopping_cart.amount
+      @shopping_cart.update_attributes!(amount: amount)
+    else
+      ShoppingCart.create!(product_id: params[:product_id], amount: params[:amount],
+                           user_uuid: session[:user_uuid])
+    end
     render layout: false
   end
 
