@@ -19,7 +19,7 @@
   <% @shopping_carts.each do |shopping_cart| %>
     <div class="cart-concon">
       <div class="t-cart">
-        <input type="checkbox" value="1" class="check-value" /> 
+        <input type="checkbox" value="1" class="check-value only-value" /> 
         <div class="cart-image-con">
           <%= image_tag shopping_cart.product.main_product_image.image.url(:thumb), class: "cart-image" %>
         </div>
@@ -47,4 +47,3 @@
     <span class="settle-accounts">去结算</span>
   </div>
 </div>
-

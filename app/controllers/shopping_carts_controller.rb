@@ -36,7 +36,6 @@ class ShoppingCartsController < ApplicationController
   end
 
   private
-
   def find_shopping_cart
     @shopping_cart = ShoppingCart.find params[:id]
   end
