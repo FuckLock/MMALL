@@ -253,7 +253,7 @@ em:hover {
 	display: block;
 	text-align: center;
 	width: 18px;
-	border-right: 1px solid #cacbcb;
+	border: 0px solid #cacbcb;
 	cursor: pointer;
 }
 
@@ -272,10 +272,14 @@ em:hover {
 }
 
 .tt-add {
-	position: relative;
-	left: 18px;
-	top: -20px;
+	display: block;
+	text-align: center;
+	width: 18px;
+	border: 0px solid #cacbcb;
 	cursor: pointer;
+	position: relative;
+	left: 60px;
+	top: -40px;
 }
 
 .tt-total {

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post '/categories/up', to: "categories#up_product"
   post '/categories/down/', to: "categories#down_product"
   post '/categories/show', to: "categories#show"
-  post 'shopping_carts/add_amount', to: "shopping_carts#add_amount"
+  post 'shopping_carts/update_amount', to: "shopping_carts#update_amount"
 
   resources :addresses do
     member do

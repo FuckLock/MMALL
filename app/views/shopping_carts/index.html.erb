@@ -26,9 +26,9 @@
         <%= link_to shopping_cart.product.title, product_path(shopping_cart.product), class: "tt-title" %>
         <span class="tt-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.product.price %></span>
         <div class="tt-amount">
-          <span class="tt-minus">-</span>
+          <input class="tt-minus" value="-" readonly="readonly"/>
           <input type="text" value="<%= shopping_cart.amount %>" class="tt-text" />
-          <span class='tt-add'>+</span>
+          <input class="tt-add" value="+" readonly="readonly"/>
           <input type="hidden" value="<%= shopping_cart.product_id %>" class="sc-pid"/>
         </div>
         <span class="tt-total"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.amount.to_i * shopping_cart.product.price %></span>

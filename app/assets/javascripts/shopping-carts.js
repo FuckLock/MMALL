@@ -76,16 +76,50 @@ $(function(){
 	});
 
 	$(".tt-add").on('click', function(){
-		var addValue = $(this).prev().val();
-		var pid = $(this).next().val();
+		var amount = $(this).prev().val();
+		var productId = $(this).next().val();
 		var price = parseInt($(this).parent().prev().text());
 		// window.alert(parseInt(price).toFixed(1));
-		addValue = parseInt(addValue) + 1;
-		total_price = price * addValue
-		$(this).prev().val(addValue);
+		var amount = parseInt(amount) + 1;
+		var total_price = price * amount
+		$(this).prev().val(amount);
 		$(this).parent().next().html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + total_price.toFixed(1));
-		$.post('shopping_carts/add_amount', {amount: addValue, product_id: pid}, function(){
-
+		$.post('shopping_carts/update_amount', {amount: amount, product_id: productId}, function(){
 		})
+
+		if (amount > 1) {
+			$(this).prev().prev().removeProp("disabled")
+			$(this).prev().prev().val('-');
+			$(this).prev().prev().prop("cursor", "pointer");
+		}
 	});
+
+	$(".tt-minus").on('click', function(){
+		var amount = $(this).next().val();
+		var productId = $(this).next().next().next().val();
+		var price = parseInt($(this).parent().prev().text());
+		var amount = parseInt(amount) - 1;
+		var total_price = price * amount
+		$(this).next().val(amount);
+		$(this).parent().next().html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + total_price.toFixed(1));
+		$.post('shopping_carts/update_amount', {amount: amount, product_id: productId}, function(){
+		})
+
+		if (amount == 1) {
+			$(this).prop("disabled", "disabled")
+			$(this).val('');
+			$(this).removeProp("cursor")
+		}
+	});
+
+	$(".tt-text").each(function(){
+		var text = $(this).val();
+		// window.alert(text);
+		if(text == 1){
+			$(this).prev().prop("disabled", "disabled")
+			$(this).prev().val('');
+			$(this).prev().removeProp("cursor")
+		}
+	});
+
 });
