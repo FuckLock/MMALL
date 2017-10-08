@@ -1,24 +1,26 @@
 class ShoppingCartsController < ApplicationController
   before_action :find_shopping_cart, only: %i[update destroy]
+  layout 'home'
 
   def index
-    fetch_home_data
+    # fetch_home_data
+    # debugger
     @shopping_carts = ShoppingCart.by_user_uuid(session[:user_uuid])
                                   .order('id desc').includes([product: [:main_product_image]])
   end
 
   def create
-    # debugger
-    @product = Product.where(id: params[:product_id]).includes(:main_product_image).first
-    @shopping_cart = ShoppingCart.find_by product_id: params[:product_id]
+    @product = Product.where(id: params[:shopping_cart][:product_id]).includes(:main_product_image).first
+    @shopping_cart = ShoppingCart.find_by product_id: params[:shopping_cart][:product_id]
+    return if session["token"] == params["authenticity_token"]
     if @shopping_cart
-      amount = params[:amount].to_i + @shopping_cart.amount
+      amount = params[:shopping_cart][:amount].to_i + @shopping_cart.amount
       @shopping_cart.update_attributes!(amount: amount)
     else
-      ShoppingCart.create!(product_id: params[:product_id], amount: params[:amount],
+      ShoppingCart.create!(product_id: params[:shopping_cart][:product_id], amount: params[:shopping_cart][:amount],
                            user_uuid: session[:user_uuid])
     end
-    render layout: false
+    session["token"] = params["authenticity_token"]
   end
 
   def update

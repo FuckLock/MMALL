@@ -18,23 +18,24 @@
 		<span class="product-description"><%= @product.description %></span>
 		<div class="product-price">
 			<span class="price">价格:</span>
-			<input type="hidden" class="product-id" value="<%= @product.id %>"/> 
-			<span class="price-size"><i class="fa fa-jpy fa-lg" aria-hidden="true"><%= @product.price %></i></span>
+			<span class="price-size"><i class="fa fa-jpy fa-lg fa-jpy-price" aria-hidden="true"><%= @product.price %></i></span>
 		</div>
 		<span class="stock">库存:<span class="amount-con"><%= @product.amount%></span></span>
 
-		<div class="qua-con">
-			<span class="qua">数量:</span>
-			<input type="text" name="amount" class="input-con amount" value="1" readonly="readonly"/>
-			<div class="count-btn-con">
-				<span class="p-count-btn add-btn">+</span>
-				<span class="p-count-btn reduce-btn">-</span>
+		<%= form_for :shopping_cart, url: shopping_carts_path, method: :post, html: { onsubmit: "return dosubmit()" } do |f| %>
+			<div class="qua-con">
+				<span class="qua">数量:</span>
+				<%= f.text_field :amount, class: "input-con amount", value: "1", readonly: "readonly" %>
+				<input type="hidden" name="shopping_cart[product_id]" value="<%= @product.id %>"/>
+				<input type="hidden" value="1" class="form-cm" />
+				<div class="count-btn-con">
+					<span class="p-count-btn add-btn">+</span>
+					<span class="p-count-btn reduce-btn">-</span>
+				</div>
 			</div>
-		</div>
+			<%= f.submit "加入购物车", class: "cart-add" %>
+		<% end %>
 
-		<div class="cart-con">
-			<span class="cart-add">加入购物车</span>
-		</div>
 	</div>	
 
 	<div class="shopping-con">
@@ -45,4 +46,3 @@
 		<%= @product.content.html_safe %>
 	</div>
 </div>
-

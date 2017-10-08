@@ -74,7 +74,7 @@
 	color: #999;
 }
 
-.fa-jpy {
+.fa-jpy-price {
 	position: relative;
 	left: 40px;
 	top: 25%;
@@ -165,10 +165,17 @@
 }
 
 .cart-add {
+	background: #c60023;
 	font-size: 17px;
 	color: #fff;
 	font-weight: 700;
 	cursor: pointer;
+	width: 140px;
+	height: 40px;
+	position: relative;
+	top: 80px;
+	left: 5px;
+	border: none;
 }
 
 .cart-add:hover {

@@ -25,15 +25,15 @@ $(function(){
 		}
 	});
 
-	$(".cart-add").on("click", function(){
-		// window.alert($(".product-id").val());
-		// window.alert($(".amount").val());
-		var productId = $(".product-id").val();
-		var amount = $(".amount").val();
-		$.post('/shopping_carts', {product_id: productId, amount: amount}, function(data){
-			// window.alert(data)
-			$(".product-div").html(data);
-			// $(".shopping-succ").
-		});
-	});
+	// $(".cart-add").on("click", function(){
+	// 	// window.alert($(".product-id").val());
+	// 	// window.alert($(".amount").val());
+	// 	var productId = $(".product-id").val();
+	// 	var amount = $(".amount").val();
+	// 	$.post('/shopping_carts', {product_id: productId, amount: amount}, function(data){
+	// 		// window.alert(data)
+	// 		$(".product-div").html(data);
+	// 		// $(".shopping-succ").
+	// 	});
+	// });
 });

@@ -1,3 +1,4 @@
+<%= render partial: 'welcome/search'%>
 <div class="shopping-succ">
   <div class="success-lcol">
     <div>
@@ -12,6 +13,6 @@
 
   <div class="shopbtn-con">
     <div class="shop-des"><%= link_to "查看商品详情", product_path(@product) %></div>
-    <div class="shop-cart">去购物车结算</div>
+    <div class="shop-cart"><%= link_to "去购物车结算", shopping_carts_path %></div>
   </div>
 </div>

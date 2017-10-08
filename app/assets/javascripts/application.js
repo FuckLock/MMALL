@@ -17,10 +17,9 @@
 //= require moment
 //= require moment/zh-cn
 //= require bootstrap-datetimepicker
-
 //= require home
 //= require session
-
 //= require select2
 //= require wangEditor
 //= require products
+//= require shopping-carts

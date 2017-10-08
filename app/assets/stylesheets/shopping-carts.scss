@@ -80,7 +80,7 @@
 	color: #e4393c;
 }
 
-.shop-cart {
+.shop-cart{
 	width: 170px;
 	height: 35px;
 	background: #e4393c;
@@ -91,6 +91,12 @@
 	position: relative;
 	left: 180px;
 	top: -15px;
+	cursor: pointer;
+}
+
+.shop-cart a{
+	color: #fff;
+	text-decoration: none;
 }
 
 .shop-des, .shop-cart, .shop-title, .shop-amout{
@@ -110,4 +116,236 @@
 	background: #CE0000;
 }
 
+.shopping-main {
+	width: 990px;
+	margin: 0 auto;
+	// border: 1px solid red;
+	min-height: 500px;
+	height: auto;
+	margin-top: 30px;
+	background: white;
+	overflow: hidden;
+	// clear: both;
+}
 
+em {
+	font-weight: 700;
+  font-size: 16px;
+	font-style: normal;
+}
+
+em:hover {
+	color: #e4393c;
+	cursor: pointer;
+}
+
+.title-div{
+	width: 100%;
+	height: 45px;
+	background: #f3f3f3;
+}
+
+.column, .column:hover{
+	color: #666; 
+	background: none;
+	margin-top: 15px;
+	
+}
+
+.t-checkbox {
+	padding-right: 100px;
+	padding-left: 10px;
+}
+
+.t-shopping{
+	padding-right: 400px;
+}
+
+.t-price, .t-amount{
+	padding-right: 80px;
+}
+
+.t-total {
+	padding-right: 70px;
+}
+
+.cart-concon {
+	width: 990px;
+	height: 125px;
+	background: #fff;
+	margin-top: 10px;
+	border-style: solid;
+	border-color: #aaa #f1f1f1 #f1f1f1;
+	border-width: 2px 2px 2px;
+	margin-bottom: 30px;
+}
+
+.t-box-con {
+	margin-top: 15px;
+
+}
+
+.t-cart {
+	width: 330px;
+	height: 100px;
+	// border: 1px solid red;
+	position: relative;
+	top: 12px;
+	left: 8px;
+}
+
+// .t-input {
+// 	position: relative;
+// 	top: -20px;
+// 	float: left;
+// }
+
+.cart-image-con {
+	width: 88px;
+	height: 80px;
+	border: 1px solid blue;
+	position: relative;
+	left: 35px;
+	top: -15px;
+	border: 1px solid #eee;
+	background: #fff;
+	text-align: center;
+}
+
+.cart-image {
+	width: 55px;
+	height: 80px;
+}
+
+.tt-title {
+	display: block;
+	position: relative;
+	left: 130px;
+	top: -95px;
+	width: 200px;
+	height: 50px;
+	color: #333;
+}
+
+.tt-title:hover {
+	color: red;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.tt-price {
+	position: relative;
+	left: 550px;
+	top: -150px;
+	color: #333;
+}
+
+.tt-amount {
+	width: 80px;
+	height: 20px;
+	border: 1px solid #cacbcb;
+	position: relative;
+	left: 650px;
+	top: -170px;
+}
+
+.tt-minus {
+	display: block;
+	text-align: center;
+	width: 18px;
+	border-right: 1px solid #cacbcb;
+	cursor: pointer;
+}
+
+.tt-text {
+	width: 43px;
+	position: relative;
+	left: 17px;
+	top: -20px;
+	text-align: center;
+	// border: 1px solid #cacbcb;
+	// border-style: solid;
+	// border-bottom-color: #cacbcb;
+	// border-top: none;
+	// border-bottom: none;
+	// border-left: none;
+}
+
+.tt-add {
+	position: relative;
+	left: 18px;
+	top: -20px;
+	cursor: pointer;
+}
+
+.tt-total {
+	display: block;
+	position: relative;
+	left: 770px;
+	width: 130px;
+	top: -190px;
+	color: #333;
+	font-weight: bold;
+}
+
+.tt-sc {
+	position: relative;
+	top: -207px;
+	left: 870px;
+}
+
+.tt-sc:hover {
+	color: red;
+	text-decoration: none;
+}
+
+.bottom-con {
+	height: 57px;
+	border: 1px solid #cacbcb;
+}
+
+.bottom-title {
+	width: 150px;
+	height: 20px;
+	// border: 1px solid	blue;
+	position: relative;
+	top: 18px;
+	left: 5px;
+}
+
+.bottom-title a:hover {
+	color: red;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.bottom-price {
+	width: 170px;
+	height: 20px;
+	// border: 1px solid blue;
+	position: relative;
+	left: 700px;
+}
+
+.total-price {
+	font-size: 16px;
+  color: #e4393c;
+  font-weight: 700;
+}
+
+.settle-accounts {
+	display: block;
+	background: #e54346;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	font-weight: bold;
+	position: relative;
+	left: 900px;
+	top: -41px;
+	width: 95px;
+	height: 57px;
+	line-height: 52px;
+	cursor: pointer;
+}
