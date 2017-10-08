@@ -35,6 +35,11 @@ class ShoppingCartsController < ApplicationController
     redirect_to shopping_carts_path
   end
 
+  def add_amount
+    shopping_cart = ShoppingCart.find_by product_id: params[:product_id]
+    shopping_cart.update_attributes!(amount: params[:amount])
+  end
+
   private
   def find_shopping_cart
     @shopping_cart = ShoppingCart.find params[:id]

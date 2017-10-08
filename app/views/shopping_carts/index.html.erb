@@ -27,8 +27,9 @@
         <span class="tt-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.product.price %></span>
         <div class="tt-amount">
           <span class="tt-minus">-</span>
-          <input type="text" value="1" class="tt-text" />
+          <input type="text" value="<%= shopping_cart.amount %>" class="tt-text" />
           <span class='tt-add'>+</span>
+          <input type="hidden" value="<%= shopping_cart.product_id %>" class="sc-pid"/>
         </div>
         <span class="tt-total"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.amount.to_i * shopping_cart.product.price %></span>
         <%= link_to "删除", shopping_cart_path(shopping_cart.product), class: "tt-sc" %>
