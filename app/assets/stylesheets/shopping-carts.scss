@@ -306,6 +306,7 @@ em:hover {
 .bottom-con {
 	height: 57px;
 	border: 1px solid #cacbcb;
+	border-left: none;
 }
 
 .bottom-title {
@@ -352,4 +353,13 @@ em:hover {
 	height: 57px;
 	line-height: 52px;
 	cursor: pointer;
+}
+
+.delete-select {
+	color: #333;
+}
+
+.delete-select:hover{
+	cursor: pointer;
+	color: red;
 }

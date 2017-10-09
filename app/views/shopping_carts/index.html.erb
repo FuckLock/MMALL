@@ -3,7 +3,7 @@
   <em>全部商品</em>
   <div class="title-div">
     <ul>
-      <li class="column t-checkbox"><input type="checkbox" value="1" class="check-value all-check"/>&nbsp;&nbsp;&nbsp;全选</li>
+      <li class="column t-checkbox"><input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>&nbsp;&nbsp;&nbsp;全选</li>
       <li class="column t-shopping">商品</li>
       <li class="column t-price">单价</li>
       <li class="column t-amount">数量</li>
@@ -13,13 +13,14 @@
   </div>
 
   <div class="t-checkbox t-box-con">
-    <input type="checkbox" value="1" class="check-value all-check"/>
+    <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>
   </div>
 
   <% @shopping_carts.each do |shopping_cart| %>
     <div class="cart-concon">
       <div class="t-cart">
-        <input type="checkbox" value="1" class="check-value only-value" /> 
+        <input type="checkbox" value="<%= shopping_cart.select_value %>" <%= "checked" if shopping_cart.select_value == 1 %> class="check-value only-value" />
+        <input type="hidden" value="<%= shopping_cart.id %>"/>
         <div class="cart-image-con">
           <%= image_tag shopping_cart.product.main_product_image.image.url(:thumb), class: "cart-image" %>
         </div>
@@ -30,20 +31,21 @@
           <input type="text" value="<%= shopping_cart.amount %>" class="tt-text" />
           <input class="tt-add" value="+" readonly="readonly"/>
           <input type="hidden" value="<%= shopping_cart.product_id %>" class="sc-pid"/>
+          <input type="hidden" value="<%= shopping_cart.amount %>" class="sc-amount"/>
         </div>
         <span class="tt-total"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.amount.to_i * shopping_cart.product.price %></span>
-        <%= link_to "删除", shopping_cart_path(shopping_cart.product), class: "tt-sc" %>
+        <%= link_to "删除", shopping_cart_path(shopping_cart), class: "tt-sc", method: :delete %>
       </div> 
     </div>
   <% end %>
 
   <div class="bottom-con">
     <div class="bottom-title">
-      <input type="checkbox" value="1" class="check-value all-check" />&nbsp;&nbsp;全选&nbsp;&nbsp;
-      <%= link_to "删除选中的商品" %>
+      <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check" />&nbsp;&nbsp;全选&nbsp;&nbsp;
+      <span class="delete-select">删除选中的商品</span>
     </div>
     <div class="bottom-price">
-      总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i>0.0</span>
+      总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @shopping_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price } %></span>
     </div>
     <span class="settle-accounts">去结算</span>
   </div>
