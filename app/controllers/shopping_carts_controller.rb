@@ -7,7 +7,7 @@ class ShoppingCartsController < ApplicationController
     # debugger
     @shopping_carts = ShoppingCart.by_user_uuid(session[:user_uuid])
                                   .order('id desc').includes([product: [:main_product_image]])
-
+    @checked_carts = @shopping_carts.select{|shopping_cart| shopping_cart.select_value == 1}
     @select_booleean = @shopping_carts.collect { |shopping_cart| shopping_cart.select_value }.include?0
   end
 
@@ -53,13 +53,21 @@ class ShoppingCartsController < ApplicationController
     shopping_cart.update_attributes!(amount: params[:amount])
   end
 
+  def select_value
+    unless params[:id]
+      if params[:select_value] == "0"
+        ShoppingCart.all.collect{|shopping_cart| shopping_cart.update_attributes!(select_value: 0)}
+      else 
+        ShoppingCart.all.collect{|shopping_cart| shopping_cart.update_attributes!(select_value: 1)}
+      end
+      return
+    end
+    @shopping_cart = find_shopping_cart
+    @shopping_cart.update_attributes!(select_value: params[:select_value].to_i)
+  end
+
   private
   def find_shopping_cart
-    if request.method == "POST"
-      params[:id] = params[:id].split(",")
-      @shopping_cart = ShoppingCart.where('id' => params[:id])
-    else 
-      @shopping_cart = ShoppingCart.find params[:id]
-    end
+    @shopping_cart = ShoppingCart.find params[:id]
   end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/categories/show', to: "categories#show"
   post 'shopping_carts/update_amount', to: "shopping_carts#update_amount"
   post 'shopping_carts/delete-select', to: "shopping_carts#destroy"
+  post 'shopping_carts/select_value', to: "shopping_carts#select_value"
 
   resources :addresses do
     member do

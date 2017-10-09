@@ -45,7 +45,7 @@
       <span class="delete-select">删除选中的商品</span>
     </div>
     <div class="bottom-price">
-      总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @shopping_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price } %></span>
+      总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @checked_carts.empty? ? "0.0" : @checked_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price }  %></span>
     </div>
     <span class="settle-accounts">去结算</span>
   </div>

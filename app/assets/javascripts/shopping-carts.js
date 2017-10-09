@@ -1,29 +1,32 @@
 $(function(){
 	// 初始化操作checkbox的value的值为1的都默认改变选中商品的背景色
-	$(".all-check").each(function(){
-		var allValue = $(this).val();
-		if (allValue == 1){
-			$(".cart-concon").css("background", "#fff4e8");
-		}
+	$(".only-value:checked").each(function(){
+		$(this).parent().parent().css("background", "#fff4e8");
 	});
 
 	//点击全选框全部选中或者全部取消 
 	$('.all-check').each(function(){
 		$(this).on('click', function(){
+			// 点击全选按钮就改变value的值,为后面判断做准备
+			// 确定全选按钮是选中还是未选中,并做相应的处理
+			// 相应的改变全选商品的背景色状态
+			// 改变商品数据库中的select_value的值
 			$(".all-check").each(function(){
 				var allValue = $(this).val();
 				if (allValue == 1){
-					// $(this).removeProp("checked");
-					// $(this).val(0);
-					$.post('shopping_carts/select_value', {select_value: 0}, function(){})
+					$(this).val(0);
+					$(this).removeProp("checked");
 					$(".cart-concon").css("background", "");
+					$.post('shopping_carts/select_value', {select_value: 0}, function(){})
 				}else {
-					// $(this).prop("checked","checked");
 					$(this).val(1);
+					$(this).prop("checked","checked");
 					$(".cart-concon").css("background", "#fff4e8");
+					$.post('shopping_carts/select_value', {select_value: 1}, function(){})
 				};
 			});
 
+			// 全选状态下，判断商品的选中情况
 			var allValue = $(".all-check:first").val();
 			$(".only-value").each(function(){
 				var onlyValue = $(this).val();
@@ -45,27 +48,27 @@ $(function(){
 					$(this).val(0);
 				};
 			});
+			// 总计选中状态的值
 			cart.totalPrice();
 		});
 	});
 
+	// 点击商品按钮异步处理
 	$(".only-value").each(function(){
 		$(this).on('click', function(){
 			var onlyValue = $(this).val();
+			var shoppingCartId = $(this).next().val();
 			if (onlyValue == 1){
-				$(this).removeProp("checked");
 				$(this).val(0);
+				$(this).removeProp("checked");
 				$(this).parent().parent().css("background", "");
+				$.post('shopping_carts/select_value', {select_value: 0, id: shoppingCartId}, function(){})
 			}else {
 				$(this).prop("checked");
 				$(this).val(1);
 				$(this).parent().parent().css("background", "#fff4e8");
+				$.post('shopping_carts/select_value', {select_value: 1, id: shoppingCartId}, function(){})
 			};
-
-			$('.all-check').each(function(){
-				$(this).removeProp("checked");
-				$(this).val(0);
-			});
 			cart.jugdAllSelect();
 			cart.totalPrice();
 		});
@@ -146,29 +149,6 @@ $(function(){
 		})
 		cart.totalPrice();
 	});
-
-	// 删除选中的商品
-	// $(".delete-select").on('click', function(){
-	// 	var shoppingCartIdArry = new Array();
-	// 	$(".only-value:checked").each(function(){
-	// 		shoppingCartIdArry.push($(this).next().val());
-	// 	});
-
-	// 	// $.post('shopping_carts/delete-select', {id: shoppingCartIdArry}, function(data){
-	// 	// 	$(".shopping-main").html(data);
-	// 	// 	// alert(data);
-	// 	// });
-
-	// 	$.ajax({
-	// 		type: "post",
-	// 		url: 'shopping_carts/delete-select',
-	// 		data: "id=" + shoppingCartIdArry,
-	// 		async: false, 
-	// 		success: function(data){
-
-	// 		}
-	// 	});
-	// });
 });
 
 // 定义ShoppingCart类
@@ -179,12 +159,15 @@ function ShoppingCart(){
 ShoppingCart.prototype.jugdAllSelect = function(){
 	var onlyValueSize = $(".only-value").size();
 	var checkedSize = $(".only-value:checked").size();
-	if (onlyValueSize == checkedSize) {
-		$('.all-check').each(function(){
+	$('.all-check').each(function(){
+		if (onlyValueSize == checkedSize){
 			$(this).prop("checked","checked");
 			$(this).val(1);
-		});
-	}
+		}else{
+			$(this).removeProp("checked");
+			$(this).val(0);
+		};
+	});
 }
 
 // 定义方法点击商品改变选中状态并改变其背景色
