@@ -1,10 +1,73 @@
 $(function(){
-	// 初始化操作checkbox的value的值为1的都默认改变选中商品的背景色
+	cart.initOperate();
+	cart.clickAllSelect();
+	cart.clickShopping();
+	cart.clickAddBtn();
+	cart.clickMinusBtn();
+	cart.changeAmountInputValue();
+});
+
+// 定义ShoppingCart类
+function ShoppingCart(){
+}
+
+// 定义方法是否为全选
+ShoppingCart.prototype.jugdAllSelect = function(){
+	var onlyValueSize = $(".only-value").size();
+	var checkedSize = $(".only-value:checked").size();
+	$('.all-check').each(function(){
+		if (onlyValueSize == checkedSize){
+			$(this).prop("checked","checked");
+			$(this).val(1);
+		}else{
+			$(this).removeProp("checked");
+			$(this).val(0);
+		};
+	});
+}
+
+// 定义方法点击商品改变选中状态并改变其背景色
+ShoppingCart.prototype.changeStatus = function(obj){
+	$(obj).parent().parent().children(":first").val(1);
+	$(obj).parent().parent().children(":first").prop("checked","checked");
+	$(obj).parent().parent().parent().css("background", "#fff4e8");
+}
+
+// 计算总价
+ShoppingCart.prototype.totalPrice = function(){
+	var sum = 0
+	$(".tt-total").each(function(){
+		if ($(this).parent().children(":first").prop("checked")){
+			sum += parseInt($(this).text());
+		}
+	});
+	$(".total-price").html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + sum.toFixed(1));
+}
+
+// 点击加减默认为选中，并保存select_value=1到数据库
+ShoppingCart.prototype.saveSelectValue = function(obj){
+	var shoppingCartId = $(obj).parent().parent().next().next().val();
+	$.post('shopping_carts/select_value', {select_value: 1, id: shoppingCartId}, function(){})
+}
+
+// 初始化操作
+ShoppingCart.prototype.initOperate = function(){
 	$(".only-value:checked").each(function(){
 		$(this).parent().parent().css("background", "#fff4e8");
 	});
 
-	//点击全选框全部选中或者全部取消 
+	$(".tt-text").each(function(){
+		var text = $(this).val();
+		if(text == 1){
+			$(this).prev().prop("disabled", "disabled")
+			$(this).prev().val('');
+			$(this).prev().removeProp("cursor")
+		}
+	});
+}
+
+// 点击全选按钮操作
+ShoppingCart.prototype.clickAllSelect = function(){
 	$('.all-check').each(function(){
 		$(this).on('click', function(){
 			// 点击全选按钮就改变value的值,为后面判断做准备
@@ -52,8 +115,10 @@ $(function(){
 			cart.totalPrice();
 		});
 	});
+};
 
-	// 点击商品按钮异步处理
+// 点击商品按钮操作
+ShoppingCart.prototype.clickShopping = function(){
 	$(".only-value").each(function(){
 		$(this).on('click', function(){
 			var onlyValue = $(this).val();
@@ -73,9 +138,13 @@ $(function(){
 			cart.totalPrice();
 		});
 	});
+};
 
+ShoppingCart.prototype.clickAddBtn = function(){
 	$(".tt-add").on('click', function(){
+		// 点击加按钮会默认选中,并且改变value=1,背景色变为选中的颜色
 		cart.changeStatus(this)
+		// 计算小计的金额,改变页面的值，同时把数量保存到数据库跟新
 		var amount = $(this).prev().val();
 		var productId = $(this).next().val();
 		var price = parseInt($(this).parent().prev().text());
@@ -86,16 +155,19 @@ $(function(){
 		$(this).parent().next().html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + totalPrice.toFixed(1));
 		$.post('shopping_carts/update_amount', {amount: amount, product_id: productId}, function(){
 		})
-
+		// 大于1去除相应的样式
 		if (amount > 1) {
 			$(this).prev().prev().removeProp("disabled")
 			$(this).prev().prev().val('-');
 			$(this).prev().prev().prop("cursor", "pointer");
 		}
+		cart.saveSelectValue(this);
 		cart.jugdAllSelect();
 		cart.totalPrice();
 	});
+};
 
+ShoppingCart.prototype.clickMinusBtn = function(){
 	$(".tt-minus").on('click', function(){
 		cart.changeStatus(this)
 		var amount = $(this).next().val();
@@ -107,27 +179,21 @@ $(function(){
 		$(this).parent().next().html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + total_price.toFixed(1));
 		$.post('shopping_carts/update_amount', {amount: amount, product_id: productId}, function(){
 		})
-
 		if (amount == 1) {
 			$(this).prop("disabled", "disabled")
 			$(this).val('');
 			$(this).removeProp("cursor")
 		}
+		cart.saveSelectValue(this);
 		cart.jugdAllSelect();
 		cart.totalPrice();
 	});
+};
 
-	$(".tt-text").each(function(){
-		var text = $(this).val();
-		if(text == 1){
-			$(this).prev().prop("disabled", "disabled")
-			$(this).prev().val('');
-			$(this).prev().removeProp("cursor")
-		}
-	});
-
+ShoppingCart.prototype.changeAmountInputValue = function(){
 	$(".tt-text").on('change', function(){
 		var srcText = $(this).next().next().next().val();
+		// alert(srcText);
 		var text = $(this).val();		
 		var re = /^[0-9]+[0-9]*$/
 		if (!re.test(text)) {
@@ -136,11 +202,19 @@ $(function(){
 			return false;
 		};
 
+		if (text < 1){
+			$(this).val(srcText);
+			alert("商品最小数量为1");
+			return false;
+		};
+
 		var amount = $(this).val();
 		if (amount != srcText) {
 			cart.changeStatus(this);
+			cart.saveSelectValue(this);
 		}
 		cart.jugdAllSelect();
+		// 计算小计
 		var price = $(this).parent().prev().text();
 		var totalPrice = parseInt(amount) * parseInt(price);
 		$(this).parent().next().html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + totalPrice.toFixed(1));
@@ -149,43 +223,5 @@ $(function(){
 		})
 		cart.totalPrice();
 	});
-});
-
-// 定义ShoppingCart类
-function ShoppingCart(){
-}
-
-// 定义方法是否为全选
-ShoppingCart.prototype.jugdAllSelect = function(){
-	var onlyValueSize = $(".only-value").size();
-	var checkedSize = $(".only-value:checked").size();
-	$('.all-check').each(function(){
-		if (onlyValueSize == checkedSize){
-			$(this).prop("checked","checked");
-			$(this).val(1);
-		}else{
-			$(this).removeProp("checked");
-			$(this).val(0);
-		};
-	});
-}
-
-// 定义方法点击商品改变选中状态并改变其背景色
-ShoppingCart.prototype.changeStatus = function(obj){
-	$(obj).parent().parent().parent().css("background", "#fff4e8");
-	$(obj).parent().parent().children(":first").val(1);
-	$(obj).parent().parent().children(":first").prop("checked","checked");
-}
-
-// 计算总价
-ShoppingCart.prototype.totalPrice = function(){
-	var sum = 0
-	$(".tt-total").each(function(){
-		if ($(this).parent().children(":first").prop("checked")){
-			sum += parseInt($(this).text());
-		}
-	});
-	$(".total-price").html('<i class="fa fa-jpy fa-sm" aria-hidden="true"></i>' + sum.toFixed(1));
-}
-
+};
 cart = new ShoppingCart();
