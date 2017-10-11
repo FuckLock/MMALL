@@ -1,1 +1,7 @@
-<h1>hello</h1>
+<%= render partial: 'welcome/search'%>
+<div class="empty-shopping">
+	<%= image_tag "empty.png", class: "empty-image" %>
+	<span class="empty-title">购物车内暂时没有商品，登录后将显示您之前加入的商品</span>
+	<%= link_to "登录", new_session_path, class: "empty-btn" %>
+	<%= link_to "去购物>", root_path, class: "go-shop" %>
+</div>

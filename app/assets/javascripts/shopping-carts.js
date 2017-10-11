@@ -5,6 +5,8 @@ $(function(){
 	cart.clickAddBtn();
 	cart.clickMinusBtn();
 	cart.changeAmountInputValue();
+	
+
 });
 
 // 定义ShoppingCart类
@@ -224,4 +226,41 @@ ShoppingCart.prototype.changeAmountInputValue = function(){
 		cart.totalPrice();
 	});
 };
+
 cart = new ShoppingCart();
+
+// 显示阴影区域
+function show(){
+	// js写法
+	// var hideObj = document.getElementById("hidebg");
+	// hidebg.style.display = "block";
+	// hidebg.style.height = document.body.clientHeight+"px";
+	// var hideBoxObj = document.getElementById("hidebox");
+	// hideBoxObj.style.display = "block";
+	// jquery写法
+	var hideObj = $('#hidebg');
+	hideObj.css("display", "block");
+	var height = $(window).height(); 
+	hideObj.css("height", height);
+	checkedSize = $(".only-value:checked").size();
+	if (checkedSize == 0){
+		var hideBoxObj = $('#hidebox');
+		hideBoxObj.css("display", "block");	
+	}else{
+		var deleteShopObj = $('#delete-shop');
+		deleteShopObj.css("display", "block");
+		$.post('shopping_carts/select_checked', function(data){
+			$(".pu-delete-btn").attr("href", "shopping_carts/" + data)
+		})	
+	};
+}
+
+// 隐藏弹出框
+function hide(){
+	var hideObj = $('#hidebg');
+	var hideBoxObj = $('#hidebox');
+	var deleteShopObj = $('#delete-shop');
+	hideObj.css("display", "none");
+	hideBoxObj.css("display", "none");
+	deleteShopObj.css("display", "none");
+};

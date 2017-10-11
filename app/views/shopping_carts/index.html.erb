@@ -42,7 +42,9 @@
   <div class="bottom-con">
     <div class="bottom-title">
       <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check" />&nbsp;&nbsp;全选&nbsp;&nbsp;
-      <span class="delete-select">删除选中的商品</span>
+      <!-- <span class="delete-select">删除选中的商品</span> -->
+      <a class="delete-select" href="javascript:show();">删除选中的商品</a>
+      <!-- <a href="shopping">删除选中的商品</a> -->
     </div>
     <div class="bottom-price">
       总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @checked_carts.empty? ? "0.0" : @checked_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price }  %></span>
@@ -50,3 +52,25 @@
     <span class="settle-accounts">去结算</span>
   </div>
 </div>
+
+<div id="hidebg"></div>
+<div id="hidebox">
+  <div class="pu-title-con">
+    <span class="pu-title">提示</span>
+    <a class="pu-x" href="javascript:hide();">×</a>
+    <%= image_tag 'jingao.png', class: "jingao" %>
+    <span class="tishi">请至少选中一件商品!</span>
+  </div>
+</div>
+
+<div id="delete-shop">
+  <div class="pu-title-con">
+    <span class="pu-title">删除</span>
+    <a class="pu-x" href="javascript:hide();">×</a>
+    <%= image_tag 'jingao.png', class: "jingao" %>
+    <span class="tishi">删除商品?</span>
+    <a href="#" class="pu-delete-btn" data-method="delete">删除</a>
+  </div>
+</div>
+
+

@@ -355,11 +355,139 @@ em:hover {
 	cursor: pointer;
 }
 
-.delete-select {
-	color: #333;
+// 弹出框给页面添加阴影面积
+#hidebg {
+	position:absolute;
+	left:0px;
+	top:0px;
+  background-color:#000;
+  width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+  filter:alpha(opacity=10);  /*设置透明度为60%*/
+  opacity:0.1; /*非IE浏览器下设置透明度为60%*/
+  display:none;
+  z-index: 2;
 }
 
-.delete-select:hover{
-	cursor: pointer;
+#hidebox, #delete-shop{
+	display: none;
+	position: absolute;
+	width: 360px;
+	height: 170px;
+	background: white;
+	border: 4px solid #BEBEBE;
+	left: 40%;
+	top: 40%;
+	z-index: 3;
+}
+
+.pu-title-con{
+	width: 100%;
+	height: 30px;
+	background: #f3f3f3;
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+}
+.pu-title{
+	color: #666;
+	position: relative;
+	top: -8px;
+	left: 3px;
+}
+
+.pu-x:hover{
+	text-decoration: none;
+	color: #666;
+}
+
+.pu-x{
+	font-size: 18px;
+ 	color: #666;
+ 	float: right;
+ 	cursor: pointer;
+}
+
+.jingao {
+	position: relative;
+	top: 40px;
+}
+
+.tishi {
+	font-family: "Microsoft YaHei";
+  font-size: 18px;
+  color: #ff6c00;
+  position: relative;
+  top: 30px;
+}
+
+.pu-delete-btn {
+	display: block;
+	width: 35px;
+	height: 20px;
+	background-color: #f2f2f2;
+	color: #666;
+	font-size: 12px;
+	border: 1px solid	#e1e1e1;
+	position: relative;
+	top: 50px;
+	left: 110px;
+	text-align: center;
+}
+
+.pu-delete-btn:hover {
+	text-decoration: none;
+	color: #666;
+}
+
+// shopping_carts/emptycart.html.erb
+
+.empty-shopping {
+	width: 490px;
+	height: 80px;
+	background: white;
+	// border: 2px solid red;
+	margin: 0px auto;
+	position: relative;
+	top: 60px;
+	// background: #f6f6f6;
+}
+
+.empty-title {
+	color: #333;
+	font-size: 14px;
+	position: relative;
+	top: -10px;
+}
+
+.empty-btn {
+	display: block;
+	width: 45px;
+	height: 25px;
+	background-color: #e74649;
+	font-family: arial,"Microsoft YaHei";
+	font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  padding-top: 4px;
+  position: relative;
+  top: -20px;
+  left: 90px;
+}
+
+.empty-btn:hover{
+	text-decoration: none;
+	color: #fff;
+	background: #FF5151;
+}
+
+.go-shop {
+	color: #005ea7;
+	position: relative;
+	left: 150px;
+	top: -43px;
+}
+
+.go-shop:hover {
+	text-decoration: none;
 	color: red;
 }
