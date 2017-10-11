@@ -240,7 +240,7 @@ function show(){
 	// jquery写法
 	var hideObj = $('#hidebg');
 	hideObj.css("display", "block");
-	var height = $(window).height(); 
+	var height = $(document).height(); 
 	hideObj.css("height", height);
 	checkedSize = $(".only-value:checked").size();
 	if (checkedSize == 0){
@@ -264,3 +264,29 @@ function hide(){
 	hideBoxObj.css("display", "none");
 	deleteShopObj.css("display", "none");
 };
+
+window.onscroll = function(){
+	$('#hidebox').css("top", "240px")
+	var hideboxTop = $('#hidebox').css("top");
+	var boxTop = hideboxTop.substring(0, hideboxTop.length - 2);
+	var bodyTop =	document.documentElement.scrollTop || document.body.scrollTop;
+	var top = parseInt(boxTop) + parseInt(bodyTop);
+	if(top > 240){
+		$('#hidebox').css("top", top + "px");    
+	}else{
+		$('#hidebox').css("top", hideboxTop); 
+	}
+
+	$('#delete-shop').css("top", "240px")
+	var deleteShopTop = $('#delete-shop').css("top");
+	var boxTop = deleteShopTop.substring(0, deleteShopTop.length - 2);
+	var bodyTop =	document.documentElement.scrollTop || document.body.scrollTop;
+	var top = parseInt(boxTop) + parseInt(bodyTop);
+	if(top > 240){
+		$('#delete-shop').css("top", top + "px");    
+	}else{
+		$('#delete-shop').css("top", hideboxTop); 
+	}
+
+};
+
