@@ -116,6 +116,51 @@
 	background: #CE0000;
 }
 
+// shopping_carts/index.html.erb
+.now-login {
+	width: 990px;
+	height: 50px;
+	border: 1px solid #edd28b;
+	background: #fffdee;
+	color: #f70;
+	margin-bottom: 20px;
+}
+
+.wicon {
+	position: relative;
+	top: 12px;
+	left: 15px;
+}
+
+.wicon-title {
+	color: #f70;
+	position: relative;
+	top: 12px;
+	left: 18px;
+}
+
+.wicon-btn {
+	display: block;
+	width: 70px;
+	height: 25px;
+	background-color: #e74649;
+	font-family: arial,"Microsoft YaHei";
+	font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  padding-top: 4px;
+  position: relative;
+  top: -10px;
+  left: 350px;
+}
+
+.wicon-btn:hover {
+	text-decoration: none;
+	color: #fff;
+	background: #FF5151;
+}
+
 .shopping-main {
 	width: 990px;
 	margin: 0 auto;

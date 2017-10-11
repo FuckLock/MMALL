@@ -1,5 +1,10 @@
 <%= render partial: 'welcome/search'%>
 <div class="shopping-main">
+  <div class="now-login">
+    <%= image_tag "wicon.png",class: "wicon" %>
+    <span class="wicon-title">您还没有登录！登录后购物车的商品将保存到您账号中</span>
+    <%= link_to "立即登录", new_session_path, class: "wicon-btn" %>
+  </div>
   <em>全部商品</em>
   <div class="title-div">
     <ul>
