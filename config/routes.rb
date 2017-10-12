@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders
+  
   resources :payments do
     collection do
       get 'generate_pay'
@@ -35,7 +36,6 @@ Rails.application.routes.draw do
     root 'home#index'
     get '/products/ajax_new', to: "products#ajax_new"
     post '/product_images/upload_images', to: 'product_images#upload_images'
-    # root 'sessions#new'
     resources :sessions
     resources :categories
     resources :products do

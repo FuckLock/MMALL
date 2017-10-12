@@ -23,3 +23,7 @@
 //= require wangEditor
 //= require products
 //= require shopping-carts
+//= require order
+//= require cityJson
+//= require citySet
+//= require Popt

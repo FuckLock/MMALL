@@ -260,33 +260,21 @@ function hide(){
 	var hideObj = $('#hidebg');
 	var hideBoxObj = $('#hidebox');
 	var deleteShopObj = $('#delete-shop');
+	var userSessionObj = $('.user-session');
 	hideObj.css("display", "none");
 	hideBoxObj.css("display", "none");
 	deleteShopObj.css("display", "none");
+	userSessionObj.css("display", "none");
 };
 
-window.onscroll = function(){
-	$('#hidebox').css("top", "240px")
-	var hideboxTop = $('#hidebox').css("top");
-	var boxTop = hideboxTop.substring(0, hideboxTop.length - 2);
-	var bodyTop =	document.documentElement.scrollTop || document.body.scrollTop;
-	var top = parseInt(boxTop) + parseInt(bodyTop);
-	if(top > 240){
-		$('#hidebox').css("top", top + "px");    
-	}else{
-		$('#hidebox').css("top", hideboxTop); 
-	}
-
-	$('#delete-shop').css("top", "240px")
-	var deleteShopTop = $('#delete-shop').css("top");
-	var boxTop = deleteShopTop.substring(0, deleteShopTop.length - 2);
-	var bodyTop =	document.documentElement.scrollTop || document.body.scrollTop;
-	var top = parseInt(boxTop) + parseInt(bodyTop);
-	if(top > 240){
-		$('#delete-shop').css("top", top + "px");    
-	}else{
-		$('#delete-shop').css("top", hideboxTop); 
-	}
-
+// 显示登录弹出框
+function showSession(){
+	var hideObj = $('#hidebg');
+	hideObj.css("display", "block");
+	var height = $(document).height();
+	hideObj.css("height", height);
+	var userSessionObj = $('.user-session');
+	userSessionObj.css("display", "block");
 };
+
 

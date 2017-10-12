@@ -1,59 +1,33 @@
-<h1>确认订单</h1>
-<div class="row">
-  <div class="container">
-    <div class="page-header">
-      <h4><i class="fa fa-map-marker"></i> 收货地址</h4>
-    </div>
-    <div id="address_list">
+<div class="order-header">
+  <div class="header-left">
+    <%= link_to (image_tag "dog.png"), root_path %>
+    <%= image_tag 'jiesuan.png' %>
+  </div>
+  <div class="header-right">
+    <%= image_tag 'orderone.png' %>
+  </div>
+  <span class="tt-ortext">填写并核对订单信息</span>
+</div>
 
-    </div>
-
-    <div class="page-header">
-      <h4><i class="fa fa-credit-card"></i> 支付方式</h4>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <input type="radio" name="payment_method" value="alipay" checked />
-        <%= image_tag "alipay.png", width: 100 %>
-      </li>
-    </ul>
-
-    <div class="page-header">
-      <h4><i class="fa fa-list-alt"></i> 商品列表</h4>
-    </div>
-    <% @shopping_carts.each do |shopping_cart| %>
-      <div class="media shopping-cart-row">
-        <div class="media-left">
-          <%= image_tag shopping_cart.product.main_product_image.image.url(:small), class: 'media-object', alt: shopping_cart.product.title %>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading"><%= shopping_cart.product.title %></h4>
-          数量: <%= shopping_cart.amount %> 价格: ¥<%= shopping_cart.amount * shopping_cart.product.price %>
-        </div>
-      </div>
-    <% end -%>
-
-    <br />
-    <div class="pull-right">
-      <%= form_tag orders_path, method: :post, class: "create-order-form" do %>
-        <input type="hidden" name="address_id" />
-        <strong>总价: ¥<%= @shopping_carts.sum { |cart| cart.amount * cart.product.price } %></strong>
-        <input type="submit" value="确认订单" class="btn btn-danger btn-lg" />
-      <% end %>
-    </div>
-
-    <div class="clearfix"></div>
-    <br />
-    <br />
-    <br />
-    <br />
+<div class="order-content-w">
+  <div class="order-content-con">
+    <span class="shouhuo">收货人信息</span>
+    <a class="xinzeng-add" href="javascript:showAddress();">新增收货地址</a>
   </div>
 </div>
 
-<%= content_for :javascripts do %>
-  <script>
-    $.get('/addresses', function(data) {
-      $('#address_list').html(data);
-    })
-  </script>
-<% end %>
+<div id="hidebg"></div>
+
+<div class="address-con">
+  <div class="address-title-con">
+    <span class="address-title">新增收货地址</span>
+    <a class="address-x" href="javascript:addressHide();">×</a>
+  </div>
+
+  <div class="form-con">
+    <label class="in-area">*&nbsp;&nbsp;所在地区</label>
+    <input type="text" id="city" />  
+  </div>
+</div>
+
+

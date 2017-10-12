@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = login(params[:username], params[:password])
     if user
       update_browser_uuid user.uuid
+      redirect_to new_order_path and return if params[:order] = "1"
       redirect_to root_path
     else
       if params[:email].blank?

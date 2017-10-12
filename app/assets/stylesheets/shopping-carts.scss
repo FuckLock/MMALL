@@ -400,6 +400,16 @@ em:hover {
 	cursor: pointer;
 }
 
+.settle-accounts:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+a.settle-accounts:link {
+	color: #fff;
+	text-decoration: none;
+}
+
 // 弹出框给页面添加阴影面积
 #hidebg {
 	position:absolute;
@@ -415,7 +425,7 @@ em:hover {
 
 #hidebox, #delete-shop{
 	display: none;
-	position: absolute;
+	position: fixed;
 	width: 360px;
 	height: 170px;
 	background: white;
@@ -423,6 +433,30 @@ em:hover {
 	left: 40%;
 	top: 240px;
 	z-index: 3;
+}
+
+.user-session {
+	display: none;
+	position: fixed;
+	left: 40%;
+	top: 240px;
+	height: 320px;
+  width: 400px;
+  background: white;
+  z-index: 3;
+}
+
+.session-x {
+	position: relative;
+	color: red;
+	font-size: 30px;
+	top: -50px;
+	float: right;
+}
+
+.session-x:hover {
+	text-decoration: none;
+	color: red;
 }
 
 .pu-title-con{
@@ -536,3 +570,4 @@ em:hover {
 	text-decoration: none;
 	color: red;
 }
+
