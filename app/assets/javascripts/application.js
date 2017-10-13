@@ -27,4 +27,3 @@
 //= require cityJson
 //= require citySet
 //= require Popt
-//= require location

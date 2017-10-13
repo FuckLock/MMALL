@@ -15,4 +15,6 @@ Rails.application.config.assets.precompile += %w[
   admin.scss
   session.scss
   home.scss
+  location.js
+  location.scss
 ]

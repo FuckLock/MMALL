@@ -16,8 +16,9 @@
   </div>
 </div>
 
+<!-- 弹出框前面的阴影面积 -->
 <div id="hidebg"></div>
-
+<!-- 新建地址弹出框 -->
 <div class="address-con">
   <div class="address-title-con">
     <span class="address-title">新增收货地址</span>
@@ -25,50 +26,25 @@
   </div>
 
   <div class="form-con">
-      
-  </div>
-</div>
-
-
-
-
-
-
-
-
-<body>
-
-
-
-<ul id="list1" style="width:620px;margin:40px auto 0 auto;">
-
-  <li id="summary-stock">
-
-    <div class="dt">配&nbsp;送&nbsp;至：</div>
-
-    <div class="dd">
-
-      <div id="store-selector">
-
-        <div class="text"><div></div><b></b></div>                   
-
-        <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
-
-      </div><!--store-selector end-->
-
-      <div id="store-prompt"><strong></strong></div><!--store-prompt end--->
-
+    <div style="float:left">
+      <span class="xinxin">*</span>&nbsp;所在地区&nbsp;&nbsp;
+    </div>
+    <div id="store-selector">
+      <div class="text">
+        <input type="text"  value="--请选择--" readonly="readonly" style="border:none;"/>
+         <b></b>
+      </div>
+      <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
     </div>
 
-  </li>
+  </div>
+</div>
+<%= javascript_include_tag 'location' %> 
 
-</ul>
+<script type="text/javascript">
+  
+</script>
 
 
 
-
-
-</body>
-
-</html>
 
