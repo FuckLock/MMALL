@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_browser_uuid
     uuid = cookies[:user_uuid]
     unless uuid
-      uuid = if logged_in?
+      uuid = if logged_in? && current_user.uuid
                current_user.uuid
              else
                RandomCode.generate_utoken

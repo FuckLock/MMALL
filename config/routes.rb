@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   post 'shopping_carts/update_amount', to: "shopping_carts#update_amount"
   post 'shopping_carts/select_value', to: "shopping_carts#select_value"
   post 'shopping_carts/select_checked', to: "shopping_carts#select_checked"
-
-
+  
   resources :addresses do
     member do
       put 'set_default_address'

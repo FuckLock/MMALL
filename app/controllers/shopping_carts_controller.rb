@@ -1,10 +1,10 @@
 class ShoppingCartsController < ApplicationController
   before_action :find_shopping_cart, only: %i[update]
   layout 'home'
+  before_action :set_shopping_cart_user_uuid, only: %i[index]
 
   def index
     # fetch_home_data
-    # debugger
     render template: "shopping_carts/emptycart" and return unless ShoppingCart.exists?
     @shopping_carts = ShoppingCart.by_user_uuid(session[:user_uuid])
                                   .order('id desc').includes([product: [:main_product_image]])
@@ -62,6 +62,10 @@ class ShoppingCartsController < ApplicationController
 
   def select_checked
     render json: ShoppingCart.where(select_value: 1).ids
+  end
+
+  def set_shopping_cart_user_uuid
+    ShoppingCart.all.collect{|shopping_cart| shopping_cart.update_attributes!(user_uuid: session[:user_uuid])} if logged_in?
   end
 
 end
