@@ -21,10 +21,13 @@ $(function(){
 
 
 $(function(){
-	$('.set-address').on('click', function(){
-		var addressValue = $(this).next().val();
-		$.post('/addresses/update-params', {address_value: addressValue}, function(){
-		
+	// $('.set-address').off('click')
+	$(document).on('click', '.set-address', function(){
+		var addressId = $(this).next().val();
+		$.post('/addresses/update-params', {id: addressId}, function(data){
+			var orderContent = $(data).find(".order-content-w").html();
+			// alert($(data).find(".order-content-w").html());
+			$('.order-content-w').html(orderContent);
 		});
 	});
 });

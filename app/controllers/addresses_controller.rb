@@ -43,8 +43,11 @@ class AddressesController < ApplicationController
     #   status: 'ok',
     #   data: render_to_string(file: 'addresses/index')
     # }
-    Address.where(address_value: 1).collect{|address| address.update_attributes!(address_value: 0)}
-    
+    # debugger
+    Address.where(address_value: 1).collect{|address| address.update_attributes!(address_value: 0) }
+    Address.find(params[:id]).update_attributes!(address_value: 1)
+    @addresses = current_user.addresses
+    render template: 'orders/new'
   end
 
   def destroy
