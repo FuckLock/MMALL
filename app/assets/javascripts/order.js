@@ -18,3 +18,13 @@ $(function(){
 	});
 
 });
+
+
+$(function(){
+	$('.set-address').on('click', function(){
+		var addressValue = $(this).next().val();
+		$.post('/addresses/update-params', {address_value: addressValue}, function(){
+		
+		});
+	});
+});

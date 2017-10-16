@@ -129,4 +129,48 @@
 	color: #666;	
 }
 
+.save-address {
+	border: 1px solid red;
+	width: 900px;
+	height: 30px;
+	position: relative;
+	left: 40px;
+	top: 30px;
+	margin-bottom: 10px;
+}
+
+.address-title {
+	color: #666;
+}
+
+.consignee-item {
+	
+	height: 100%;
+	font-size: 12px;
+	overflow:hidden;
+  border: 1px solid #ddd;
+  line-height: 18px;
+  padding: 5px 10px;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  float:left;
+}
+
+.address-pho {
+	color: #666;
+	font-size: 12px;
+}
+
+.add-weizhi {
+	 color: #005ea7;
+	font-size: 12px;
+	position: relative;
+	left: 50px;
+}
+
+.set-address {
+	cursor: pointer;
+}
 

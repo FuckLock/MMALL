@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       put 'set_default_address'
     end
   end
+  post 'addresses/update-params', to: "addresses#set_default_address"
 
   resources :orders
   

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
     fetch_home_data
     @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).order('id desc')
                                   .includes([product: [:main_product_image]])
+    @addresses = current_user.addresses                                  
     render action: :new                             
   end
 

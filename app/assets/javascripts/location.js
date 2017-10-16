@@ -55,11 +55,11 @@
 		},
 
 		getJSONP : function (a, b) {
-			
+			// alert('123123')
 			// var c = $._jsonp.name(b),
 
 			// a = a.replace(/{callback};/, c);
-
+			// alert(b)
 			return $._jsonp.load(a, b),
 
 			this
@@ -214,6 +214,7 @@ function cleanKuohao(str){
 
 // getAreaByAreaIdAndAreaNameAndSetInputValue
 function getAreaByAreaIdAndAreaNameAndSetInputValue(id,name){
+	// alert('234')
 
 	if(currentAreaInfo.currentLevel==3){
 
@@ -252,11 +253,16 @@ function getAreaByAreaIdAndAreaNameAndSetInputValue(id,name){
 	}
 
 	//把地址进行拼接处理,并且给输入框填入值
-
-	var address = currentAreaInfo.currentProvinceName+currentAreaInfo.currentCityName+currentAreaInfo.currentAreaName+currentAreaInfo.currentTownName;
-	$("#store-selector .text input").val(currentAreaInfo.currentProvinceName + '/' + cleanKuohao(currentAreaInfo.currentCityName) + '/' + cleanKuohao(currentAreaInfo.currentAreaName) + '/' + cleanKuohao(currentAreaInfo.currentTownName)).attr("title",address);
-	$("#store-selector .close").css('display', 'none');
-
+	if (id == '1001'){
+		$("#store-selector .text input").val(currentAreaInfo.currentProvinceName + '/' + '稍后再说').attr("title",address);
+		$("#store-selector .close").css('display', 'none');
+	}else{
+		var address = currentAreaInfo.currentProvinceName+currentAreaInfo.currentCityName+currentAreaInfo.currentAreaName+currentAreaInfo.currentTownName;
+		$("#store-selector .text input").val(currentAreaInfo.currentProvinceName + '/' + cleanKuohao(currentAreaInfo.currentCityName) + '/' + cleanKuohao(currentAreaInfo.currentAreaName)).attr("title",address);
+		$("#store-selector .close").css('display', 'none');
+	}
+	
+// alert('456')
 }
 
 function getAreaListcallback(r){
@@ -287,9 +293,11 @@ function getAreaListcallback(r){
 
 			// alert($(this).html())
 			getAreaByAreaIdAndAreaNameAndSetInputValue($(this).attr("data-value"),$(this).html());
+			// alert('1232222')
 
 		});
 
+		// alert('123')
 		if(page_load){ //初始化加载
 
 			currentAreaInfo.currentLevel = currentAreaInfo.currentLevel==2?3:4;
@@ -298,10 +306,9 @@ function getAreaListcallback(r){
 
 				getAreaByAreaIdAndAreaNameAndSetInputValue(currentAreaInfo.currentAreaId,currentDom.find("a[data-value='"+currentAreaInfo.currentAreaId+"']").html());
 
-			}
 
-			else{
-
+			}else{
+	
 				getAreaByAreaIdAndAreaNameAndSetInputValue(currentDom.find("a").eq(0).attr("data-value"),currentDom.find("a").eq(0).html());
 
 			}
@@ -365,7 +372,7 @@ function chooseProvince(provinceId){
 
 			}
 
-			$("#store-selector").off("mouseout");
+			// $("#store-selector").off("mouseout");
 
 			chooseCity($(this).attr("data-value"),$(this).html());
 
@@ -393,17 +400,10 @@ function chooseProvince(provinceId){
 
 function chooseCity(cityId,cityName){
 	if(cityId == '1001'){
-		// areaTabContainer.eq(0).hide();
-		// areaTabContainer.eq(1).hide();
-		// areaTabContainer.eq(2).hide();
-		// provinceContainer.hide();
-		// cityContainer.hide();
-		// areaContainer.hide();
-		$('#store-selector .content').hide();
-		$("#store-selector .text input").val(currentAreaInfo.currentProvinceName + '/' + '稍后再说');
-		// return true
+		getAreaByAreaIdAndAreaNameAndSetInputValue(cityId, cityName)
+		return
 	}
-
+	// alert(cityId)
 	provinceContainer.hide();
 
 	cityContainer.hide();
@@ -426,7 +426,9 @@ function chooseCity(cityId,cityName){
 
 	}
 
-	areaTabContainer.eq(1).removeClass("curr").find("em").html(cityName);
+	if (cityId != '1001'){
+		areaTabContainer.eq(1).removeClass("curr").find("em").html(cityName);	
+	}
 
 	areaTabContainer.eq(2).addClass("curr").show().find("em").html("请选择");
 
@@ -543,6 +545,12 @@ var page_load = true;
 		$('#store-selector').addClass('hover');
 
 		$("#store-selector .content").show();
+
+	});
+
+	$("#store-selector").on("mouseout",function(){
+
+		$('#store-selector').removeClass('hover');
 
 	});
 

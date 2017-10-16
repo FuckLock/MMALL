@@ -13,6 +13,25 @@
   <div class="order-content-con">
     <span class="shouhuo">收货人信息</span>
     <a class="xinzeng-add" href="javascript:showAddress();">新增收货地址</a>
+    <% @addresses.each do |address|%>
+      <div class="save-address">
+        <span class="address-title">
+          <div class="consignee-item"><%= address.area.gsub('/',"") %></div>
+          <span class="address-pho">
+            <%= address.area.gsub('/'," ") %>&nbsp;
+            <%=address.address%>&nbsp;&nbsp;&nbsp;
+            <%=address.cellphone%>
+          </span>
+
+          <span class="add-weizhi">
+            <span class="set-address"><%= address.address_value == 1? "默认地址" : "设为默认地址" %></span>
+            <input type="hidden" value="<%= address.address_value %>"/>
+            <%= link_to "编辑" %>
+            <%= link_to "删除" %>
+          </span>
+      </div>
+
+    <% end %>
   </div>
 </div>
 
@@ -25,18 +44,55 @@
     <a class="address-x" href="javascript:addressHide();">×</a>
   </div>
 
+  
   <div class="form-con">
-    <div style="float:left">
-      <span class="xinxin">*</span>&nbsp;所在地区&nbsp;&nbsp;
-    </div>
-    <div id="store-selector">
-      <div class="text">
-        <input type="text"  value="--请选择--" readonly="readonly" style="border:none;" />
-        <b></b>
+    <%= form_for :address, url: addresses_path, method: :post do |f| %>
+
+      <div class="form-input">
+        <label for="area" class="control-label" style="float:left;">
+        &nbsp;<span class="xinxin">*</span>所在地区&nbsp;&nbsp;
+        </label>
+        <div id="store-selector">
+          <div class="text">
+            <%= f.text_field :area, readonly: "readonly", class: "selector-input"  %>
+            <b></b>
+          </div>
+          <!-- <div onclick="$('#store-selector').removeClass('hover')" ></div> -->
+        </div>
       </div>
-      <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
-    </div>
+
+      <div class="form-input">
+        <label for="contact_name" class="control-label">
+          &nbsp;<span class="xinxin">*</span>收货人&nbsp;&nbsp;
+        </label>
+        <%= f.text_field :contact_name %>
+      </div>
+
+      <div class="form-input">
+        <label for="address" class="control-label">
+        &nbsp;<span class="xinxin">*</span>详细地址&nbsp;&nbsp;
+        </label>
+        <%= f.text_field :address %>
+      </div>
+
+      <div class="form-input">
+        <label for="cellphone" class="control-label">
+        &nbsp;<span class="xinxin">*</span>手机号码&nbsp;&nbsp;
+        </label>
+        <%= f.text_field :cellphone %>
+      </div>
+
+      <div class="form-input">
+        <label for="zipcode" class="control-label">
+        &nbsp;<span class="xinxin">*</span>邮政编码&nbsp;&nbsp;
+        </label>
+        <%= f.text_field :zipcode %>
+      </div>
+
+      <%= f.submit '保存收货人信息', class: "btn btn-danger"%>
+    <% end %>
   </div>
+  
 </div>
 <%= javascript_include_tag 'location' %> 
 
