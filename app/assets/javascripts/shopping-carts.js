@@ -5,8 +5,6 @@ $(function(){
 	cart.clickAddBtn();
 	cart.clickMinusBtn();
 	cart.changeAmountInputValue();
-	
-
 });
 
 // 定义ShoppingCart类

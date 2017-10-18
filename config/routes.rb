@@ -22,7 +22,9 @@ Rails.application.routes.draw do
       put 'set_default_address'
     end
   end
-  post 'addresses/update-params', to: "addresses#set_default_address"
+  post 'addresses/update-params', to: "addresses#update_params"
+  post 'address/edit', to: "addresses#edit"
+  post 'address/new', to: "addresses#edit"
 
   resources :orders
   

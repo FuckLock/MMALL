@@ -1,0 +1,88 @@
+<div class="tan-ku">
+  <!-- 弹出框前面的阴影面积 -->
+  <div id="address-back"></div>
+  <!-- 新建地址弹出框 -->
+  <div class="address-con">
+    <div class="address-title-con">
+      <span class="address-title">新增收货地址</span>
+      <a class="address-x" href="javascript:addressHide();">×</a>
+    </div>
+
+    <div class="form-con">
+      <%= form_for @address, url: (@address.new_record? ? addresses_path : address_path(@address)), method: (@address.new_record? ? :post : :put) do |f| %>
+        
+        <div class="form-input">
+          <label for="area" class="control-label" style="float:left;">
+          &nbsp;<span class="xinxin">*</span>所在地区&nbsp;&nbsp;
+          </label>
+
+          <div id="store-selector">
+            <div class="text">
+              <%= f.text_field :area, readonly: "readonly", class: "selector-input"  %>
+              <b></b>
+            </div>
+            <!-- <div onclick="$('#store-selector').removeClass('hover')" ></div> -->
+          </div>
+
+          <div class="error-area-con">
+            <span class="error-msg error-area">
+              <%= image_tag "error2.png" %>
+              <span>请您填写收货人姓名</span>
+            </span>
+          </div>
+        </div>
+        
+        <div class="form-input">
+          <label for="contact_name" class="control-label">
+            &nbsp;<span class="xinxin">*</span>收货人&nbsp;&nbsp;
+          </label>
+          <%= f.text_field :contact_name %>
+          <span class="error-msg error-contact">
+            <%= image_tag "error2.png" %>
+            <span>请您填写收货人姓名</span>
+          </span>
+        </div>
+
+        <div class="form-input">
+          <label for="address" class="control-label">
+          &nbsp;<span class="xinxin">*</span>详细地址&nbsp;&nbsp;
+          </label>
+          <%= f.text_field :address %>
+          <span class="error-msg error-address">
+            <%= image_tag "error2.png" %>
+            <span>请您填写收货人详细地址</span>
+          </span>
+        </div>
+
+        <div class="form-input">
+          <label for="cellphone" class="control-label">
+          &nbsp;<span class="xinxin">*</span>手机号码&nbsp;&nbsp;
+          </label>
+          <%= f.text_field :cellphone %>
+          <span class="error-msg error-cellphone">
+            <%= image_tag "error2.png" %>
+            <span>请您填写收货人手机号码</span>
+          </span>
+        </div>
+
+        <div class="form-input">
+          <label for="zipcode" class="control-label">
+          &nbsp;<span class="xinxin">*</span>邮政编码&nbsp;&nbsp;
+          </label>
+          <%= f.text_field :zipcode %>
+        </div>
+
+        <%= f.submit '保存收货人信息', class: "btn btn-danger", onclick: "return check();"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'location' %> 
+
+<script type="text/javascript">
+  !function(){
+    $addressBack = $("#address-back")
+    height = $(document).height();
+    $addressBack.css('height', height);
+  }();
+</script>

@@ -69,15 +69,31 @@
 	color: red;
 }
 
+.xinzeng-add:link{
+	text-decoration: none;
+}
+
+#address-back {
+	position:absolute;
+	left:0px;
+	top:0px;
+  background-color:#000;
+  width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+  filter:alpha(opacity=10);  /*设置透明度为60%*/
+  opacity:0.1; /*非IE浏览器下设置透明度为60%*/
+  // display:none;
+  z-index: 2;
+}
+
 .address-con {
 	height: 510px;
 	width: 688px;
 	background: white;
 	border: 4px solid rgba(0,0,0,.1);
-	position: relative;
-	margin: 0 auto;
-	top: -580px;
-	display:none;
+	position: absolute;
+	top: 100px;
+	left: 350px;
+	// display:none;
 	z-index: 3;
 }
 
@@ -130,7 +146,7 @@
 }
 
 .save-address {
-	border: 1px solid red;
+	// border: 1px solid red;
 	width: 900px;
 	height: 30px;
 	position: relative;
@@ -143,12 +159,10 @@
 	color: #666;
 }
 
-.consignee-item {
-	
-	height: 100%;
+.address-area-common {
+	height: 28px;
 	font-size: 12px;
 	overflow:hidden;
-  border: 1px solid #ddd;
   line-height: 18px;
   padding: 5px 10px;
   width: 120px;
@@ -158,19 +172,64 @@
   float:left;
 }
 
+.address-area {
+  border: 1px solid #ddd;
+}
+
+.address-area-ss {
+  border: 2px solid #e4393c;
+}
+
 .address-pho {
 	color: #666;
 	font-size: 12px;
+	position: relative;
+	left: 10px;
+	top: 6px;
 }
 
 .add-weizhi {
-	 color: #005ea7;
+	color: #005ea7;
 	font-size: 12px;
 	position: relative;
 	left: 50px;
+	top: 4px;
 }
 
 .set-address {
 	cursor: pointer;
 }
 
+.set-address:hover {
+	color: red;
+}
+
+.address-area-common b{
+	background: url("//misc.360buyimg.com/user/purchase/2.0.0/css/i/selected-icon.png") no-repeat;
+	display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  // overflow: hidden;
+  left: 108px;
+  top: 15px;
+}
+
+.error-msg span{
+	color: #e4393c;
+}
+
+.error-msg {
+	display: none;
+}
+
+.error-area-con {
+	width: 180px;
+	height: 20px;
+	// border: 1px solid blue;
+	position: relative;
+	left: 200px;
+	top: -25px;
+}

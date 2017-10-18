@@ -539,16 +539,15 @@ function CurrentAreaInfoInit(){
 var page_load = true;
 
 !function(){
-
-	$("#store-selector").on("mouseover",function(){
+	$(document).on("mouseover", "#store-selector", function(){
 
 		$('#store-selector').addClass('hover');
 
 		$("#store-selector .content").show();
-
+		
 	});
 
-	$("#store-selector").on("mouseout",function(){
+	$(document).on("mouseout","#store-selector", function(){
 
 		$('#store-selector').removeClass('hover');
 

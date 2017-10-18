@@ -3,9 +3,10 @@ class OrdersController < ApplicationController
 
   def new
     fetch_home_data
+    # @address = Address.new
     @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).order('id desc')
                                   .includes([product: [:main_product_image]])
-    @addresses = current_user.addresses                                  
+    @addresses = current_user.addresses.sort{|a,b| b.selected_value <=> a.selected_value}                                  
     render action: :new                             
   end
 

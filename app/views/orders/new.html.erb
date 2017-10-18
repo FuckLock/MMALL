@@ -1,4 +1,4 @@
-<div>
+<div class='order-new'>
   <div class="order-header">
     <div class="header-left">
       <%= link_to (image_tag "dog.png"), root_path %>
@@ -16,87 +16,36 @@
       <a class="xinzeng-add" href="javascript:showAddress();">新增收货地址</a>
       <% @addresses.each do |address|%>
         <div class="save-address">
-          <span class="address-title">
-            <div class="consignee-item"><%= address.area.gsub('/',"") %></div>
-            <span class="address-pho">
-              <%= address.area.gsub('/'," ") %>&nbsp;
-              <%=address.address%>&nbsp;&nbsp;&nbsp;
-              <%=address.cellphone%>
-            </span>
-
-            <span class="add-weizhi">
-              <span class="set-address"><%= address.address_value == 1? "默认地址" : "设为默认地址" %></span>
-              <input type="hidden" value="<%= address.id %>"/>
-              <%= link_to "编辑" %>
-              <%= link_to "删除" %>
-            </span>
-        </div>
-
-      <% end %>
-    </div>
-  </div>
-
-  <!-- 弹出框前面的阴影面积 -->
-  <div id="hidebg"></div>
-  <!-- 新建地址弹出框 -->
-  <div class="address-con">
-    <div class="address-title-con">
-      <span class="address-title">新增收货地址</span>
-      <a class="address-x" href="javascript:addressHide();">×</a>
-    </div>
-
-    
-    <div class="form-con">
-      <%= form_for :address, url: addresses_path, method: :post do |f| %>
-
-        <div class="form-input">
-          <label for="area" class="control-label" style="float:left;">
-          &nbsp;<span class="xinxin">*</span>所在地区&nbsp;&nbsp;
-          </label>
-          <div id="store-selector">
-            <div class="text">
-              <%= f.text_field :area, readonly: "readonly", class: "selector-input"  %>
+          <% if address.selected_value == 1 %>
+            <div class="address-area-ss address-area-common">
+              <%= address.area.gsub('/',"") %>
               <b></b>
             </div>
-            <!-- <div onclick="$('#store-selector').removeClass('hover')" ></div> -->
-          </div>
-        </div>
+          <% else %>
+            <div class="address-area address-area-common">
+              <%= address.area.gsub('/',"") %>
+            </div>
+          <% end %>
+          <span class="address-pho">
+            <%= address.area.gsub('/'," ") %>&nbsp;
+            <%=address.address%>&nbsp;&nbsp;&nbsp;
+            <%=address.cellphone%>
+          </span>
 
-        <div class="form-input">
-          <label for="contact_name" class="control-label">
-            &nbsp;<span class="xinxin">*</span>收货人&nbsp;&nbsp;
-          </label>
-          <%= f.text_field :contact_name %>
+          <span class="add-weizhi">
+            <span class="set-address">
+              <span><%= address.address_value == 1? "默认地址" : "设为默认地址" %></span>
+            </span>
+            <input type="hidden" value="<%= address.id %>"/>
+            <a href="javascript:editAddress(<%= address.id %>)">编辑</a>
+            <%= link_to "删除", address_path(address), method: :delete %>
+          </span>
         </div>
-
-        <div class="form-input">
-          <label for="address" class="control-label">
-          &nbsp;<span class="xinxin">*</span>详细地址&nbsp;&nbsp;
-          </label>
-          <%= f.text_field :address %>
-        </div>
-
-        <div class="form-input">
-          <label for="cellphone" class="control-label">
-          &nbsp;<span class="xinxin">*</span>手机号码&nbsp;&nbsp;
-          </label>
-          <%= f.text_field :cellphone %>
-        </div>
-
-        <div class="form-input">
-          <label for="zipcode" class="control-label">
-          &nbsp;<span class="xinxin">*</span>邮政编码&nbsp;&nbsp;
-          </label>
-          <%= f.text_field :zipcode %>
-        </div>
-
-        <%= f.submit '保存收货人信息', class: "btn btn-danger"%>
       <% end %>
     </div>
-    
   </div>
 </div>
-<%= javascript_include_tag 'location' %> 
+
 
 
 
