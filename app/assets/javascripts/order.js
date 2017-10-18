@@ -11,8 +11,12 @@ function check(){
 
 	var cellphone = $('#address_cellphone').val();
 	cellphoneLen = cellphone.replace(/(^\s*)|(\s*$)/g,"").length;
+
+  //验证手机号
+  regu = /^1[3|4|5|7|8][0-9]\d{8}$/
+  phone = cellphoneLen > 0 && regu.test(cellphone)
 	// contactName = $.trim(contactName)
-	
+
 	if(area == '--请选择--'){
 		$('.error-area').show();
 	}else{
@@ -30,14 +34,18 @@ function check(){
 	}else{
 		$('.error-address').hide();
 	}
-
+	
 	if(cellphoneLen == 0){
+		$('.error-cellphone').children(2).text("请您填写收货人手机号码");
+		$('.error-cellphone').show();
+	}else if(!phone){
+		$('.error-cellphone').children(2).text("手机号不正确");
 		$('.error-cellphone').show();
 	}else{
 		$('.error-cellphone').hide();
 	}
 
-	if (area == '--请选择--' || contactNameLen == 0 || addressLen == 0 || cellphoneLen == 0){
+	if (area == '--请选择--' || contactNameLen == 0 || addressLen == 0 || cellphoneLen == 0 || !phone){
 		return false;
 	}else {
 		return true;
