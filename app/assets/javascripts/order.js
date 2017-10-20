@@ -87,8 +87,8 @@ $(function(){
 
 $(function(){
 	// 点击设置默认地址后变成默认地址
-	$(document).on('click', '.set-address', function(){
-		var addressId = $(this).next().val();
+	$(document).on('click', '.add-two', function(){
+		var addressId = $(this).parent().next().val();
 		$.post('/addresses/update-params', {id: addressId}, function(data){
 			var orderContent = $(data).find(".order-content-w").html();
 			$('.order-content-w').html(orderContent);
@@ -106,4 +106,29 @@ $(function(){
 		var addressId = $(this).parent().children(':last').find('input').val();
 		$.post('/addresses/update-params', {id: addressId, type: "changeSelect"});
 	})
+
+	$(document).on('mouseover','.address-right', function(){
+		$(this).css('background', '#fff3f3');
+		$(this).find('.add-two').show();
+		$(this).find('.edit-class').show();
+	});
+
+	$(document).on('mouseout', '.address-right', function(){
+		$(this).css('background', '');
+		$(this).find('.add-two').hide();
+		$(this).find('.edit-class').hide();
+	});
+
+	$(document).on('click', '.switch-on', function(){
+		$(".con-show-hide").show();
+		$(".switch-on").hide();
+		$(".switch-off").show();
+	});
+
+	$(document).on('click', '.switch-off', function(){
+		$.get('/switchoff', function(data){
+			var orderContent = $(data).find(".order-content-w").html();
+			$('.order-content-w').html(orderContent);
+		});
+	});
 });

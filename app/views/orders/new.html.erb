@@ -14,35 +14,51 @@
     <div class="order-content-con">
       <span class="shouhuo">收货人信息</span>
       <a class="xinzeng-add" href="javascript:showAddress();">新增收货地址</a>
+      <div class="scoll">
       <% @addresses.each do |address|%>
-        <div class="save-address">
-          <% if address.selected_value == 1 %>
-            <div class="address-area-ss address-area-common">
-              <%= address.area.gsub('/',"") %>
-              <b></b>
-            </div>
-          <% else %>
-            <div class="address-area address-area-common">
-              <%= address.area.gsub('/',"") %>
-            </div>
-          <% end %>
-          <span class="address-pho">
-            <%= address.area.gsub('/'," ") %>&nbsp;
-            <%=address.address%>&nbsp;&nbsp;&nbsp;
-            <%=address.cellphone%>
-          </span>
+        <div class="con-show-hide" style="<%= 'display:none' if address.selected_value == 0 %>">
+          <div class="save-address">
+            <% if address.selected_value == 1 %>
+              <div class="address-area-ss address-area-common">
+                <%= address.area.gsub('/',"") %>
+                <b></b>
+              </div>
+            <% else %>
+              <div class="address-area address-area-common">
+                <%= address.area.gsub('/',"") %>
+              </div>
+            <% end %>
+            <div class="address-right">
+              <span class="address-pho">
+                <%= address.area.gsub('/'," ") %>&nbsp;
+                <%=address.address%>&nbsp;&nbsp;&nbsp;
+                <%=address.cellphone%>
+              </span>
 
-          <span class="add-weizhi">
-            <span class="set-address">
-              <span><%= address.address_value == 1? "默认地址" : "设为默认地址" %></span>
-            </span>
-            <input type="hidden" value="<%= address.id %>"/>
-            <a href="javascript:editAddress(<%= address.id %>)">编辑</a>
-            <%= link_to "删除", address_path(address), method: :delete %>
-          </span>
-        </div>
+              <span class="add-weizhi">
+                <span class="set-address">
+                  <%= address.address_value == 1? "<span class='add-one' disabled='disabled'>默认地址</span>".html_safe : "<span class='add-two'>设为默认地址</span>".html_safe %>
+                </span>
+                <input type="hidden" value="<%= address.id %>"/>
+                <a href="javascript:editAddress(<%= address.id %>)" class="edit-class">编辑</a>
+                <% if address.address_value == 0 %>
+                  <%= link_to "删除", address_path(address), method: :delete, class: "edit-class" %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </div>  
       <% end %>
-    </div>
+      </div>
+      <div class="addr-switch switch-on">
+        <span>更多地址</span>
+        <%= image_tag 'bottom.png' %>
+      </div>
+      <div class="addr-switch switch-off" style="display:none;">
+        <span>收起地址</span>
+        <%= image_tag 'top.png' %>
+      </div>
+    </div>  
   </div>
 </div>
 

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'addresses/update-params', to: "addresses#update_params"
   post 'address/edit', to: "addresses#edit"
   post 'address/new', to: "addresses#edit"
+  get '/switchoff', to: "orders#new"
 
   resources :orders
   

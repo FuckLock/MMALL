@@ -184,21 +184,22 @@
 	color: #666;
 	font-size: 12px;
 	position: relative;
-	left: 10px;
-	top: 6px;
+	left: -103px;
+	top: 4px;
 }
 
 .add-weizhi {
 	color: #005ea7;
 	font-size: 12px;
 	position: relative;
-	left: 50px;
 	top: 4px;
+	left: -20px;
+	float: right;
 }
 
-.set-address {
-	cursor: pointer;
-}
+// .set-address {
+// 	cursor: pointer;
+// }
 
 .set-address:hover {
 	color: red;
@@ -232,4 +233,59 @@
 	position: relative;
 	left: 200px;
 	top: -25px;
+}
+
+.add-one {
+	// width: 64px;
+	// height: 24px;
+	background: #999;
+	color: #fff;
+	padding: 3px 2px;
+	position: relative;
+	left: -200px;
+}
+
+.add-two{
+	display: none;
+	cursor: pointer;
+}
+
+.add-two:hover{
+	color: red;
+}
+
+.edit-class:hover{
+	color: red;
+	text-decoration: none;
+}
+
+.edit-class{
+	color: #005ea7;
+	display: none;
+}
+
+.address-right {
+	width: 780px;
+	height: 28px;
+	// border: 1px solid red;
+	position: relative;
+	left: 120px;
+}
+
+.addr-switch {
+	position: relative;
+	left: 40px;
+	top: 30px;
+	// border: 1px solid red;
+	width: 80px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.addr-switch span{
+	color: #666;	
+}
+
+.scoll{
+	overflow-y:scroll;
 }
