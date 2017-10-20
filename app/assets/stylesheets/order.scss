@@ -286,6 +286,18 @@
 	color: #666;	
 }
 
+.con-show-hide {
+	position: relative;
+	top: -20px;
+}
+
 .scoll{
-	overflow-y:scroll;
+	// border: 1px solid red;
+	width: 960px;
+	position: relative;
+	top: 20px;
+	// overflow-y:scroll;
+	overflow-height: 160px;
+	// height: 165px;
+
 }

@@ -12,7 +12,7 @@ function check(){
 	var cellphone = $('#address_cellphone').val();
 	cellphoneLen = cellphone.replace(/(^\s*)|(\s*$)/g,"").length;
 
-  //验证手机号
+  //验证手机号ß
   regu = /^1[3|4|5|7|8][0-9]\d{8}$/
   phone = cellphoneLen > 0 && regu.test(cellphone)
 	// contactName = $.trim(contactName)
@@ -123,6 +123,8 @@ $(function(){
 		$(".con-show-hide").show();
 		$(".switch-on").hide();
 		$(".switch-off").show();
+		$('.scoll').css('height', '165px');
+		$('.scoll').css('overflow-y', 'scroll');
 	});
 
 	$(document).on('click', '.switch-off', function(){
