@@ -2,11 +2,13 @@ class OrdersController < ApplicationController
   # before_action :auth_user
 
   def new
+    # debugger
     fetch_home_data
     # @address = Address.new
-    @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).order('id desc')
+    @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).by_select_value(1).order('id desc')
                                   .includes([product: [:main_product_image]])
-    @addresses = current_user.addresses.sort{|a,b| b.selected_value <=> a.selected_value}                                  
+    @addresses = current_user.addresses.sort{|a,b| b.selected_value <=> a.selected_value}
+    @address = Address.by_select_value(1).first                                  
     render action: :new                             
   end
 

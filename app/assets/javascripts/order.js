@@ -39,7 +39,7 @@ function check(){
 		$('.error-cellphone').children(2).text("请您填写收货人手机号码");
 		$('.error-cellphone').show();
 	}else if(!phone){
-		$('.error-cellphone').children(2).text("手机号不正确");
+		$('.error-cellphone').children(2).text("手机号码格式不正确");
 		$('.error-cellphone').show();
 	}else{
 		$('.error-cellphone').hide();

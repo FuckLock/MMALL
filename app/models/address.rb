@@ -8,6 +8,7 @@ class Address < ApplicationRecord
   validates :cellphone, presence: { message: '手机号不能为空' }
   validates :address, presence: { message: '详细地址不能为空' }
 
+  scope :by_select_value, ->(select_value){ where(selected_value: select_value)}
   # attr_accessor :set_as_default
   # after_save :set_as_default_address
 

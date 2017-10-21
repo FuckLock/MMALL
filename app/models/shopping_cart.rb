@@ -6,5 +6,6 @@ class ShoppingCart < ApplicationRecord
   belongs_to :product
 
   scope :by_user_uuid, ->(user_uuid) { where(user_uuid: user_uuid) }
+  scope :by_select_value, ->(select_value) { where(select_value: select_value)}
 
 end

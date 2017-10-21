@@ -58,7 +58,46 @@
         <span>收起地址</span>
         <%= image_tag 'top.png' %>
       </div>
+      <div class="inline">
+        <span class="pay-style">支付方式</span>
+        <div class="zhifu-con"><%= image_tag 'zhifu.png', class: 'zhifu' %></div>
+      </div>
+      <span class="pay-son">送货清单</span>
+
+      <% @shopping_carts.each do |shopping_cart| %>
+        <div class="delivery">
+          <div class="pay-bottom">
+            <div class='pay-bottom-left'>
+              <span class="pp-title">配送方式</span>
+              <div><%= image_tag 'peisong.png', class: 'peisong-png' %></div>
+            </div>
+            <div class='pay-bottom-right'>
+              <span class="sj-title">商家</span>
+                <%= image_tag shopping_cart.product.main_product_image.image.url(:thumb), class: "sj-image" %>
+                <span class="sc-title"><%= shopping_cart.product.title %></span>
+                 <span class="sj-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.product.price %></span>
+                 <span class="sj-price sj-amount">×<%= shopping_cart.amount %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>  
+  </div>
+  <div class="whiteicon"></div>
+  <div class="order-bottom">
+    <div class="botton-con">
+      <div class="yf-price-con">
+        <span class="yf-title">应付金额&nbsp;:&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="yf-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @shopping_carts.sum{|shopping_cart| shopping_cart.product.price * shopping_cart.amount }%></span>
+      </div>
+      <div class="yf-jisong">
+        <span class="yf-title">寄送至：</span>
+        <span class="yf-title">
+          <%= @address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= @address.address%>&nbsp;&nbsp;
+          收货人：&nbsp;&nbsp;<%= @address.contact_name %>&nbsp;&nbsp;<%= @address.cellphone%>&nbsp;&nbsp;
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 
