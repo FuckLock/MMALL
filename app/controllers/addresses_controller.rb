@@ -37,15 +37,15 @@ class AddressesController < ApplicationController
 
   def update_params
     @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).by_select_value(1).order('id desc')
-                                  .includes([product: [:main_product_image]])
+                                  .includes([product: [:main_product_image]])                                                                    
     if params[:type] == "changeSelect"
-      @shopping
       Address.where(selected_value: 1).collect{|address| address.update_attributes!(selected_value: 0) }
       Address.find(params[:id]).update_attributes!(selected_value: 1)
     else
       Address.where("address_value = 1 or selected_value = 1").collect{|address| address.update_attributes!(address_value: 0, selected_value: 0) }
       Address.find(params[:id]).update_attributes!(address_value: 1, selected_value: 1)
       @addresses = current_user.addresses
+      @address = Address.by_select_value(1).first
       render template: 'orders/new'
     end
   end

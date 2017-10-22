@@ -28,12 +28,15 @@
                 <%= address.area.gsub('/',"") %>
               </div>
             <% end %>
+
+            <input type="hidden" value="<%= address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= address.address%>&nbsp;&nbsp;
+          收货人：&nbsp;&nbsp;<%= address.contact_name %>&nbsp;&nbsp;<%= address.cellphone%>&nbsp;&nbsp;" />
             <div class="address-right">
               <span class="address-pho">
                 <%= address.area.gsub('/'," ") %>&nbsp;
-                <%=address.address%>&nbsp;&nbsp;&nbsp;
-                <%=address.cellphone%>
+                <%=address.address%>
               </span>
+              <span class="address-pho"><%=address.cellphone%></span>
 
               <span class="add-weizhi">
                 <span class="set-address">
@@ -92,7 +95,7 @@
       </div>
       <div class="yf-jisong">
         <span class="yf-title">寄送至：</span>
-        <span class="yf-title">
+        <span class="yf-title yf-dz">
           <%= @address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= @address.address%>&nbsp;&nbsp;
           收货人：&nbsp;&nbsp;<%= @address.contact_name %>&nbsp;&nbsp;<%= @address.cellphone%>&nbsp;&nbsp;
         </span>

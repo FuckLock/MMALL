@@ -3,12 +3,13 @@ class OrdersController < ApplicationController
 
   def new
     # debugger
-    fetch_home_data
-    # @address = Address.new
+    # fetch_home_data
+    # @address = Address.new                                 
+    Address.by_address_value(1).each{|address| address.update_attributes!(selected_value: 1)} unless Address.exists?(selected_value: 1)
+    @address = Address.by_select_value(1).first
     @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).by_select_value(1).order('id desc')
                                   .includes([product: [:main_product_image]])
     @addresses = current_user.addresses.sort{|a,b| b.selected_value <=> a.selected_value}
-    @address = Address.by_select_value(1).first                                  
     render action: :new                             
   end
 
