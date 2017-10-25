@@ -486,3 +486,25 @@
 	top: 60px;
 	left: 160px;
 }
+
+.submit-order-con {
+	height: 85px;
+	// border: 1px solid blue;
+	background: white;
+}
+
+.submit-order {
+	width: 135px;
+	height: 35px;
+	// border: 1px solid	blue;
+	border: none;
+	position: relative;
+	float: right;
+	left: -200px;
+	top: 20px;
+	background-color: #e00;
+	color: #fff;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+	font-weight: 900;
+}

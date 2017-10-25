@@ -41,7 +41,6 @@ class Payment < ApplicationRecord
     payment = user.payments.create!(total_money: orders.sum(&:total_money))
     orders.each do |order|
       raise "order #{order.order_no} has already paid" if order.paid?
-
       order.payment = payment
       order.save!
     end

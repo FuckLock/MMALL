@@ -5,32 +5,141 @@
 		<% @categories.each do |group| %>
 			<li class="list-item">
 				<% group.each do |sub_category| %>
-					<a class="category_title" href="<%= category_path(sub_category) %>"><%= sub_category.title %>
+					<a class="category_title" href="<%= category_path(sub_category) %>"><%= sub_category.title %></a>
 				<% end %>
 			</li>
 		<% end %>
 	</ul>
+
+
+	<div class="move-image-con">
+		<div id="container">
+		  <div id="list" style="left: -850px;">
+		    <img src="/assets/5.jpg" alt="1" class='common-image'/>
+		    <img src="/assets/baiqian.png" alt="1" class='common-image'/>
+		    <img src="/assets/2.jpg" alt="2" class='common-image'/>
+		    <img src="/assets/3.jpg" alt="3" class='common-image'/>
+		    <img src="/assets/4.jpg" alt="4" class='common-image'/>
+		    <img src="/assets/5.jpg" alt="5" class='common-image'/>
+		    <img src="/assets/baiqian.png" alt="5" class='common-image'/>
+		  </div>
+
+		  <div id="buttons">
+		    <span index="1" class="on"></span>
+		    <span index="2"></span>
+		    <span index="3"></span>
+		    <span index="4"></span>
+		    <span index="5"></span>
+		  </div>
+		  
+		  <a href="javascript:;" id="prev" class="arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		  <a href="javascript:;" id="next" class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+		</div>
+	</div>
 </div>
 
-<div class="col-lg-9">
-  <ol class="breadcrumb">
-    <li class="active">Home</li>
-  </ol>
-  <div class="row">
-	  <% @products.each do |product| %>
-	    <div class="col-sm-6 col-md-4">
-	      <div class="thumbnail">
-	        <%= link_to image_tag(product.main_product_image.image.url(:middle), alt: product.title), product_path(product) %>
-	        <div class="caption">
-	          <h4><%= link_to product.title, product_path(product), class: 'title' %></h4>
-	          <p><strong>¥<%= product.price %></strong> <span class="msrp">¥<%= product.msrp %></span></p>
-	          <p><%= show_add_to_cart product, html_class: "btn-xs" %></p>
-	        </div>
-	      </div>
-	    </div>
-	  <% end -%>
-</div>
-</div>
+<script type="text/javascript">
+	$(function(){
+		var container = document.getElementById('container');
+		var list = document.getElementById('list');
+		var buttons = document.getElementById('buttons').getElementsByTagName('span');
+    var prev = document.getElementById('prev');
+    var next = document.getElementById('next');
+    var index = 1;
+    var animated = false;
+    var timer;
+
+    function animate(offset){
+    	animated = true;
+    	var newLeft = parseInt(list.style.left) + offset;
+    	// var time = 300;
+    	var inteval = 10;
+    	var speed = offset/inteval;
+    	var go = function(){
+    			if((speed > 0 && parseInt(list.style.left) < newLeft) || (speed < 0 && parseInt(list.style.left) > newLeft)){
+    				list.style.left = parseInt(list.style.left) + speed + 'px';
+    				setTimeout(go, 30);
+    			}else{
+    				if(newLeft > -850){
+                list.style.left = -4250 + 'px';
+            }
+            if(newLeft < -4250) {
+                list.style.left = -850 + 'px';
+            }
+            animated = false;
+    			}
+    	}
+    	go();
+    }
+
+    function play(){
+    	timer = setInterval(function(){
+    		next.onclick();
+    	}, 3000)
+    }
+
+    function stop(){
+    	clearInterval(timer);
+    }
+
+    function showButton(){
+    	for (var i = 0; i < buttons.length; i++) {
+    		if (buttons[i].className == 'on') {
+    			buttons[i].className = '';
+    			break;
+    		};
+    	};
+    	buttons[index - 1].className = 'on';
+    }
+
+    next.onclick = function(){
+    	if (animated) {
+        return;
+      }
+
+    	if (index == 5) {
+    		index = 1
+    	}else{
+    		index += 1;		
+    	};
+    	animate(-850);
+    	showButton();
+    }
+
+    prev.onclick = function(){
+    	if (animated) {
+        return;
+      }
+
+    	if (index == 1) {
+    		index = 5
+    	}else{
+    		index -= 1;		
+    	};
+    	animate(850);
+    	showButton();
+    }
+
+   	for (var i = 0; i < buttons.length; i++) {
+   		buttons[i].onclick = function(){
+   			if (this.className == 'on') {
+   				return;
+   			};
+   			var myIndex = parseInt(this.getAttribute('index'));
+   			var offset = -850 * (myIndex - index);
+   			animate(offset);
+   			index = myIndex;
+   			showButton();
+   		}
+   	};
+
+   	container.onmouseover = stop;
+    container.onmouseout = play;
+		play();
+
+	});
+</script>
+
 
 
 	

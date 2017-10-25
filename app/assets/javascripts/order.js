@@ -92,8 +92,10 @@ $(function(){
 		$.post('/addresses/update-params', {id: addressId}, function(data){
 			var orderContent = $(data).find(".order-content-w").html();
 			var orderBottom = $(data).find(".order-bottom").html();
+			var submitOrderCon = $(data).find(".submit-order-con")
 			$('.order-content-w').html(orderContent);
 			$('.order-bottom').html(orderBottom);
+			$('submit-order-con').html(submitOrderCon);
 		});
 	});
 
@@ -104,8 +106,9 @@ $(function(){
 		});
 		$(this).attr('style', 'border: 2px solid #e4393c;')
 		$(this).append("<b></b>");
-		// alert($(this).next().val())
 		$(".yf-dz").text($(this).next().val())
+		// alert($(this).next().next().val())
+		$('.order-address').val($(this).next().next().val());
 		var addressId = $(this).parent().children(':last').find('input').val();
 		$.post('/addresses/update-params', {id: addressId, type: "changeSelect"});
 

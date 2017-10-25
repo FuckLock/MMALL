@@ -14,13 +14,19 @@ class OrdersController < ApplicationController
   end
 
   def create
+    orders = []
     shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).includes(:product)
-    if shopping_carts.blank?
-      redirect_to shopping_carts_path
-    else
-      address = current_user.addresses.find(params[:address_id])
-      orders = Order.create_order_from_shopping_carts(current_user, address, shopping_carts)
-      redirect_to generate_pay_payments_path(order_nos: orders.map(&:order_no).join(','))
+    shopping_carts.each do |shopping_cart|
+      total_money = shopping_cart.amount * shopping_cart.product.price
+      orders << current_user.orders.create!(product_id: shopping_cart.product_id, address_id: params[:order][:address_id],
+                                  amount: shopping_cart.amount, total_money: total_money
+                                 )  
     end
+    shopping_carts.map(&:destroy!)
+    # address = current_user.addresses.find(params[:address_id])
+    # orders = Order.create_order_from_shopping_carts(current_user, address, shopping_carts)
+    redirect_to generate_pay_payments_path(order_nos: orders.map(&:order_no).join(','))
+    # render plain: 'ok'
   end
+
 end

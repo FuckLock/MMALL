@@ -31,6 +31,7 @@
 
             <input type="hidden" value="<%= address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= address.address%>&nbsp;&nbsp;
           收货人：&nbsp;&nbsp;<%= address.contact_name %>&nbsp;&nbsp;<%= address.cellphone%>&nbsp;&nbsp;" />
+            <input type="hidden" value="<%= address.id %>"/>
             <div class="address-right">
               <span class="address-pho">
                 <%= address.area.gsub('/'," ") %>&nbsp;
@@ -101,6 +102,12 @@
         </span>
       </div>
     </div>
+  </div>
+  <div class="submit-order-con">
+    <%= form_for :order, url: orders_path, method: :post do |f| %>
+      <input type="hidden" name="order[address_id]" value="<%= @address.id %>" class="order-address"/>
+      <%= f.submit '提交订单', class: "submit-order" %>
+    <% end %>
   </div>
 </div>
 

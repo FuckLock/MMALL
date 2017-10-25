@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 
 ENV['ALIPAY_PID'] = '2016080700185738'
 ENV['ALIPAY_MD5_SECRET'] = '5o1iuxgxze13lq2hq71tq9j38i7xi4p3'
-ENV['ALIPAY_URL'] = 'https://openapi.alipay.com/gateway.do'
+ENV['ALIPAY_URL'] = 'https://openapi.alipaydev.com/gateway.do'
 ENV['ALIPAY_RETURN_URL'] = 'http://localhost:3000/payments/pay_return'
 ENV['ALIPAY_NOTIFY_URL'] = 'http://localhost:3000/payments/pay_notify'
 
