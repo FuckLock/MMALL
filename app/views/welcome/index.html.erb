@@ -17,8 +17,8 @@
 		  <div id="list" style="left: -850px;">
 		    <img src="/assets/5.jpg" alt="1" class='common-image'/>
 		    <img src="/assets/baiqian.png" alt="1" class='common-image'/>
-		    <img src="/assets/2.jpg" alt="2" class='common-image'/>
-		    <img src="/assets/3.jpg" alt="3" class='common-image'/>
+		    <img src="/assets/xiansan.png" alt="2" class='common-image'/>
+		    <img src="/assets/xianyi.png" alt="3" class='common-image'/>
 		    <img src="/assets/4.jpg" alt="4" class='common-image'/>
 		    <img src="/assets/5.jpg" alt="5" class='common-image'/>
 		    <img src="/assets/baiqian.png" alt="5" class='common-image'/>
@@ -36,6 +36,24 @@
 		  <a href="javascript:;" id="next" class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 		</div>
 	</div>
+    
+</div>
+
+<div class="diff-category-con">
+   <% @category.each do |category| %>
+    <div class="diff-category">
+        <span class="category-ft"><%= category.title %></span>
+        <div class="category-ft-image">
+            <% category.children.ids.each do |cate_id|%>
+                <% Product.where('category_id = ?', cate_id).each do |product|%>
+                    <div class="image-con-ftt">
+                        <%= link_to (image_tag product.main_product_image.image.url(:middle),class: "image-con-ft"), product_path(product) %>
+                    </div>
+                <% end %>
+            <% end %>
+       </div>
+    </div>
+   <% end %>      
 </div>
 
 <script type="text/javascript">
@@ -43,101 +61,101 @@
 		var container = document.getElementById('container');
 		var list = document.getElementById('list');
 		var buttons = document.getElementById('buttons').getElementsByTagName('span');
-    var prev = document.getElementById('prev');
-    var next = document.getElementById('next');
-    var index = 1;
-    var animated = false;
-    var timer;
+        var prev = document.getElementById('prev');
+        var next = document.getElementById('next');
+        var index = 1;
+        var animated = false;
+        var timer;
 
-    function animate(offset){
-    	animated = true;
-    	var newLeft = parseInt(list.style.left) + offset;
-    	// var time = 300;
-    	var inteval = 10;
-    	var speed = offset/inteval;
-    	var go = function(){
-    			if((speed > 0 && parseInt(list.style.left) < newLeft) || (speed < 0 && parseInt(list.style.left) > newLeft)){
-    				list.style.left = parseInt(list.style.left) + speed + 'px';
-    				setTimeout(go, 30);
-    			}else{
-    				if(newLeft > -850){
-                list.style.left = -4250 + 'px';
-            }
-            if(newLeft < -4250) {
-                list.style.left = -850 + 'px';
-            }
-            animated = false;
-    			}
-    	}
-    	go();
-    }
+        function animate(offset){
+        	animated = true;
+        	var newLeft = parseInt(list.style.left) + offset;
+        	// var time = 300;
+        	var inteval = 10;
+        	var speed = offset/inteval;
+        	var go = function(){
+            			if((speed > 0 && parseInt(list.style.left) < newLeft) || (speed < 0 && parseInt(list.style.left) > newLeft)){
+            				list.style.left = parseInt(list.style.left) + speed + 'px';
+            				setTimeout(go, 30);
+            			}else{
+            				if(newLeft > -850){
+                                list.style.left = -4250 + 'px';
+                            }
+                            if(newLeft < -4250) {
+                                list.style.left = -850 + 'px';
+                            }
+                            animated = false;
+            			}
+        	       }
+        	go();
+        }
 
-    function play(){
-    	timer = setInterval(function(){
-    		next.onclick();
-    	}, 3000)
-    }
+        function play(){
+        	timer = setInterval(function(){
+        		next.onclick();
+        	}, 3000)
+        }
 
-    function stop(){
-    	clearInterval(timer);
-    }
+        function stop(){
+        	clearInterval(timer);
+        }
 
-    function showButton(){
-    	for (var i = 0; i < buttons.length; i++) {
-    		if (buttons[i].className == 'on') {
-    			buttons[i].className = '';
-    			break;
-    		};
-    	};
-    	buttons[index - 1].className = 'on';
-    }
+        function showButton(){
+        	for (var i = 0; i < buttons.length; i++) {
+        		if (buttons[i].className == 'on') {
+        			buttons[i].className = '';
+        			break;
+        		};
+        	};
+        	buttons[index - 1].className = 'on';
+        }
 
-    next.onclick = function(){
-    	if (animated) {
-        return;
-      }
+        next.onclick = function(){
+        	if (animated) {
+            return;
+          }
 
-    	if (index == 5) {
-    		index = 1
-    	}else{
-    		index += 1;		
-    	};
-    	animate(-850);
-    	showButton();
-    }
+        	if (index == 5) {
+        		index = 1
+        	}else{
+        		index += 1;		
+        	};
+        	animate(-850);
+        	showButton();
+        }
 
-    prev.onclick = function(){
-    	if (animated) {
-        return;
-      }
+        prev.onclick = function(){
+        	if (animated) {
+            return;
+          }
 
-    	if (index == 1) {
-    		index = 5
-    	}else{
-    		index -= 1;		
-    	};
-    	animate(850);
-    	showButton();
-    }
+        	if (index == 1) {
+        		index = 5
+        	}else{
+        		index -= 1;		
+        	};
+        	animate(850);
+        	showButton();
+        }
 
-   	for (var i = 0; i < buttons.length; i++) {
-   		buttons[i].onclick = function(){
-   			if (this.className == 'on') {
-   				return;
-   			};
-   			var myIndex = parseInt(this.getAttribute('index'));
-   			var offset = -850 * (myIndex - index);
-   			animate(offset);
-   			index = myIndex;
-   			showButton();
-   		}
-   	};
+       	for (var i = 0; i < buttons.length; i++) {
+       		buttons[i].onclick = function(){
+       			if (this.className == 'on') {
+       				return;
+       			};
+       			var myIndex = parseInt(this.getAttribute('index'));
+       			var offset = -850 * (myIndex - index);
+       			animate(offset);
+       			index = myIndex;
+       			showButton();
+       		}
+       	};
 
-   	container.onmouseover = stop;
-    container.onmouseout = play;
-		play();
+       	container.onmouseover = stop;
+        container.onmouseout = play;
+    		play();
 
-	});
+    });
 </script>
 
 

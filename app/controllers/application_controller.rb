@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_home_data
+    @category = Category.where('ancestry is null')
     @categories = Category.grouped_data
     @shopping_cart_count = ShoppingCart.by_user_uuid(session[:user_uuid]).count
   end

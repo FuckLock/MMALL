@@ -101,28 +101,9 @@
 }
 
 // 首页轮播图样式
-#container {
-  width: 850px;
-  height: 350px;
-  // border: 1px solid blue;
-  overflow: hidden;
-  position: relative;
-  border: 3px solid #333;
-}
-
-#container a{
-  padding: 0px;
-  margin: 0px;
-}
-
-#container #list { 
-  width: 5950px; 
-  height: 350px; 
-  // border: 1px solid red;
-  position: absolute; 
-  z-index: 1;
-}
-
+#container { width: 850px; height: 350px; overflow: hidden; position: relative;}
+#container a{ padding: 0px; margin: 0px; }
+#container #list { width: 5950px; height: 350px; position: absolute; z-index: 1;}
 #container #list img { float: left;}
 #buttons { position: absolute; height: 10px; width: 100px; z-index: 2; bottom: 20px; left: 350px;}
 #buttons span { cursor: pointer; float: left; border: 1px solid #fff; width: 15px; height: 15px; border-radius: 50%; background: #333; margin-right: 5px;}
@@ -132,3 +113,12 @@
 #container:hover .arrow { display: block;}
 #prev { text-decoration: none;position: relative; top: 150px;left: -10px;}
 #next { text-decoration: none;position: relative; top: 110px;float: right;right: 10px;}
+
+// 首页各分类样式
+.diff-category-con { height:auto; width: 1080px; position: relative; top: -200px;overflow: hidden; zoom:1;left: 100px;}
+.diff-category {height: 280px;width: 1080px;position: relative;top: 10px;margin-bottom: 20px;}
+.category-ft {color: #d58717; font-weight: 400; font-size: 20px;position: absolute;left: 10px;}
+.category-ft-image { font-weight: 1080px; border-top: 1px solid #d58717;height: 248px;position: relative;top: 40px;}
+.image-con-ft {height: 175px; width: 175px; padding-right: 20px;position: relative;top: 10px;left: 20px;}
+.image-con-ftt {height: 220px; width: 200px;background: white;float: left;margin-right: 20px;position: relative;top: 20px;}
+
