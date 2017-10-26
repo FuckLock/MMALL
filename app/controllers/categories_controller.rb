@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
 
 	before_action :find_category, only: [:show, :down_product, :up_product]
   def show
-    # fetch_home_data
     # 如果是post说明是ajax请求
   	render partial: "categories/product",layout: false if request.method == "POST"    
   end
@@ -20,8 +19,12 @@ class CategoriesController < ApplicationController
 
   private
   def find_category
-  	@category = Category.find(params[:id])
-  	@products = @category.products.onshelf.page(params[:page] || 1).per_page(params[:per_page] || 12)
+    @category = Category.find(params[:id])
+    if params[:search_product_id].present?
+      @products = Product.where(id: params[:search_product_id])
+    else
+  	  @products = @category.products.onshelf.page(params[:page] || 1).per_page(params[:per_page] || 12)
                          .order('id desc').includes(:main_product_image)
+    end
   end
 end

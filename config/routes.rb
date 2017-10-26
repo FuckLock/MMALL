@@ -45,4 +45,6 @@ Rails.application.routes.draw do
       resources :product_images
     end
   end
+
+  get '/shop/search', to: 'products#search'
 end

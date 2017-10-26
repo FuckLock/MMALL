@@ -142,3 +142,18 @@ li:hover .price{
 	color: red;
 }
 
+.empty-product {
+	height: 40px;
+	width: 1080px;
+	background: #eee;
+	position:relative;
+	top: 50px;
+}
+
+.empty-product-t {
+  font-size: 14px;
+  color: #f60;
+  position: relative;
+  top: 10px;
+  left: -100px;
+}
