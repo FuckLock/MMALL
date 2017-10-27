@@ -162,6 +162,7 @@
 }
 
 .shopping-main {
+	// border: 2px solid blue;
 	width: 990px;
 	margin: 0 auto;
 	// border: 1px solid red;
@@ -530,6 +531,12 @@ a.settle-accounts:link {
 	// background: #f6f6f6;
 }
 
+.empty-shopping-con {
+	width: 100%;
+	height: 600px;
+	background: white;
+}
+
 .empty-title {
 	color: #333;
 	font-size: 14px;
@@ -564,6 +571,12 @@ a.settle-accounts:link {
 	position: relative;
 	left: 150px;
 	top: -43px;
+}
+
+.shop-con {
+	position: relative;
+	left: -264px;
+	top: 20px;
 }
 
 .go-shop:hover {

@@ -1,7 +1,7 @@
 <%= render partial: 'welcome/search'%>
 
 <div class="product-div">
-	<%= render partial: "categories/productlist" %>
+	<%= render partial: "categories/productlist", locals: {order: "商品"} %>
 	<div class="bigimage-con">
 		<%= image_tag @main_product_image.image.url(:middle), class: "main-image" %>	
 	</div>

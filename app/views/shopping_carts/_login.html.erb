@@ -1,0 +1,30 @@
+<div class="user-session">
+  <div class="user-title">用户登录</div>
+  <a class="session-x" href="javascript:hide();">×</a>
+  <% if flash[:notice].present? %>
+    <div class="err-item">
+      <%= image_tag("error.png", class: "error-png") %>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <%= form_tag(sessions_path, method: "post") do %>
+    <div class="user-item">
+      <div class="image-con">
+        <%= image_tag("username.png", class: "image-con-png") %>
+        <input type="hidden" name="rule" class="rule-value"/>
+      </div>
+      <%= text_field_tag :username, nil, class: "input-text" %>
+    </div>
+
+    <div class="user-item">
+      <div class="image-con">
+        <%= image_tag("password.png", class: "image-con-png") %>
+      </div>
+      <%= password_field_tag :password, nil, class: "input-text" %>
+    </div>
+    <%= submit_tag "登录", class: "user-btn" %>
+  <% end %>
+  <div class="link-item">
+    <%= link_to "忘记密码", passreset_path %>
+  </div>
+</div>

@@ -1,7 +1,17 @@
 <%= render partial: 'welcome/search'%>
-<div class="empty-shopping">
-	<%= image_tag "empty.png", class: "empty-image" %>
-	<span class="empty-title">购物车内暂时没有商品，登录后将显示您之前加入的商品</span>
-	<%= link_to "登录", new_session_path, class: "empty-btn" %>
-	<%= link_to "去购物>", root_path, class: "go-shop" %>
+<div class="empty-shopping-con">
+	<div class="empty-shopping">
+		<%= image_tag "empty.png", class: "empty-image" %>
+		<% if logged_in?%>
+			<span class="empty-title">购物车空空的哦~，去看看心仪的商品吧~</span>
+			<%= link_to "去购物>", root_path, class: "go-shop shop-con" %>
+		<% else %>
+			<span class="empty-title">购物车内暂时没有商品，登录后将显示您之前加入的商品</span>
+			<a href="javascript:showSession(2);" class="empty-btn" >登录</a>
+			<%= link_to "去购物>", root_path, class: "go-shop" %>
+		<% end %>
+	</div>
 </div>
+
+<div id="hidebg"></div>
+<%= render partial: 'shopping_carts/login' %>

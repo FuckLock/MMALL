@@ -1,10 +1,8 @@
 class OrdersController < ApplicationController
   # before_action :auth_user
+  layout 'home'
 
-  def new
-    # debugger
-    # fetch_home_data
-    # @address = Address.new                                 
+  def new                                
     Address.by_address_value(1).each{|address| address.update_attributes!(selected_value: 1)} unless Address.exists?(selected_value: 1)
     @address = Address.by_select_value(1).first
     @shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).by_select_value(1).order('id desc')
@@ -23,10 +21,11 @@ class OrdersController < ApplicationController
                                  )  
     end
     shopping_carts.map(&:destroy!)
-    # address = current_user.addresses.find(params[:address_id])
-    # orders = Order.create_order_from_shopping_carts(current_user, address, shopping_carts)
     redirect_to generate_pay_payments_path(order_nos: orders.map(&:order_no).join(','))
-    # render plain: 'ok'
+  end
+
+  def index
+    
   end
 
 end

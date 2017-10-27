@@ -266,13 +266,14 @@ function hide(){
 };
 
 // 显示登录弹出框
-function showSession(){
+function showSession(param){
 	var hideObj = $('#hidebg');
 	hideObj.css("display", "block");
 	var height = $(document).height();
 	hideObj.css("height", height);
 	var userSessionObj = $('.user-session');
 	userSessionObj.css("display", "block");
+	$(".rule-value").val(param);
 };
 
 

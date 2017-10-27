@@ -508,3 +508,96 @@
 	font-family: "Microsoft YaHei";
 	font-weight: 900;
 }
+
+// orders/index.html.erb
+
+.order-list-con {
+	width: 100%;
+	height: auto;
+	min-height: 500px;
+	overflow: hidden;
+	zoom:1;
+	border: 1px solid red;
+}
+
+.order-list-con .order-left-con {
+	height: 100px;
+	width: 90px;
+	border: 1px solid blue;
+	position: relative;
+	left: 100px;
+	top: 30px;
+}
+
+.order-left-con ul li {
+	padding-bottom: 10px;
+	background: none;
+}
+
+a.my-order{
+	color: red;
+}
+
+.order-list-con .order-right-con {
+	width: 950px;
+	height: auto;
+	overflow: hidden;
+	zoom: 1;
+	min-height: 500px;
+	background: white;
+	border: 1px solid blue;
+	position: relative;
+	left: 200px;
+	top: -70px;
+}
+
+.order-right-con .my-title-tt {
+	color: #666;
+	font-size: 14px;
+	font-weight: bold;
+	border-bottom: 1px solid #eee;
+	padding: 10px;
+	width: 930px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.order-right-con .order-title {
+	width: 930px;
+	height: 35px;
+	background: #eeeeee;
+	margin: 0 auto;
+}
+
+.order-title span {
+	padding-left: 115px;
+	position: relative;
+	top: 10px;
+}
+
+.order-title .shop-common {
+	float: right;
+	position: relative;
+	left: -50px;
+	color: #666;
+}
+
+
+.order-title .shop-info { 
+	color: #666;
+}
+
+.order-right-con .order-info-con {
+	width: 930px;
+	height: auto;
+	overflow: hidden;
+	zoom: 1;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.order-info-con .order-top {
+	width: 100%;
+	height: 35px;
+	background: #eeeeee;
+}

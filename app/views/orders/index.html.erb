@@ -1,0 +1,27 @@
+<%= render partial: 'welcome/search' %>
+<%= render partial: "categories/productlist", :locals => {:order => "订单"} %>
+<div class="order-list-con">
+	<div class="order-left-con">
+		<ul>
+			<a href=""><li>个人中心</li></a>
+			<a href="" class="my-order"><li>我的订单</li></a>
+			<a href=""><li>修改密码</li></a>
+			<a href=""><li>关于MMall</li></a>
+		</ul>
+ 	</div>
+
+ 	<div class="order-right-con">
+ 		<div class="my-title-tt">我的订单</div>
+ 		<div class="order-title">
+ 			<span class="shop-info">商品信息</span>
+ 			<span class="shop-common">单价</span>
+ 			<span class="shop-common">单价</span>
+ 			<span class="shop-common">合计</span>
+ 		</div>
+ 		<div class="order-info-con">
+ 			<div class="order-top">
+ 				<span>订单号:</span>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>

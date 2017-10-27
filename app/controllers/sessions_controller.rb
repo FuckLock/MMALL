@@ -3,10 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # debugger
     user = login(params[:username], params[:password])
     if user
       update_browser_uuid user.uuid
-      redirect_to new_order_path and return if params[:order] = "1"
+      redirect_to new_order_path and return if params[:rule] == "1"
+      redirect_to shopping_carts_path and return if params[:rule] == "2"
       redirect_to root_path
     else
       if params[:email].blank?
@@ -36,6 +38,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path
+    redirect_to :back
   end
 end
