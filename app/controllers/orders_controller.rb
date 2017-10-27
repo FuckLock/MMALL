@@ -12,16 +12,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    orders = []
+    order_no = RandomCode.generate_order_uuid
     shopping_carts = ShoppingCart.by_user_uuid(current_user.uuid).includes(:product)
     shopping_carts.each do |shopping_cart|
       total_money = shopping_cart.amount * shopping_cart.product.price
-      orders << current_user.orders.create!(product_id: shopping_cart.product_id, address_id: params[:order][:address_id],
-                                  amount: shopping_cart.amount, total_money: total_money
+      current_user.orders.create!(product_id: shopping_cart.product_id, address_id: params[:order][:address_id],
+                                  amount: shopping_cart.amount, total_money: total_money, order_no: order_no
                                  )  
     end
     shopping_carts.map(&:destroy!)
-    redirect_to generate_pay_payments_path(order_nos: orders.map(&:order_no).join(','))
+    redirect_to generate_pay_payments_path(order_nos: order_no)
   end
 
   def index

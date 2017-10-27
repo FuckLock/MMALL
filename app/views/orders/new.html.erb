@@ -28,9 +28,10 @@
                 <%= address.area.gsub('/',"") %>
               </div>
             <% end %>
-
-            <input type="hidden" value="<%= address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= address.address%>&nbsp;&nbsp;
-          收货人：&nbsp;&nbsp;<%= address.contact_name %>&nbsp;&nbsp;<%= address.cellphone%>&nbsp;&nbsp;" />
+            <% if @address.present? %>
+              <input type="hidden" value="<%= address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= address.address%>&nbsp;&nbsp;
+            收货人：&nbsp;&nbsp;<%= address.contact_name %>&nbsp;&nbsp;<%= address.cellphone%>&nbsp;&nbsp;" />
+            <% end %>
             <input type="hidden" value="<%= address.id %>"/>
             <div class="address-right">
               <span class="address-pho">
@@ -95,17 +96,21 @@
         <span class="yf-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @shopping_carts.sum{|shopping_cart| shopping_cart.product.price * shopping_cart.amount }%></span>
       </div>
       <div class="yf-jisong">
-        <span class="yf-title">寄送至：</span>
-        <span class="yf-title yf-dz">
-          <%= @address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= @address.address%>&nbsp;&nbsp;
-          收货人：&nbsp;&nbsp;<%= @address.contact_name %>&nbsp;&nbsp;<%= @address.cellphone%>&nbsp;&nbsp;
-        </span>
+        <% if @address.present? %>
+          <span class="yf-title">寄送至：</span>
+          <span class="yf-title yf-dz">
+            <%= @address.area.gsub('/'," ") %>&nbsp;&nbsp;<%= @address.address%>&nbsp;&nbsp;
+            收货人：&nbsp;&nbsp;<%= @address.contact_name %>&nbsp;&nbsp;<%= @address.cellphone%>&nbsp;&nbsp;
+          </span>
+        <% end %>
       </div>
     </div>
   </div>
   <div class="submit-order-con">
     <%= form_for :order, url: orders_path, method: :post do |f| %>
-      <input type="hidden" name="order[address_id]" value="<%= @address.id %>" class="order-address"/>
+      <% if @address.present? %>
+        <input type="hidden" name="order[address_id]" value="<%= @address.id %>" class="order-address"/>
+      <% end %>
       <%= f.submit '提交订单', class: "submit-order" %>
     <% end %>
   </div>
