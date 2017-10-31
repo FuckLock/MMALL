@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  # before_action :auth_user
   layout 'home'
 
   def new                                
@@ -25,6 +24,11 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @order_hash = {}
+    Order.all.each do |order|
+      @order_hash[order.order_no] ||= []
+      @order_hash[order.order_no] << order
+    end
     
   end
 

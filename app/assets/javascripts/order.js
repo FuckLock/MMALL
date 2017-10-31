@@ -53,6 +53,15 @@ function check(){
 	
 }
 
+function orderCheck(){
+	if($(".address-area-ss").length > 0){
+		return true;
+	}else{
+		window.alert('请确认地址')
+		return false;
+	};
+};
+
 function showAddress(){
 	$.post('/address/new', function(data){
 		addressPop(data);

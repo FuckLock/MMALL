@@ -523,7 +523,7 @@
 .order-list-con .order-left-con {
 	height: 100px;
 	width: 90px;
-	border: 1px solid blue;
+	// border: 1px solid blue;
 	position: relative;
 	left: 100px;
 	top: 30px;
@@ -545,7 +545,7 @@ a.my-order{
 	zoom: 1;
 	min-height: 500px;
 	background: white;
-	border: 1px solid blue;
+	// border: 1px solid blue;
 	position: relative;
 	left: 200px;
 	top: -70px;
@@ -600,4 +600,65 @@ a.my-order{
 	width: 100%;
 	height: 35px;
 	background: #eeeeee;
+	// margin-bottom: 20px;
 }
+
+.order-top span {
+	position: relative;
+	top: 8px;
+	padding-left: 30px;
+	color: #999;
+}
+
+.order-number a{
+	text-decoration: none;
+	color: #999;
+}
+
+.order-number a:hover{
+	color: #c60023;
+}
+
+.order-top .order-total .total{
+	color: #c60023;	
+}
+
+.order-info-con .order-info {
+	width: 100%;
+	height: 105px;
+	background: #fafafa;
+	border-bottom: 1px solid #eee;
+}
+
+.order-info .order-image {
+	border: 1px solid #eee;
+	position: relative;
+	top: 13px;
+	width: 80px;
+	height: 80px;
+}
+
+.order-info .order-title {
+	color: #999;
+	position: relative;
+	top: 10px;
+	left: 20px;
+} 
+
+.order-info .order-title a{
+	text-decoration: none;
+} 
+
+.order-info .order-title a:hover {
+	color: #c60023;	
+}
+
+
+.order-info .order-pat{
+	color: #999;
+	position: relative;
+	top: 40px;
+	float: right;
+	left: -40px;
+	padding-left: 90px;
+} 

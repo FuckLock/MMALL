@@ -111,7 +111,7 @@
       <% if @address.present? %>
         <input type="hidden" name="order[address_id]" value="<%= @address.id %>" class="order-address"/>
       <% end %>
-      <%= f.submit '提交订单', class: "submit-order" %>
+      <%= f.submit '提交订单', class: "submit-order", onclick: "return orderCheck();" %>
     <% end %>
   </div>
 </div>

@@ -14,6 +14,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = current_user.addresses.new(address_attr)
+
     if @address.save
       redirect_to new_order_path
     end
@@ -53,7 +54,6 @@ class AddressesController < ApplicationController
   def destroy
     @address = current_user.addresses.find(params[:id])
     @address.destroy
-    # @addresses = current_user.addresses
     redirect_to new_order_path
   end
 

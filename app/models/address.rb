@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Address < ApplicationRecord
   validates :user_id, presence: true
   validates :address_type, presence: true
@@ -10,8 +8,7 @@ class Address < ApplicationRecord
 
   scope :by_select_value, ->(select_value){ where(selected_value: select_value)}
   scope :by_address_value, ->(address_value){ where(address_value: address_value)}
-  # attr_accessor :set_as_default
-  # after_save :set_as_default_address
+  after_create :update_address
 
   belongs_to :user
 
@@ -20,20 +17,8 @@ class Address < ApplicationRecord
     ORDER = 'order'
   end
 
-  # private
-
-  # def set_as_default_address
-  #   if set_as_default.to_i == 1
-  #     user.default_address = self
-  #     user.save!
-  #   else
-  #     remove_as_default_address
-  #   end
-  # end
-
-  # def remove_as_default_address
-  #   return unless user.default_address == self
-  #   user.default_address = nil
-  #   user.save!
-  # end
+  private
+  def update_address
+    self.update_attributes!(address_value: 1) unless Address.by_address_value(1).any?
+  end
 end

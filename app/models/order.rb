@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+
+  include OrdersHelper
   validates :user_id, presence: true
   validates :product_id, presence: true
   validates :address_id, presence: true
@@ -10,8 +12,6 @@ class Order < ApplicationRecord
   belongs_to :product
   belongs_to :payment
 
-  # before_create :generate_order_no
-
   module OrderStatus
     INITIAL = 'initial'
     PAID = 'paid'
@@ -21,10 +21,4 @@ class Order < ApplicationRecord
     status == Order::OrderStatus::PAID
   end
 
-  private
-
-  # def generate_order_no
-
-  #   self.order_no = RandomCode.generate_order_uuid
-  # end
 end

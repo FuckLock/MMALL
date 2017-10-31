@@ -18,10 +18,27 @@
  			<span class="shop-common">单价</span>
  			<span class="shop-common">合计</span>
  		</div>
- 		<div class="order-info-con">
- 			<div class="order-top">
- 				<span>订单号:</span>
- 			</div>
- 		</div>
+
+ 		<% @order_hash.each do |order_no, order_arry| %>
+ 			<% @order = order_arry.first %>
+	 		<div class="order-info-con">
+	 			<div class="order-top">
+	 				<span>订单号:</span><span class="order-number"><a href="#"><%= order_no %></a></span>
+	 				<span><%= @order.created_at.to_s.gsub('UTC', '') %></span>
+	 				<span>收件人：<%= @order.address.contact_name %></span>
+	 				<span>订单状态：<%= @order.get_status(@order.status) %></span>
+	 				<span class="order-total">订单总价： <i class="total">￥<%= order_arry.sum{|order| order.total_money} %></i></span>
+	 			</div>
+	 			<% order_arry.each do |order| %>
+		 			<div class="order-info">
+		 				<%= link_to (image_tag order.product.main_product_image.image.url(:thumb), class: "order-image"), product_path(order.product) %>
+		 				<span class="order-title"><%= link_to (order.product.title), product_path(order.product) %></span>
+		 				<span class="order-pat">￥<%= order.product.price %></span>
+		 				<span class="order-pat"><%= order.amount %></span>
+		 				<span class="order-pat"><%= order.total_money %></span>
+		 			</div>
+		 		<% end %>
+	 		</div>
+	 	<% end %>
  	</div>
 </div>
