@@ -1,86 +1,88 @@
 <%= render partial: 'welcome/search'%>
-<div class="shopping-main">
-  <% unless logged_in? %>
-    <div class="now-login">
-      <%= image_tag "wicon.png",class: "wicon" %>
-      <span class="wicon-title">您还没有登录！登录后购物车的商品将保存到您账号中</span>
-      <%= link_to "立即登录", new_session_path, class: "wicon-btn" %>
-    </div>
-  <% end %>
-  <em>全部商品</em>
-  <div class="title-div">
-    <ul>
-      <li class="column t-checkbox"><input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>&nbsp;&nbsp;&nbsp;全选</li>
-      <li class="column t-shopping">商品</li>
-      <li class="column t-price">单价</li>
-      <li class="column t-amount">数量</li>
-      <li class="column t-total">小计</li>
-      <li class="column t-operation">操作</li> 
-    </ul>
-  </div>
-
-  <div class="t-checkbox t-box-con">
-    <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>
-  </div>
-
-  <% @shopping_carts.each do |shopping_cart| %>
-    <div class="cart-concon">
-      <div class="t-cart">
-        <input type="checkbox" value="<%= shopping_cart.select_value %>" <%= "checked" if shopping_cart.select_value == 1 %> class="check-value only-value" />
-        <input type="hidden" value="<%= shopping_cart.id %>"/>
-        <div class="cart-image-con">
-          <%= image_tag shopping_cart.product.main_product_image.image.url(:thumb), class: "cart-image" %>
-        </div>
-        <%= link_to shopping_cart.product.title, product_path(shopping_cart.product), class: "tt-title" %>
-        <span class="tt-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.product.price %></span>
-        <div class="tt-amount">
-          <input class="tt-minus" value="-" readonly="readonly"/>
-          <input type="text" value="<%= shopping_cart.amount %>" class="tt-text" />
-          <input class="tt-add" value="+" readonly="readonly"/>
-          <input type="hidden" value="<%= shopping_cart.product_id %>" class="sc-pid"/>
-          <input type="hidden" value="<%= shopping_cart.amount %>" class="sc-amount"/>
-        </div>
-        <span class="tt-total"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.amount.to_i * shopping_cart.product.price %></span>
-        <%= link_to "删除", shopping_cart_path(shopping_cart), class: "tt-sc", method: :delete %>
-      </div> 
-    </div>
-  <% end %>
-
-  <div class="bottom-con">
-    <div class="bottom-title">
-      <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check" />&nbsp;&nbsp;全选&nbsp;&nbsp;
-      <!-- <span class="delete-select">删除选中的商品</span> -->
-      <a class="delete-select" href="javascript:show();">删除选中的商品</a>
-      <!-- <a href="shopping">删除选中的商品</a> -->
-    </div>
-    <div class="bottom-price">
-      总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @checked_carts.empty? ? "0.0" : @checked_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price }  %></span>
-    </div>
-    <% if logged_in? %>
-      <%= link_to "去结算", new_order_path, class: "settle-accounts" %>
-    <% else %>
-      <a href="javascript:showSession(1);" class="settle-accounts" >去结算</a>>
+<div class="ss-mm">
+  <div class="shopping-main">
+    <% unless logged_in? %>
+      <div class="now-login">
+        <%= image_tag "wicon.png",class: "wicon" %>
+        <span class="wicon-title">您还没有登录！登录后购物车的商品将保存到您账号中</span>
+        <%= link_to "立即登录", new_session_path, class: "wicon-btn" %>
+      </div>
     <% end %>
-  </div>
-</div>
+    <em>全部商品</em>
+    <div class="title-div">
+      <ul>
+        <li class="column t-checkbox"><input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>&nbsp;&nbsp;&nbsp;全选</li>
+        <li class="column t-shopping">商品</li>
+        <li class="column t-price">单价</li>
+        <li class="column t-amount">数量</li>
+        <li class="column t-total">小计</li>
+        <li class="column t-operation">操作</li> 
+      </ul>
+    </div>
 
-<div id="hidebg"></div>
-<div id="hidebox">
-  <div class="pu-title-con">
-    <span class="pu-title">提示</span>
-    <a class="pu-x" href="javascript:hide();">×</a>
-    <%= image_tag 'jingao.png', class: "jingao" %>
-    <span class="tishi">请至少选中一件商品!</span>
-  </div>
-</div>
+    <div class="t-checkbox t-box-con">
+      <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check"/>
+    </div>
 
-<div id="delete-shop">
-  <div class="pu-title-con">
-    <span class="pu-title">删除</span>
-    <a class="pu-x" href="javascript:hide();">×</a>
-    <%= image_tag 'jingao.png', class: "jingao" %>
-    <span class="tishi">删除商品?</span>
-    <a href="#" class="pu-delete-btn" data-method="delete">删除</a>
+    <% @shopping_carts.each do |shopping_cart| %>
+      <div class="cart-concon">
+        <div class="t-cart">
+          <input type="checkbox" value="<%= shopping_cart.select_value %>" <%= "checked" if shopping_cart.select_value == 1 %> class="check-value only-value" />
+          <input type="hidden" value="<%= shopping_cart.id %>"/>
+          <div class="cart-image-con">
+            <%= image_tag shopping_cart.product.main_product_image.image.url(:thumb), class: "cart-image" %>
+          </div>
+          <%= link_to shopping_cart.product.title, product_path(shopping_cart.product), class: "tt-title" %>
+          <span class="tt-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.product.price %></span>
+          <div class="tt-amount">
+            <input class="tt-minus" value="-" readonly="readonly"/>
+            <input type="text" value="<%= shopping_cart.amount %>" class="tt-text" />
+            <input class="tt-add" value="+" readonly="readonly"/>
+            <input type="hidden" value="<%= shopping_cart.product_id %>" class="sc-pid"/>
+            <input type="hidden" value="<%= shopping_cart.amount %>" class="sc-amount"/>
+          </div>
+          <span class="tt-total"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= shopping_cart.amount.to_i * shopping_cart.product.price %></span>
+          <%= link_to "删除", shopping_cart_path(shopping_cart), class: "tt-sc", method: :delete %>
+        </div> 
+      </div>
+    <% end %>
+
+    <div class="bottom-con">
+      <div class="bottom-title">
+        <input type="checkbox" value="<%= @select_booleean? 0 : 1 %>" <%= "checked" if @select_booleean == false %> class="check-value all-check" />&nbsp;&nbsp;全选&nbsp;&nbsp;
+        <!-- <span class="delete-select">删除选中的商品</span> -->
+        <a class="delete-select" href="javascript:show();">删除选中的商品</a>
+        <!-- <a href="shopping">删除选中的商品</a> -->
+      </div>
+      <div class="bottom-price">
+        总价&nbsp;:&nbsp;<span class="total-price"><i class="fa fa-jpy fa-sm" aria-hidden="true"></i><%= @checked_carts.empty? ? "0.0" : @checked_carts.sum{|shopping_cart| shopping_cart.amount.to_i * shopping_cart.product.price }  %></span>
+      </div>
+      <% if logged_in? %>
+        <%= link_to "去结算", new_order_path, class: "settle-accounts" %>
+      <% else %>
+        <a href="javascript:showSession(1);" class="settle-accounts" >去结算</a>>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="hidebg"></div>
+  <div id="hidebox">
+    <div class="pu-title-con">
+      <span class="pu-title">提示</span>
+      <a class="pu-x" href="javascript:hide();">×</a>
+      <%= image_tag 'jingao.png', class: "jingao" %>
+      <span class="tishi">请至少选中一件商品!</span>
+    </div>
+  </div>
+
+  <div id="delete-shop">
+    <div class="pu-title-con">
+      <span class="pu-title">删除</span>
+      <a class="pu-x" href="javascript:hide();">×</a>
+      <%= image_tag 'jingao.png', class: "jingao" %>
+      <span class="tishi">删除商品?</span>
+      <a href="#" class="pu-delete-btn" data-method="delete">删除</a>
+    </div>
   </div>
 </div>
 

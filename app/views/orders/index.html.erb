@@ -15,7 +15,7 @@
  		<div class="order-title">
  			<span class="shop-info">商品信息</span>
  			<span class="shop-common">单价</span>
- 			<span class="shop-common">单价</span>
+ 			<span class="shop-common">数量</span>
  			<span class="shop-common">合计</span>
  		</div>
 
@@ -28,6 +28,7 @@
 	 				<span>收件人：<%= @order.address.contact_name %></span>
 	 				<span>订单状态：<%= @order.get_status(@order.status) %></span>
 	 				<span class="order-total">订单总价： <i class="total">￥<%= order_arry.sum{|order| order.total_money} %></i></span>
+	 				<span class="can-info"><a href="/order-detail.html?orderNumber=<%= order_no%>">查看详情></a></span>
 	 			</div>
 	 			<% order_arry.each do |order| %>
 		 			<div class="order-info">

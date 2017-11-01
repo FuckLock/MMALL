@@ -517,7 +517,7 @@
 	min-height: 500px;
 	overflow: hidden;
 	zoom:1;
-	border: 1px solid red;
+	// border: 1px solid red;
 }
 
 .order-list-con .order-left-con {
@@ -662,3 +662,80 @@ a.my-order{
 	left: -40px;
 	padding-left: 90px;
 } 
+
+.order-top .can-info {
+	float: right;
+	position: relative;
+	left: -10px;
+}
+
+.order-top .can-info a{
+	text-decoration: none;
+}
+
+.order-right-con .order-info-contt {
+	width: 100%;
+	height:  200px;
+	// border: 1px solid red;
+}
+
+
+.order-text-inline {
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+
+
+.order-text-inline span{
+	color: black;	
+}
+
+.order-text-inline .order-common{
+	display: inline-block;
+	background: #c60023;
+	color: #fff;
+	line-height: 25px;
+	font-weight: bolder;
+	font-size: 12px;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.order-text-inline .order-common:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.order-text-inline .go-pay {
+	width: 55px;
+	height: 25px;
+}
+
+.order-text-inline .cancel-order {
+	width: 70px;
+	height: 25px;
+}
+
+.order-right-con .con-back {
+	width: 100%;
+	height: 20px;
+	background:  #eeeeee;
+}
+
+.order-total-con {
+	float: right;
+	height: 70px;
+	line-height: 70px;
+	padding-right: 20px;
+}
+
+.order-total-con .total-price-title {
+	font-size: 14px;
+	color: #000447;
+}
+
+
+.order-total-con .total-price {
+	font-size: 14px;
+	color: #c60023;
+}

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'address/edit', to: "addresses#edit"
   post 'address/new', to: "addresses#edit"
   get '/switchoff', to: "orders#new"
+  get '/order-detail.html', to: 'orders#show'
+  get '/cancelOrder.html', to: 'orders#cancel_order'
 
   resources :orders
   

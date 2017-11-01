@@ -29,7 +29,17 @@ class OrdersController < ApplicationController
       @order_hash[order.order_no] ||= []
       @order_hash[order.order_no] << order
     end
-    
+  end
+
+  def show
+    @orders = Order.where(order_no: params[:orderNumber])
+  end
+
+  def cancel_order
+    orders = Order.where('order_no = ?', params[:order_no])
+    orders.each{|order| order.update_attributes!(status: 'cancel')}
+    @orders = Order.where(order_no: params[:order_no])
+    render template: 'orders/show'
   end
 
 end

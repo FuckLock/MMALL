@@ -94,6 +94,12 @@ $(function(){
 
 });
 
+function cancelOrder(order){
+	$.get('/cancelOrder.html?',{ order_no: order}, function(data){
+		$('.order-info-contt').html($(data).find('.order-info-contt').html())
+	});
+};
+
 $(function(){
 	// 点击设置默认地址后变成默认地址
 	$(document).on('click', '.add-two', function(){
