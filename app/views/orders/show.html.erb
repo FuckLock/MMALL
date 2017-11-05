@@ -1,56 +1,41 @@
-<%= render partial: 'welcome/search' %>
-<%= render partial: "categories/productlist", :locals => {:order => "订单"} %>
-<div class="order-list-con">
-	<div class="order-left-con">
-		<ul>
-			<a href="/personal-center.html"><li>个人中心</li></a>
-			<a href="" class="my-order"><li>我的订单</li></a>
-			<a href=""><li>修改密码</li></a>
-			<a href=""><li>关于MMall</li></a>
-		</ul>
- 	</div>
-
- 	<div class="order-right-con">
- 		<div class="order-info-contt">
- 			<div class="my-title-tt">订单信息</div>
- 			<% order = @orders.first %>
- 			<% order_status = order.get_status(order.status) %>
- 			<div class='order-text-inline'>
- 				<span>订单号：<%= order.order_no %></span>
- 				<span>创建时间: <%= order.created_at.to_s.gsub("UTC","") %></span>
- 			</div>
- 			<div class='order-text-inline'><span>收件人: <%= order.address.contact_name %></span></div>
- 			<div class='order-text-inline'><span>订单状态: <%= order_status %></span></div>
- 			<div class='order-text-inline'><span>支付方式: 在线支付</span></div>
- 			<% if order_status == '未支付' %>
-				<div class='order-text-inline'>
-					<a class="order-common go-pay">去支付</a>
-					<a class="order-common cancel-order" href="javascript:cancelOrder('<%= order.order_no %>');">取消订单</a>
-				</div>
-			<% end %>
- 		</div>
- 		<div class="con-back"></div>
- 		<div class="my-title-tt">商品清单</div>
- 		<div class="order-title">
- 			<span class="shop-info">商品信息</span>
- 			<span class="shop-common">单价</span>
- 			<span class="shop-common">数量</span>
- 			<span class="shop-common">合计</span>
- 		</div>
- 		<% @orders.each do |order| %>
- 			<div class="order-info-con">
- 				<div class="order-info">
- 					<%= link_to (image_tag order.product.main_product_image.image.url(:thumb), class: "order-image"), product_path(order.product) %>
- 					<span class="order-title"><%= link_to (order.product.title), product_path(order.product) %></span>
-	 				<span class="order-pat">￥<%= order.product.price %></span>
-	 				<span class="order-pat"><%= order.amount %></span>
-	 				<span class="order-pat"><%= order.total_money %></span>
- 				</div>
- 			</div>
- 		<% end %>
- 		<div class='order-total-con'>
- 			<span class="total-price-title">订单总价: </span>&nbsp;
- 			<span class="total-price">￥<%= @orders.sum{|order| order.total_money} %></span>
- 		</div>
- 	</div>
+<div class="order-info-contt">
+	<div class="my-title-tt">订单信息</div>
+	<% order = @orders.first %>
+	<% order_status = order.get_status(order.status) %>
+	<div class='order-text-inline'>
+		<span>订单号：<%= order.order_no %></span>
+		<span>创建时间: <%= order.created_at.to_s.gsub("UTC","") %></span>
+	</div>
+	<div class='order-text-inline'><span>收件人: <%= order.address.contact_name %></span></div>
+	<div class='order-text-inline'><span>订单状态: <%= order_status %></span></div>
+	<div class='order-text-inline'><span>支付方式: 在线支付</span></div>
+	<% if order_status == '未支付' %>
+	<div class='order-text-inline'>
+		<a class="order-common go-pay">去支付</a>
+		<a class="order-common cancel-order" href="javascript:cancelOrder('<%= order.order_no %>');">取消订单</a>
+	</div>
+<% end %>
+</div>
+<div class="con-back"></div>
+<div class="my-title-tt">商品清单</div>
+<div class="order-title">
+	<span class="shop-info">商品信息</span>
+	<span class="shop-common">单价</span>
+	<span class="shop-common">数量</span>
+	<span class="shop-common">合计</span>
+</div>
+<% @orders.each do |order| %>
+	<div class="order-info-con">
+		<div class="order-info">
+			<%= link_to (image_tag order.product.main_product_image.image.url(:thumb), class: "order-image"), product_path(order.product) %>
+			<span class="order-title"><%= link_to (order.product.title), product_path(order.product) %></span>
+			<span class="order-pat">￥<%= order.product.price %></span>
+			<span class="order-pat"><%= order.amount %></span>
+			<span class="order-pat"><%= order.total_money %></span>
+		</div>
+	</div>
+<% end %>
+<div class='order-total-con'>
+	<span class="total-price-title">订单总价: </span>&nbsp;
+	<span class="total-price">￥<%= @orders.sum{|order| order.total_money} %></span>
 </div>

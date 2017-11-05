@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
   get 'personal-center.html', to: 'users#personal_center', as: :personal_center
+  get '/editor-personal-center.html', to: 'users#edit', as: :editor_personal_center
   resources :sessions
   get 'pass-reset.html', to: "sessions#pass_reset", as: :pass_reset
   post 'pass-reset.html', to:  "sessions#create_next", as: :create_next

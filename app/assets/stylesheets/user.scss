@@ -35,12 +35,10 @@ p {
     // width: 85px;
     // height: 25px;
     // margin: 0 auto;
-
 }
 
 p a:-webkit-any-link {
-	text-decoration: none;
-	
+    text-decoration: none;
 }
 
 p a:hover{
@@ -51,4 +49,38 @@ p a:hover{
     margin: 0 5px;
     padding: 5px 10px;
     border: 1px solid #ccc;
+}
+
+.personal-center{
+   display: block;
+   padding-bottom: 10px;
+   color: black;
+   position: relative;
+   left: 20px;
+}
+
+.center-editor {
+    width: 65px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+.submit-editor{
+    width: 65px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    position: relative;
+    left: 20px;
+}
+
+.center-editor:hover {
+    text-decoration: none;
+    color: white;
 }

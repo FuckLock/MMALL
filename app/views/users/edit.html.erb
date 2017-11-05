@@ -1,0 +1,9 @@
+<div class="my-title-tt">修改个人信息</div>
+<%= form_for :user, url: user_path(current_user), method: :PATCH do |f| %>
+	<span class='personal-center'>用户名：<%= f.text_field :username %>	</span>
+	<span class='personal-center'>电话：<%= f.text_field :phone_num %>	</span>
+	<span class='personal-center'>邮箱：<%= f.text_field :email %>	</span>
+	<span class='personal-center'>问题：<%= f.text_field :question %>	</span>
+	<span class='personal-center'>答案：<%= f.text_field :answer %>	</span>
+	<%= f.submit '提交修改', class: 'submit-editor'%>
+<% end %>

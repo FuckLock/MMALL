@@ -20,7 +20,17 @@ class UsersController < ApplicationController
   end
 
   def personal_center
-    render action: :personal_center,layout: 'home'
+    render action: :personal_center,layout: 'order'
+  end
+
+  def edit
+    @user = current_user
+    render action: :edit, layout: 'order'
+  end
+
+  def update
+    current_user.update_attributes!(user_atts)
+    render action: :personal_center, layout: 'order'
   end
 
   private

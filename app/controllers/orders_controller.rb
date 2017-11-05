@@ -29,10 +29,12 @@ class OrdersController < ApplicationController
       @order_hash[order.order_no] ||= []
       @order_hash[order.order_no] << order
     end
+    render action: :index, layout: 'order'
   end
 
   def show
     @orders = Order.where(order_no: params[:orderNumber])
+    render action: :show, layout: 'order'
   end
 
   def cancel_order
