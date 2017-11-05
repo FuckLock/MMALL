@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def index
+    redirect_to new_session_path and return unless logged_in?
     @order_hash = {}
     Order.all.each do |order|
       @order_hash[order.order_no] ||= []
@@ -42,6 +43,10 @@ class OrdersController < ApplicationController
     orders.each{|order| order.update_attributes!(status: 'cancel')}
     @orders = Order.where(order_no: params[:order_no])
     render template: 'orders/show'
+  end
+
+  def about
+    render action: :about, layout: 'order'
   end
 
 end

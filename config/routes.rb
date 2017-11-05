@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get '/cancelOrder.html', to: 'orders#cancel_order'
 
   resources :orders
-  
+  get '/about.html', to: 'orders#about', as: :about
   resources :payments do
     collection do
       get 'generate_pay'

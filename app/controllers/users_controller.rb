@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def personal_center
+    redirect_to new_session_path and return unless logged_in?
     render action: :personal_center,layout: 'order'
   end
 
@@ -49,7 +50,6 @@ class UsersController < ApplicationController
   end
 
   private
-
   def user_atts
     params.require(:user).permit(:username, :password, :password_confirmation, :phone_num, :email, :question, :answer)
   end
