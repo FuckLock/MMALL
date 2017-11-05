@@ -1,0 +1,16 @@
+<div class="my-title-tt">修改密码</div>
+
+<% if flash[:notice].present? %>
+	<div class="err-item notice-con">
+		<%= image_tag("error.png", class: "error-png") %>
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= form_tag pass_update_path, method: :post do %>
+	<span class='personal-center'>原始密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'old_password' %></span>
+	<span class='personal-center'>新密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'password' %></span>
+	<span class='personal-center'>确认密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag 'password_confirmation' %></span>
+	<%= submit_tag  '提交' %>
+<% end %>
+              

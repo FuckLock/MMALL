@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users
   get 'personal-center.html', to: 'users#personal_center', as: :personal_center
   get '/editor-personal-center.html', to: 'users#edit', as: :editor_personal_center
+  get '/edit-pass-update.html', to: 'users#edit_pass_update', as: :edit_pass_update
+  post '/pass-update.html', to: 'users#pass_update', as: :pass_update
   resources :sessions
   get 'pass-reset.html', to: "sessions#pass_reset", as: :pass_reset
   post 'pass-reset.html', to:  "sessions#create_next", as: :create_next
