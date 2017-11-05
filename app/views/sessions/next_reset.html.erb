@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'session', media: 'all' %>
-<div class="header-simple"><a href="" class="logo">MMall</a></div>
 <div class="user-wrap">
 	<div class="user-con w">
 		<div class="user-title">找回密码</div>
@@ -10,12 +8,14 @@
     			<%= flash[:notice] %>
 				</div>
 			<% end %>
-			<%= form_tag(sessions_path, method: "post") do %>
+			<%= form_tag(create_next_by_answer_path, method: "post") do %>
 				<div class="user-item">
-					<p class="user-item-text"><%= label_tag '请输入用户名' %></p>
+					<p class="user-item-text">密码提示问题为:<%= @user.question %></p>
+					<input type='hidden' name='user_id' value="<%= @user.id %>"/>
+					<p class="user-item-text"><%= label_tag '请输入密码提示答案:' %></p>
 					<div class="image-con">
 						<%= image_tag("username.png", class: "image-con-png") %>
-						<%= text_field_tag :email, nil, class: "email-text", placeholder: "请输入用户名" %>
+						<%= text_field_tag :answer, nil, class: "email-text", placeholder: "请输入答案" %>
 					</div>
 					<%= submit_tag "下一步", class: "user-btn" %>
 				</div>

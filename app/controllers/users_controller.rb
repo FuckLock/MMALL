@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     
   end
 
+  def personal_center
+    render action: :personal_center,layout: 'home'
+  end
+
   private
 
   def user_atts

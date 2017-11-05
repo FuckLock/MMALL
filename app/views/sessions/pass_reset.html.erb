@@ -1,0 +1,25 @@
+<div class="user-wrap">
+	<div class="user-con w">
+		<div class="user-title">找回密码</div>
+		<div class="user-box">
+			<% if flash[:notice].present? %>
+				<div class="err-item">
+					<%= image_tag("error.png", class: "error-png") %>
+    			<%= flash[:notice] %>
+				</div>
+			<% end %>
+			<%= form_tag(create_next_path, method: "post") do %>
+				<div class="user-item">
+					<p class="user-item-text"><%= label_tag '请输入用户名' %></p>
+					<div class="image-con">
+						<%= image_tag("username.png", class: "image-con-png") %>
+						<%= text_field_tag :username, nil, class: "email-text", placeholder: "请输入用户名" %>
+					</div>
+					<%= submit_tag "下一步", class: "user-btn" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+

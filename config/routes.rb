@@ -3,8 +3,15 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
+  get 'personal-center.html', to: 'users#personal_center', as: :personal_center
   resources :sessions
-  get 'passreset', to: "sessions#passreset", as: :passreset
+  get 'pass-reset.html', to: "sessions#pass_reset", as: :pass_reset
+  post 'pass-reset.html', to:  "sessions#create_next", as: :create_next
+  get 'next-reset.html',to: 'sessions#next_reset', as: :next_reset
+  post 'next-reset.html',to: 'sessions#create_next_by_answer', as: :create_next_by_answer
+  get 'submit-pass.html', to: 'sessions#submit_pass', as: :submit_pass
+  post 'submit-pass.html', to: 'sessions#create_submit', as: :create_submit
+  get 'reset-success.html', to: 'sessions#reset_success', as: :reset_success
   get 'register/success', to: "users#register", as: :register_success
 
   resources :products
