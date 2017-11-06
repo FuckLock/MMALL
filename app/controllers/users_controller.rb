@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   def edit_pass_update
+    redirect_to new_session_path and return unless logged_in?
     render action: :edit_pass_update, layout: 'order'
   end
 

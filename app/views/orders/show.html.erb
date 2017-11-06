@@ -1,20 +1,22 @@
-<div class="order-info-contt">
-	<div class="my-title-tt">订单信息</div>
-	<% order = @orders.first %>
-	<% order_status = order.get_status(order.status) %>
-	<div class='order-text-inline'>
-		<span>订单号：<%= order.order_no %></span>
-		<span>创建时间: <%= order.created_at.to_s.gsub("UTC","") %></span>
+<div class="order-info-ff">
+	<div class="order-info-contt">
+		<div class="my-title-tt">订单信息</div>
+		<% order = @orders.first %>
+		<% order_status = order.get_status(order.status) %>
+		<div class='order-text-inline'>
+			<span>订单号：<%= order.order_no %></span>
+			<span>创建时间: <%= order.created_at.to_s.gsub("UTC","") %></span>
+		</div>
+		<div class='order-text-inline'><span>收件人: <%= order.address.contact_name %></span></div>
+		<div class='order-text-inline'><span>订单状态: <%= order_status %></span></div>
+		<div class='order-text-inline'><span>支付方式: 在线支付</span></div>
+		<% if order_status == '未支付' %>
+			<div class='order-text-inline'>
+				<a class="order-common go-pay">去支付</a>
+				<a class="order-common cancel-order" href="javascript:cancelOrder('<%= order.order_no %>');">取消订单</a>
+			</div>
+		<% end %>
 	</div>
-	<div class='order-text-inline'><span>收件人: <%= order.address.contact_name %></span></div>
-	<div class='order-text-inline'><span>订单状态: <%= order_status %></span></div>
-	<div class='order-text-inline'><span>支付方式: 在线支付</span></div>
-	<% if order_status == '未支付' %>
-	<div class='order-text-inline'>
-		<a class="order-common go-pay">去支付</a>
-		<a class="order-common cancel-order" href="javascript:cancelOrder('<%= order.order_no %>');">取消订单</a>
-	</div>
-<% end %>
 </div>
 <div class="con-back"></div>
 <div class="my-title-tt">商品清单</div>

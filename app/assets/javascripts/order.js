@@ -95,7 +95,8 @@ $(function(){
 });
 
 function cancelOrder(order){
-	$.get('/cancelOrder.html?',{ order_no: order}, function(data){
+	$.get('/cancelOrder.html?',{ order_no: order }, function(data){
+		// console.log($(data).children());
 		$('.order-info-contt').html($(data).find('.order-info-contt').html())
 	});
 };
