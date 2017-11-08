@@ -29,7 +29,6 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-objects'
 gem 'sidekiq'
-gem 'docker-api'
 
 group :development do
   gem 'guard-bundler', require: false

@@ -81,24 +81,15 @@ class PaymentsController < ApplicationController
   end
 
   def build_request_options payment
-    # opts:
-    #   service: create_direct_pay_by_user | mobile.securitypay.pay
-    #   sign_type: MD5 | RSA
-    pay_options = {
-      # "service" => 'trade_create_by_buyer',
-      'app_id' => ENV['ALIPAY_PID'],
-      "partner" => ENV['ALIPAY_PID'],
-      "seller_id" => '2088102170303263',
-      "payment_type" => "1",
+    pay_options = { 
+      'pid' => '2088102170303263',
+      'app_id' => '2016080700185738',
       "notify_url" => ENV['ALIPAY_NOTIFY_URL'],
       "return_url" => ENV['ALIPAY_RETURN_URL'],
-
-      "anti_phishing_key" => "",
-      "exter_invoke_ip" => "",
       "out_trade_no" => payment.payment_no,
-      # "subject" => "蛋人商城商品购买",
+      "subject" => "MMALL商城商品购买",
       "total_fee" => payment.total_money,
-      # "body" => "蛋人商城商品购买",
+      "body" => "MMALL商城商品购买",
       "_input_charset" => "utf-8",
       "sign_type" => 'MD5',
       "sign" => ""
