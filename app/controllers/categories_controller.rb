@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 	before_action :find_category, only: [:show, :down_product, :up_product]
   def show
     # 如果是post说明是ajax请求
-  	render partial: "categories/product",layout: false if request.method == "POST"    
+  	render partial: "categories/product",layout: false if request.method == "POST"
   end
 
   def down_product

@@ -1,4 +1,11 @@
 class Product < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  # 定义索引名和索引类型
+  index_name 'products'
+  document_type 'jdbc_product'
+
 
   validates :category_id, presence: { message: '分类不能为空' }
   validates :title, presence: { message: '标题不能为空' }
@@ -36,5 +43,15 @@ class Product < ApplicationRecord
 
   def set_default_attrs
     self.uuid = RandomCode.generate_product_uuid
+  end
+
+  def self.search param
+    response = __elasticsearch__.search({
+        query: {
+          match: {
+            title: param
+          }
+        }
+      })
   end
 end

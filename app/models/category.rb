@@ -1,4 +1,11 @@
 class Category < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  # 定义索引名和索引类型
+  index_name 'categories'
+  document_type 'jdbc_category'
+
   validates :title, presence: { message: '名称不能为空' }
   validates :title, uniqueness: { message: '名称不能重复' }
 
@@ -23,6 +30,16 @@ class Category < ApplicationRecord
         row << parent.children.order('weight desc')
       end
       return row
+    end
+
+    def search param
+      response = __elasticsearch__.search(
+        query: {
+          match: {
+            title: param
+          }
+        }
+      )
     end
   end
 end

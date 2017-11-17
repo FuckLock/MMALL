@@ -11,18 +11,13 @@ class ProductsController < ApplicationController
   	redirect_to root_path and return if params["search-input"].blank?
   	# 从分类来重找
   	search_value = params["search-input"].gsub(/^(\s*)|(\s*)$/, '')
-  	Category.where('ancestry is not null').each do |category|
-  		if category.title.include? search_value
-  			redirect_to category_path(id: category.id) and return
-  		end
-  	end
-  	# 从商品的title来查找
-  	Product.all.each do |product|
-  		if product.title.downcase.include? search_value.downcase
-  			redirect_to category_path(search_product_id: product.id, id: product.category.id) and return
-  		end
-  	end
-
-  	render template: 'categories/show'
+		# 通过ElaticSearch来实现查找功能
+		search_category = Category.search(search_value).to_a
+		redirect_to category_path(id: search_category.first.id) and return if search_category.any?
+		search_product = Product.search(search_value).to_a
+		render template: 'categories/show' and return if search_product.empty?
+		product_id = search_product.first.id
+		category_id = Product.find_by(id: product_id).category.id
+		redirect_to category_path(search_product_id: product_id, id: category_id)
   end
 end

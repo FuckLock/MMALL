@@ -30,6 +30,10 @@ gem 'redis-namespace'
 gem 'redis-objects'
 gem 'sidekiq'
 
+# 搜索
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 group :development do
   gem 'guard-bundler', require: false
   gem 'guard-rspec', require: false
